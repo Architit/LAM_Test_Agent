@@ -2,11 +2,9 @@ name: CI
 on: [push, pull_request]
 
 jobs:
-  lint-test:
+  test:
     runs-on: ubuntu-latest
-
     steps:
-      # ↓ PAT передаётся прямо в checkout
       - name: Checkout repo + submodules
         uses: actions/checkout@v4
         with:
@@ -21,15 +19,10 @@ jobs:
       - name: Install dev deps
         run: |
           python -m pip install -U pip
-          pip install ruff pytest
+          pip install -r requirements-dev.txt
 
-      - name: Ruff lint
+      - name: Ruff
         run: ruff check .
 
-      - name: Run tests (if any)
-        run: |
-          if find . -maxdepth 3 -name "test_*.py" | grep -q .; then
-            pytest -q
-          else
-            echo "No tests found – skipping"; exit 0
-          fi
+      - name: Tests + coverage
+        run: pytest --cov=./ --cov-report=xml --cov-fail-under=20
