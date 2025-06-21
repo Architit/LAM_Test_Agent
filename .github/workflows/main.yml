@@ -24,8 +24,9 @@ jobs:
       - name: Ruff lint
         run: ruff check .
 
+      # ⬇️ mypy запускаем, игнорируя директорию сабмодулей, чтобы не было дубля "src"
       - name: Mypy type-check
-        run: mypy --ignore-missing-imports .
+        run: mypy --ignore-missing-imports --exclude 'LAM_Test/agents/.*' .
 
       - name: Tests
         run: pytest --cov=./ --cov-report=xml --cov-fail-under=90
