@@ -24,10 +24,12 @@ jobs:
       - name: Ruff lint
         run: ruff check .
 
-      # ➜ В проекте сейчас анализируем только собственный пакет scripts
       - name: Mypy type-check
         run: |
-          mypy --ignore-missing-imports --exclude 'LAM_Test/agents/.*' scripts
+          mypy \
+            --ignore-missing-imports \
+            --exclude 'LAM_Test/agents/.*' \
+            .
 
       - name: Tests
         run: pytest --cov=./ --cov-report=xml --cov-fail-under=90
