@@ -16,7 +16,7 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Install dependencies
+      - name: Install dev-deps
         run: |
           python -m pip install -U pip
           pip install -r requirements-dev.txt
@@ -24,9 +24,14 @@ jobs:
       - name: Ruff lint
         run: ruff check .
 
-      # проверяем только свою папку scripts, игнорируя сабмодули
       - name: Mypy type-check
-        run: mypy --ignore-missing-imports scripts
+        run: |
+          mypy \
+            --ignore-missing-imports \
+            --explicit-package-bases \
+            --namespace-packages \
+            --exclude 'LAM_Test/agents/.*' \
+            lam_test scripts
 
       - name: Tests
         run: pytest --cov=./ --cov-report=xml --cov-fail-under=90
