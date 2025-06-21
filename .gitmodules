@@ -1,0 +1,6 @@
+[submodule "LAM_Test/agents/codex-agent"]
+	path = LAM_Test/agents/codex-agent
+	url = https://github.com/Architit/LAM-Codex_Agent.git
+[submodule "LAM_Test/agents/comm-agent"]
+	path = LAM_Test/agents/comm-agent
+	url = https://github.com/Architit/LAM_Communication_Agent.git
