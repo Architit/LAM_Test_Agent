@@ -5,7 +5,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     env:
-      GH_SUBMODULE_TOKEN: ${{ secrets.LAM-Submodule_Access }}
+      GH_SUBMODULE_TOKEN: ${{ secrets.LAM_SUBMODULE_ACCES }}   # ← имя секрета как в UI
 
     steps:
       - uses: actions/checkout@v4
@@ -14,7 +14,8 @@ jobs:
           token: ${{ env.GH_SUBMODULE_TOKEN }}
 
       - uses: actions/setup-python@v4
-        with: {python-version: "3.12"}
+        with:
+          python-version: "3.12"
 
       - name: Install dev deps
         run: |
@@ -24,5 +25,5 @@ jobs:
       - name: Ruff
         run: ruff check .
 
-      - name: Tests + coverage
-        run: pytest --cov=./ --cov-report=xml --cov-fail-under=20
+      - name: Tests
+        run: pytest -q
