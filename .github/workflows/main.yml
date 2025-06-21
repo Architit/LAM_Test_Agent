@@ -2,7 +2,7 @@ name: CI
 on: [push, pull_request]
 
 jobs:
-  lint:
+  test:
     runs-on: ubuntu-latest
     env:
       GH_SUBMODULE_TOKEN: ${{ secrets.LAM-Submodule_Access }}
@@ -16,7 +16,13 @@ jobs:
       - uses: actions/setup-python@v4
         with: {python-version: "3.12"}
 
-      - run: python -m pip install -U pip ruff
+      - name: Install dev deps
+        run: |
+          python -m pip install -U pip
+          pip install -r requirements-dev.txt
 
-      - name: Ruff lint
+      - name: Ruff
         run: ruff check .
+
+      - name: Tests + coverage
+        run: pytest --cov=./ --cov-report=xml --cov-fail-under=20
