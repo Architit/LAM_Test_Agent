@@ -23,6 +23,11 @@ jobs:
           python -m pip install -U pip
           pip install ruff pytest
 
+      - name: Install agents editable
+        run: |
+          pip install -e LAM_Test/agents/codex-agent
+          pip install -e LAM_Test/agents/comm-agent
+
       - name: Ruff lint
         run: ruff check .
 

@@ -1,13 +1,4 @@
-from pathlib import Path
-import sys
-
-ROOT = Path(__file__).resolve().parents[1]
-sys.path.extend([
-    str(ROOT / "LAM_Test" / "agents" / "codex-agent" / "src"),
-    str(ROOT / "LAM_Test" / "agents" / "comm-agent" / "src"),
-])
-
-from codex_agent.core import Core           # type: ignore
+from codex_agent.core import Core  # type: ignore
 from interfaces.com_agent_interface import ComAgent  # type: ignore
 
 
