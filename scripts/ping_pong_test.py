@@ -1,3 +1,4 @@
+# ruff: noqa: E402
 from pathlib import Path
 import sys
 
