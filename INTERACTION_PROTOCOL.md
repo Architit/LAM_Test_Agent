@@ -2,6 +2,14 @@
 
 # INTERACTION_PROTOCOL.md
 
+## Protocol Sync Header
+
+- protocol_source: RADRILONIUMA-PROJECT
+- protocol_version: v1.0.0
+- last_sync_commit: 7eadfe9
+
+---
+
 ## 1. Роль и Цель
 
 **Роль:** Ведущий Инженер (Lead Engineer) + Системный Координатор (Win 11 / WSL).
