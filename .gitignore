@@ -1,3 +1,7 @@
 .venv/
 __pycache__/
 tests/__pycache__/
+desktop.ini
+Desktop.ini
+.coverage
+coverage.xml

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+import importlib
 import sys
 from typing import Any
 
@@ -16,13 +17,13 @@ if str(COMM_SRC) not in sys.path:
 if str(CODEX_SRC) not in sys.path:
     sys.path.insert(1, str(CODEX_SRC))
 
-from interfaces import com_agent_interface as comm_module  # noqa: E402
-from interfaces.com_agent_interface import ComAgent  # noqa: E402
-
 
 @pytest.mark.unit
 @pytest.mark.submodule_required
 def test_send_data_emits_external_debug_record(monkeypatch: pytest.MonkeyPatch) -> None:
+    comm_module = importlib.import_module("interfaces.com_agent_interface")
+    ComAgent = getattr(comm_module, "ComAgent")
+
     captured: list[tuple[str, str, str, dict[str, Any]]] = []
 
     def fake_log(level: str, channel: str, message: str, **fields: Any) -> None:

@@ -1,0 +1,14 @@
+{
+  "scenario_id": "scn_codex_comm_ping_pong",
+  "title": "Codex and Comm ping-pong baseline route",
+  "routes": [
+    {"source": "comm-agent", "target": "codex-agent", "layer": "agent"},
+    {"source": "codex-core", "target": "comm-agent", "layer": "core"}
+  ],
+  "required_contracts": [
+    "ping_payload_schema_v1",
+    "ping_reply_envelope_v1",
+    "trace_propagation_v1"
+  ],
+  "expected_status": "ok"
+}

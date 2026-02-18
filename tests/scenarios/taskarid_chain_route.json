@@ -1,0 +1,16 @@
+{
+  "scenario_id": "scn_taskarid_chain_route",
+  "title": "Taskarid to Roaudter chain through comm and codex",
+  "routes": [
+    {"source": "taskarid-core", "target": "comm-agent", "layer": "core"},
+    {"source": "comm-agent", "target": "codex-agent", "layer": "agent"},
+    {"source": "codex-agent", "target": "comm-agent", "layer": "agent"},
+    {"source": "comm-agent", "target": "roaudter-agent", "layer": "agent"}
+  ],
+  "required_contracts": [
+    "task_envelope_v2",
+    "trace_continuity_v1",
+    "cross_agent_route_contract_v1"
+  ],
+  "expected_status": "ok"
+}

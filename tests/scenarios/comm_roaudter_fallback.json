@@ -1,0 +1,15 @@
+{
+  "scenario_id": "scn_comm_roaudter_fallback",
+  "title": "Comm to Roaudter fallback route",
+  "routes": [
+    {"source": "comm-agent", "target": "roaudter-agent", "layer": "agent"},
+    {"source": "roaudter-agent", "target": "provider-router-core", "layer": "core"},
+    {"source": "provider-router-core", "target": "local-provider", "layer": "ecosystem"}
+  ],
+  "required_contracts": [
+    "provider_hint_contract_v1",
+    "fallback_determinism_contract_v1",
+    "usage_unified_contract_v1"
+  ],
+  "expected_status": "degraded"
+}
