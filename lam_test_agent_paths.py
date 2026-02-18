@@ -12,6 +12,11 @@ def workspace_root() -> Path:
     raw = os.getenv("LAM_WORKSPACE_ROOT", "")
     if raw:
         return Path(raw).expanduser().resolve()
+    base = repo_root().resolve()
+    candidates = [base, *base.parents]
+    for candidate in candidates:
+        if (candidate / "LAM").exists():
+            return candidate
     return repo_root().parent
 
 

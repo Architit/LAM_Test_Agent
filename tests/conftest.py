@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import os
 from pathlib import Path
 import sys
 
@@ -14,6 +15,7 @@ from lam_test_agent_bootstrap import missing_agent_src_paths, repo_root  # noqa:
 
 ROOT = repo_root(__file__).parent
 MISSING_AGENT_PATHS = missing_agent_src_paths(ROOT)
+os.environ.setdefault("LAM_RUNTIME_LOG_FILE", f"/tmp/{ROOT.name}_LAM_RUNTIME_LOG.jsonl")
 
 
 def pytest_collection_modifyitems(config: pytest.Config, items: list[pytest.Item]) -> None:

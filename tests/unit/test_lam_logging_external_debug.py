@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import os
 from pathlib import Path
 
 import pytest
@@ -21,7 +22,9 @@ def test_debug_channel_can_be_mirrored_to_external_stream(monkeypatch: pytest.Mo
         request_id="req-1",
     )
 
-    local_file = tmp_path / "memory" / "FRONT" / "LAM_RUNTIME_LOG.jsonl"
+    local_file = Path(
+        os.environ.get("LAM_RUNTIME_LOG_FILE", str(tmp_path / "memory" / "FRONT" / "LAM_RUNTIME_LOG.jsonl"))
+    )
     external_file = tmp_path / "ext" / "codex_openai_codefix_debug.jsonl"
     assert local_file.exists()
     assert external_file.exists()

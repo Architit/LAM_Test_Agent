@@ -8,6 +8,7 @@ from typing import Any
 
 
 _LOG_FILE = Path("memory/FRONT/LAM_RUNTIME_LOG.jsonl")
+_LOG_FILE_ENV = "LAM_RUNTIME_LOG_FILE"
 _EXTERNAL_DEBUG_DIR_ENV = "LAM_EXTERNAL_DEBUG_LOG_DIR"
 _EXTERNAL_DEBUG_FILE = "codex_openai_codefix_debug.jsonl"
 
@@ -23,6 +24,13 @@ def _external_debug_log_file() -> Path | None:
     if not raw:
         return None
     return Path(raw) / _EXTERNAL_DEBUG_FILE
+
+
+def _runtime_log_file() -> Path:
+    raw = os.environ.get(_LOG_FILE_ENV, "").strip()
+    if raw:
+        return Path(raw)
+    return _LOG_FILE
 
 
 def _should_mirror_external_debug(level: str, channel: str, fields: dict[str, Any]) -> bool:
@@ -42,7 +50,7 @@ def log(level: str, channel: str, message: str, **fields: Any) -> None:
         "message": message,
         "fields": fields,
     }
-    _write_jsonl(_LOG_FILE, payload)
+    _write_jsonl(_runtime_log_file(), payload)
 
     if not _should_mirror_external_debug(level, channel, fields):
         return

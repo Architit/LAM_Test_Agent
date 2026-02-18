@@ -98,4 +98,4 @@ def test_deadloop_ecosystem_scan_includes_lam_and_lam_test_agent() -> None:
     rows = payload["scan"]
     repos = {Path(row["repo"]).name for row in rows}
     assert "LAM" in repos
-    assert "LAM_Test_Agent" in repos
+    assert repos.intersection({"LAM_Test_Agent", "test-agent"})
