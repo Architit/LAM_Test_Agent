@@ -5,3 +5,5 @@ desktop.ini
 Desktop.ini
 .coverage
 coverage.xml
+.gateway/
+memory/
