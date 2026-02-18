@@ -4,6 +4,7 @@ import os
 import stat
 import subprocess
 import sys
+import tarfile
 from pathlib import Path
 
 import pytest
@@ -108,3 +109,52 @@ def test_test_entrypoint_falls_back_to_workspace_venv(tmp_path: Path) -> None:
     )
 
     assert proc.returncode == 0
+
+
+@pytest.mark.unit
+def test_gateway_import_rejects_traversal_entries(tmp_path: Path) -> None:
+    archive = tmp_path / "unsafe.tgz"
+    payload = tmp_path / "payload.txt"
+    payload.write_text("x", encoding="utf-8")
+    with tarfile.open(archive, "w:gz") as tf:
+        tf.add(payload, arcname="../escape.txt")
+
+    proc = subprocess.run(
+        ["bash", str(GATEWAY_SCRIPT), "import", str(archive)],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+
+    out = proc.stdout + proc.stderr
+    assert proc.returncode != 0
+    assert "unsafe_path traversal" in out
+
+
+@pytest.mark.unit
+def test_test_entrypoint_declares_all_mode() -> None:
+    text = ENTRYPOINT_SCRIPT.read_text(encoding="utf-8")
+    assert "--all" in text
+
+
+@pytest.mark.unit
+def test_test_entrypoint_uses_allow_empty_and_cacheprovider_guard() -> None:
+    text = ENTRYPOINT_SCRIPT.read_text(encoding="utf-8")
+    assert "run_pytest_allow_empty" in text
+    assert "PYTEST_ADDOPTS" in text
+    assert "no:cacheprovider" in text
+
+
+@pytest.mark.unit
+def test_test_entrypoint_unknown_mode_exits_2() -> None:
+    proc = subprocess.run(
+        ["bash", str(ENTRYPOINT_SCRIPT), "--unknown-mode"],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    out = proc.stdout + proc.stderr
+    assert proc.returncode == 2
+    assert "usage:" in out.lower()

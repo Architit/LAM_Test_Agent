@@ -4,8 +4,9 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT"
 
-MODE="${1:---unit-only}"
+MODE="${1:---all}"
 PYTHON_BIN=""
+export PYTEST_ADDOPTS="${PYTEST_ADDOPTS:--p no:cacheprovider}"
 export LAM_RUNTIME_LOG_FILE="${LAM_RUNTIME_LOG_FILE:-/tmp/$(basename "$ROOT")_LAM_RUNTIME_LOG.jsonl}"
 
 resolve_python() {
@@ -41,18 +42,32 @@ run_pytest() {
   "$PYTHON_BIN" -m pytest "$@"
 }
 
+run_pytest_allow_empty() {
+  if run_pytest "$@"; then
+    return 0
+  fi
+  local rc=$?
+  if [[ $rc -eq 5 ]]; then
+    return 0
+  fi
+  return "$rc"
+}
+
 case "$MODE" in
+  --all)
+    run_pytest -q
+    ;;
   --unit-only)
-    run_pytest -q -m "not integration"
+    run_pytest_allow_empty -q -m "not integration"
     ;;
   --integration)
-    run_pytest -q -m "integration"
+    run_pytest_allow_empty -q -m "integration"
     ;;
   --ci)
     run_pytest -q
     ;;
   *)
-    echo "Usage: scripts/test_entrypoint.sh [--unit-only|--integration|--ci]"
+    echo "Usage: scripts/test_entrypoint.sh [--all|--unit-only|--integration|--ci]"
     exit 2
     ;;
 esac
