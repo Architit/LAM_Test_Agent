@@ -1,0 +1,946 @@
+{
+  "generated_at_utc": "2026-02-17T22:04:43.636684+00:00",
+  "lam_root": "/home/architit/work/LAM",
+  "git": {
+    "branch": "phase2/observability",
+    "dirty": true,
+    "modified_entries": 24,
+    "untracked_entries": 24,
+    "submodule_count": 4
+  },
+  "phase43_markers": {
+    "roadmap_hit_count": 7,
+    "workflow_hit_count": 9
+  },
+  "guard_probe_hold": {
+    "exit_code": 0,
+    "result": {
+      "preflight": {
+        "governance_only_streak": 3,
+        "non_doc_code_delta_count": 0,
+        "test_delta_count": 0,
+        "journal_only_delta": true,
+        "engineering_evidence_state": "MISSING_OR_FAILED",
+        "decision": "HOLD_BY_DEADLOOP_BREAK_PROTOCOL",
+        "reason": "numbering/journal-only cycle without structural delta"
+      },
+      "payload": {
+        "governance_only_streak": 3,
+        "non_doc_code_delta_count": 0,
+        "test_delta_count": 0,
+        "journal_only_delta": true,
+        "engineering_evidence_state": "MISSING_OR_FAILED",
+        "decision": "HOLD_BY_DEADLOOP_BREAK_PROTOCOL",
+        "reason": "numbering/journal-only cycle without structural delta",
+        "code_delta_refs": [],
+        "test_delta_refs": [],
+        "validation_command": [],
+        "validation_result": "PASS"
+      }
+    }
+  },
+  "guard_probe_pass": {
+    "exit_code": 0,
+    "result": {
+      "preflight": {
+        "governance_only_streak": 0,
+        "non_doc_code_delta_count": 1,
+        "test_delta_count": 1,
+        "journal_only_delta": false,
+        "engineering_evidence_state": "PASS",
+        "decision": "PASS",
+        "reason": "preflight conditions satisfied"
+      },
+      "payload": {
+        "governance_only_streak": 0,
+        "non_doc_code_delta_count": 1,
+        "test_delta_count": 1,
+        "journal_only_delta": false,
+        "engineering_evidence_state": "PASS",
+        "decision": "PASS",
+        "reason": "preflight conditions satisfied",
+        "code_delta_refs": [
+          "src/deadloop_gate.py"
+        ],
+        "test_delta_refs": [
+          "tests/test_deadloop_gate.py"
+        ],
+        "validation_command": [
+          ".venv/bin/pytest -q tests/test_deadloop_gate.py -p no:cacheprovider"
+        ],
+        "validation_result": "PASS"
+      },
+      "resume": {
+        "decision": "PASS",
+        "missing_fields": [],
+        "reason": "resume tuple complete and operator confirmed"
+      }
+    }
+  },
+  "ecosystem_scan": {
+    "scan": [
+      {
+        "repo": "/home/architit/work/LAM",
+        "hits": [
+          {
+            "file": "/home/architit/work/LAM/DEV_LOGS.md",
+            "pattern_id": "governance_only_progress",
+            "severity": "high",
+            "line_no": 19,
+            "line": "2026-02-10 16:10 \u2014 Phase 4.2 Learning Signals: LearningSignal v1 contract added (derivation-only, no runtime impact)"
+          },
+          {
+            "file": "/home/architit/work/LAM/DEV_LOGS.md",
+            "pattern_id": "governance_only_progress",
+            "severity": "high",
+            "line_no": 87,
+            "line": "2026-02-13 03:35 UTC \u2014 Governance: Phase 5 prep activated (governance-only) \u2014 published `P5_PREP_BACKLOG_CONTRACT.md`; fixed queue `P5.T1/P5.T2/P5.T3`; next target set to `P5.T1` timestamp policy contract draft."
+          },
+          {
+            "file": "/home/architit/work/LAM/DEV_LOGS.md",
+            "pattern_id": "governance_only_progress",
+            "severity": "high",
+            "line_no": 88,
+            "line": "2026-02-13 03:39 UTC \u2014 Governance: P5.T1 completed (governance-only) \u2014 published `P5_T1_TIMESTAMP_UTC_CONTRACT.md`; timestamp normalization rules fixed for `UTC`/`Z`; next target moved to `P5.T2` retrieval boundary draft."
+          },
+          {
+            "file": "/home/architit/work/LAM/DEV_LOGS.md",
+            "pattern_id": "governance_only_progress",
+            "severity": "high",
+            "line_no": 89,
+            "line": "2026-02-13 03:41 UTC \u2014 Governance: P5.T2 completed (governance-only) \u2014 published `P5_T2_RETRIEVAL_BOUNDARY_CONTRACT.md`; retrieval-first boundary semantics fixed at policy level; next target moved to `P5.T3` domain partitioning draft."
+          },
+          {
+            "file": "/home/architit/work/LAM/DEV_LOGS.md",
+            "pattern_id": "governance_only_progress",
+            "severity": "high",
+            "line_no": 90,
+            "line": "2026-02-13 03:44 UTC \u2014 Governance: P5.T3 completed (governance-only) \u2014 published `P5_T3_DOMAIN_PARTITIONING_CONTRACT.md`; domain partitioning boundaries fixed; P5 prep wave (`T1/T2/T3`) marked complete; next target moved to post-P5 prep task selection."
+          },
+          {
+            "file": "/home/architit/work/LAM/DEV_LOGS.md",
+            "pattern_id": "governance_only_progress",
+            "severity": "high",
+            "line_no": 91,
+            "line": "2026-02-13 03:51 UTC \u2014 Governance: P5 execution gate activated (governance-only) \u2014 published `P5_EXECUTION_GATE_CONTRACT.md`; fixed queue `P5.G1/P5.G2/P5.G3`; next target set to `P5.G1` evidence profile contract draft."
+          },
+          {
+            "file": "/home/architit/work/LAM/DEV_LOGS.md",
+            "pattern_id": "governance_only_progress",
+            "severity": "high",
+            "line_no": 92,
+            "line": "2026-02-13 03:52 UTC \u2014 Governance: P5.G1 completed (governance-only) \u2014 published `P5_G1_EVIDENCE_PROFILE_CONTRACT.md`; evidence profile fields/markers fixed; next target moved to `P5.G2` risk boundary register draft."
+          },
+          {
+            "file": "/home/architit/work/LAM/DEV_LOGS.md",
+            "pattern_id": "governance_only_progress",
+            "severity": "high",
+            "line_no": 93,
+            "line": "2026-02-13 03:54 UTC \u2014 Governance: P5.G2 completed (governance-only) \u2014 published `P5_G2_RISK_BOUNDARY_REGISTER_CONTRACT.md`; risk classes/register fields fixed; next target moved to `P5.G3` operator checklist draft."
+          },
+          {
+            "file": "/home/architit/work/LAM/DEV_LOGS.md",
+            "pattern_id": "governance_only_progress",
+            "severity": "high",
+            "line_no": 94,
+            "line": "2026-02-13 03:56 UTC \u2014 Governance: P5.G3 completed (governance-only) \u2014 published `P5_G3_OPERATOR_CHECKLIST_CONTRACT.md`; operator pre-start checklist fixed; P5 execution gate wave (`G1/G2/G3`) marked complete; next target moved to post-gate task selection."
+          },
+          {
+            "file": "/home/architit/work/LAM/DEV_LOGS.md",
+            "pattern_id": "governance_only_progress",
+            "severity": "high",
+            "line_no": 96,
+            "line": "2026-02-13 04:04 UTC \u2014 Governance: runtime-facing gate decision package activated (governance-only) \u2014 published `P5_RUNTIME_FACING_GATE_DECISION_CONTRACT.md`; fixed queue `P5.RG1/P5.RG2/P5.RG3`; next target set to `P5.RG1` eligibility matrix draft."
+          },
+          {
+            "file": "/home/architit/work/LAM/DEV_LOGS.md",
+            "pattern_id": "governance_only_progress",
+            "severity": "high",
+            "line_no": 97,
+            "line": "2026-02-13 04:06 UTC \u2014 Governance: P5.RG1 completed (governance-only) \u2014 published `P5_RG1_ELIGIBILITY_MATRIX_CONTRACT.md`; eligibility matrix fixed; next target moved to `P5.RG2` hold/reject policy draft."
+          },
+          {
+            "file": "/home/architit/work/LAM/DEV_LOGS.md",
+            "pattern_id": "governance_only_progress",
+            "severity": "high",
+            "line_no": 98,
+            "line": "2026-02-13 04:08 UTC \u2014 Governance: P5.RG2 completed (governance-only) \u2014 published `P5_RG2_HOLD_REJECT_POLICY_CONTRACT.md`; hold/reject policy rules fixed; next target moved to `P5.RG3` start-approval evidence record draft."
+          },
+          {
+            "file": "/home/architit/work/LAM/DEV_LOGS.md",
+            "pattern_id": "governance_only_progress",
+            "severity": "high",
+            "line_no": 99,
+            "line": "2026-02-13 04:09 UTC \u2014 Governance: P5.RG3 completed (governance-only) \u2014 published `P5_RG3_START_APPROVAL_EVIDENCE_CONTRACT.md`; start-approval evidence fields fixed; runtime-facing gate decision wave (`RG1/RG2/RG3`) marked complete; next target moved to post-gate task selection."
+          },
+          {
+            "file": "/home/architit/work/LAM/DEV_LOGS.md",
+            "pattern_id": "governance_only_progress",
+            "severity": "high",
+            "line_no": 101,
+            "line": "2026-02-13 04:19 UTC \u2014 Governance: runtime-facing task wave planning activated (governance-only) \u2014 published `P5_RUNTIME_TASK_WAVE_CONTRACT.md`; fixed queue `P5.RT1/P5.RT2/P5.RT3`; next target set to `P5.RT1` candidate definition."
+          },
+          {
+            "file": "/home/architit/work/LAM/DEV_LOGS.md",
+            "pattern_id": "governance_only_progress",
+            "severity": "high",
+            "line_no": 102,
+            "line": "2026-02-13 04:23 UTC \u2014 Governance: P5.RT1 completed (governance-only) \u2014 published `P5_RT1_RUNTIME_TASK_CANDIDATE_CONTRACT.md`; candidate scope/record fields fixed; next target moved to `P5.RT2` preflight checklist."
+          },
+          {
+            "file": "/home/architit/work/LAM/DEV_LOGS.md",
+            "pattern_id": "governance_only_progress",
+            "severity": "high",
+            "line_no": 103,
+            "line": "2026-02-13 04:28 UTC \u2014 Governance: P5.RT2 completed (governance-only) \u2014 published `P5_RT2_RUNTIME_PREFLIGHT_CHECKLIST_CONTRACT.md`; read-only preflight checks and record fields fixed; next target moved to `P5.RT3` start decision record."
+          },
+          {
+            "file": "/home/architit/work/LAM/DEV_LOGS.md",
+            "pattern_id": "governance_only_progress",
+            "severity": "high",
+            "line_no": 104,
+            "line": "2026-02-13 04:30 UTC \u2014 Governance: P5.RT3 completed (governance-only) \u2014 published `P5_RT3_RUNTIME_START_DECISION_RECORD_CONTRACT.md`; decision outcome/evidence reference fields fixed; runtime-task-wave (`RT1/RT2/RT3`) marked complete."
+          },
+          {
+            "file": "/home/architit/work/LAM/DEV_LOGS.md",
+            "pattern_id": "governance_only_progress",
+            "severity": "high",
+            "line_no": 105,
+            "line": "2026-02-13 04:35 UTC \u2014 Governance: post-runtime-task package activated (governance-only) \u2014 published `P5_POST_RUNTIME_TASK_WAVE_CONTRACT.md`; fixed queue `P5.POST1/P5.POST2/P5.POST3`; next target set to `P5.POST1` evidence consolidation."
+          },
+          {
+            "file": "/home/architit/work/LAM/DEV_LOGS.md",
+            "pattern_id": "governance_only_progress",
+            "severity": "high",
+            "line_no": 107,
+            "line": "2026-02-13 04:42 UTC \u2014 Governance: P5.POST1 completed (governance-only) \u2014 published `P5_POST1_RUNTIME_EVIDENCE_CONSOLIDATION_CONTRACT.md`; RT-wave evidence references consolidated; next target moved to `P5.POST2` boundary confirmation."
+          },
+          {
+            "file": "/home/architit/work/LAM/DEV_LOGS.md",
+            "pattern_id": "governance_only_progress",
+            "severity": "high",
+            "line_no": 108,
+            "line": "2026-02-13 04:46 UTC \u2014 Governance: P5.POST2 completed (governance-only) \u2014 published `P5_POST2_RUNTIME_BOUNDARY_CONFIRMATION_CONTRACT.md`; boundary/no-runtime-change confirmations fixed; next target moved to `P5.POST3` start recommendation."
+          },
+          {
+            "file": "/home/architit/work/LAM/DEV_LOGS.md",
+            "pattern_id": "governance_only_progress",
+            "severity": "high",
+            "line_no": 109,
+            "line": "2026-02-13 04:47 UTC \u2014 Governance: P5.POST3 completed (governance-only) \u2014 published `P5_POST3_NEXT_PACKAGE_START_RECOMMENDATION_CONTRACT.md`; next-package recommendation record fixed; post-runtime-task package (`POST1/POST2/POST3`) marked complete."
+          },
+          {
+            "file": "/home/architit/work/LAM/DEV_LOGS.md",
+            "pattern_id": "governance_only_progress",
+            "severity": "high",
+            "line_no": 110,
+            "line": "2026-02-13 04:50 UTC \u2014 Governance: Phase 6 prep activated (governance-only) \u2014 published `P6_PREP_CONTROL_PLANE_BACKLOG_CONTRACT.md`; fixed queue `P6.T1/P6.T2/P6.T3`; next target set to `P6.T1` control plane surface inventory."
+          },
+          {
+            "file": "/home/architit/work/LAM/DEV_LOGS.md",
+            "pattern_id": "governance_only_progress",
+            "severity": "high",
+            "line_no": 111,
+            "line": "2026-02-13 04:52 UTC \u2014 Governance: P6.T1 completed (governance-only) \u2014 published `P6_T1_CONTROL_PLANE_SURFACE_INVENTORY_CONTRACT.md`; control plane surface catalog blocks fixed; next target moved to `P6.T2` profile draft."
+          },
+          {
+            "file": "/home/architit/work/LAM/DEV_LOGS.md",
+            "pattern_id": "governance_only_progress",
+            "severity": "high",
+            "line_no": 112,
+            "line": "2026-02-13 04:54 UTC \u2014 Governance: P6.T2 completed (governance-only) \u2014 published `P6_T2_HEALTH_TELEMETRY_PROFILE_DRAFT_CONTRACT.md`; health/telemetry profile blocks fixed; next target moved to `P6.T3` boundary checklist."
+          },
+          {
+            "file": "/home/architit/work/LAM/DEV_LOGS.md",
+            "pattern_id": "governance_only_progress",
+            "severity": "high",
+            "line_no": 113,
+            "line": "2026-02-13 04:56 UTC \u2014 Governance: P6.T3 completed (governance-only) \u2014 published `P6_T3_OPERATOR_ACTION_BOUNDARY_CHECKLIST_CONTRACT.md`; operator boundary checklist blocks fixed; prep package (`T1/T2/T3`) marked complete."
+          },
+          {
+            "file": "/home/architit/work/LAM/DEV_LOGS.md",
+            "pattern_id": "governance_only_progress",
+            "severity": "high",
+            "line_no": 114,
+            "line": "2026-02-13 04:57 UTC \u2014 Governance: Phase Z prep activated (governance-only) \u2014 published `Z_PREP_AGENT_SDK_BACKLOG_CONTRACT.md`; fixed queue `Z.T1/Z.T2/Z.T3`; next target set to `Z.T1` backend integration draft."
+          },
+          {
+            "file": "/home/architit/work/LAM/DEV_LOGS.md",
+            "pattern_id": "governance_only_progress",
+            "severity": "high",
+            "line_no": 115,
+            "line": "2026-02-13 05:02 UTC \u2014 Governance: Z.T1 completed (governance-only) \u2014 published `Z_T1_AGENT_SDK_BACKEND_INTEGRATION_CONTRACT.md`; backend integration draft boundaries fixed; next target moved to `Z.T2` smoke contract draft."
+          },
+          {
+            "file": "/home/architit/work/LAM/DEV_LOGS.md",
+            "pattern_id": "governance_only_progress",
+            "severity": "high",
+            "line_no": 116,
+            "line": "2026-02-13 05:04 UTC \u2014 Governance: Z.T2 completed (governance-only) \u2014 published `Z_T2_SMOKE_CONTRACT_DRAFT.md`; smoke contract draft blocks fixed; next target moved to `Z.T3` compatibility DoD draft."
+          },
+          {
+            "file": "/home/architit/work/LAM/DEV_LOGS.md",
+            "pattern_id": "governance_only_progress",
+            "severity": "high",
+            "line_no": 117,
+            "line": "2026-02-13 05:05 UTC \u2014 Governance: Z.T3 completed (governance-only) \u2014 published `Z_T3_COMPATIBILITY_DOD_CONTRACT.md`; compatibility DoD blocks fixed; prep package (`Z.T1/Z.T2/Z.T3`) marked complete."
+          },
+          {
+            "file": "/home/architit/work/LAM/DEV_LOGS.md",
+            "pattern_id": "governance_only_progress",
+            "severity": "high",
+            "line_no": 121,
+            "line": "2026-02-16 22:44 UTC \u2014 Governance: Phase 4 pre-4.3 review findings (`R1..R5`) closed via addenda contract (`P4_PRE43_REVIEW_FINDINGS_ADDENDA_CONTRACT.md`); Phase 4.3 entry gate switched to OPEN (contract-only, no runtime impact)."
+          },
+          {
+            "file": "/home/architit/work/LAM/DEV_LOGS.md",
+            "pattern_id": "governance_only_progress",
+            "severity": "high",
+            "line_no": 122,
+            "line": "2026-02-16 22:53 UTC \u2014 Governance: Phase 4.3 adaptation proposals start gate published (`P4_PHASE43_ADAPTATION_PROPOSALS_START_GATE_CONTRACT.md`); initial wave plan (`A1/A2/A3`) declared as governance-only with strict non-runtime boundaries."
+          },
+          {
+            "file": "/home/architit/work/LAM/DEV_LOGS.md",
+            "pattern_id": "governance_only_progress",
+            "severity": "high",
+            "line_no": 123,
+            "line": "2026-02-16 23:04 UTC \u2014 Governance: Phase 4.3 A1/A2/A3 contracts published (`P4_PHASE43_A1_ADAPTATION_PROPOSAL_SCHEMA_CONTRACT.md`, `P4_PHASE43_A2_ADAPTATION_EVALUATION_MATRIX_CONTRACT.md`, `P4_PHASE43_A3_ADAPTATION_REVIEW_DECISION_RECORD_CONTRACT.md`); adaptation proposal wave marked complete (contract-only, no runtime impact)."
+          },
+          {
+            "file": "/home/architit/work/LAM/DEV_LOGS.md",
+            "pattern_id": "governance_only_progress",
+            "severity": "high",
+            "line_no": 124,
+            "line": "2026-02-16 23:16 UTC \u2014 Governance: Phase 4.3 post-wave transition gate published (`P4_PHASE43_POST_A1A2A3_TRANSITION_GATE_CONTRACT.md`); next governance wave declared (`A4/A5/A6`) with transition state OPEN (contract-only continuation)."
+          },
+          {
+            "file": "/home/architit/work/LAM/DEV_LOGS.md",
+            "pattern_id": "governance_only_progress",
+            "severity": "high",
+            "line_no": 125,
+            "line": "2026-02-16 23:28 UTC \u2014 Governance: Phase 4.3 A4/A5/A6 contracts published (`P4_PHASE43_A4_PROPOSAL_EVIDENCE_CONSOLIDATION_CONTRACT.md`, `P4_PHASE43_A5_PROPOSAL_RISK_STRATIFICATION_CONTRACT.md`, `P4_PHASE43_A6_NEXT_GATE_RECOMMENDATION_CONTRACT.md`); continuation wave marked complete (contract-only, no runtime impact)."
+          },
+          {
+            "file": "/home/architit/work/LAM/DEV_LOGS.md",
+            "pattern_id": "governance_only_progress",
+            "severity": "high",
+            "line_no": 126,
+            "line": "2026-02-16 23:39 UTC \u2014 Governance: S7 post-A6 checkpoint and next-phase pointer declared (`P4_PHASE43_POST_A6_DECISION_CHECKPOINT_CONTRACT.md`, `P4_PHASE43_NEXT_PHASE_POINTER_DECLARATION_CONTRACT.md`); checkpoint resolved `READY_FOR_NEXT_PHASE_POINTER_DECLARATION` and next pointer fixed to `PHASE43_NEXT_GATE_REVIEW_PREP` (governance-only)."
+          },
+          {
+            "file": "/home/architit/work/LAM/DEV_LOGS.md",
+            "pattern_id": "governance_only_progress",
+            "severity": "high",
+            "line_no": 127,
+            "line": "2026-02-16 23:52 UTC \u2014 Governance: S8 `PHASE43_NEXT_GATE_REVIEW_PREP` wave completed (`P4_PHASE43_N1_REVIEW_PACKAGE_ASSEMBLY_CONTRACT.md`, `P4_PHASE43_N2_BOUNDARY_REVALIDATION_CHECKLIST_CONTRACT.md`, `P4_PHASE43_N3_CONTROLLED_GATE_OPEN_RECOMMENDATION_DRAFT_CONTRACT.md`); prep package declared READY_FOR_CONTROLLED_GATE_REVIEW (governance-only)."
+          },
+          {
+            "file": "/home/architit/work/LAM/DEV_LOGS.md",
+            "pattern_id": "repeated_gate_opening",
+            "severity": "medium",
+            "line_no": 127,
+            "line": "2026-02-16 23:52 UTC \u2014 Governance: S8 `PHASE43_NEXT_GATE_REVIEW_PREP` wave completed (`P4_PHASE43_N1_REVIEW_PACKAGE_ASSEMBLY_CONTRACT.md`, `P4_PHASE43_N2_BOUNDARY_REVALIDATION_CHECKLIST_CONTRACT.md`, `P4_PHASE43_N3_CONTROLLED_GATE_OPEN_RECOMMENDATION_DRAFT_CONTRACT.md`); prep package declared READY_FOR_CONTROLLED_GATE_REVIEW (governance-only)."
+          },
+          {
+            "file": "/home/architit/work/LAM/DEV_LOGS.md",
+            "pattern_id": "repeated_gate_opening",
+            "severity": "medium",
+            "line_no": 128,
+            "line": "2026-02-16 23:58 UTC \u2014 Governance: S9 controlled gate review decision published (`P4_PHASE43_CONTROLLED_GATE_REVIEW_DECISION_CONTRACT.md`) with result `OPEN_REVIEW`; next step moved to controlled gate review execution preparation."
+          },
+          {
+            "file": "/home/architit/work/LAM/DEV_LOGS.md",
+            "pattern_id": "repeated_gate_opening",
+            "severity": "medium",
+            "line_no": 131,
+            "line": "2026-02-17 00:32 UTC \u2014 Governance: S12 post-review gate decision published (`P4_PHASE43_POST_REVIEW_GATE_DECISION_CONTRACT.md`) with result `OPEN_POST_REVIEW_GATE`; next step moved to post-review gate execution preparation."
+          },
+          {
+            "file": "/home/architit/work/LAM/DEV_LOGS.md",
+            "pattern_id": "repeated_gate_opening",
+            "severity": "medium",
+            "line_no": 134,
+            "line": "2026-02-17 01:10 UTC \u2014 Governance: S15 next controlled gate decision published (`P4_PHASE43_NEXT_CONTROLLED_GATE_DECISION_CONTRACT.md`) with result `OPEN_NEXT_CONTROLLED_GATE`; next step moved to next-controlled gate execution preparation."
+          },
+          {
+            "file": "/home/architit/work/LAM/DEV_LOGS.md",
+            "pattern_id": "governance_only_progress",
+            "severity": "high",
+            "line_no": 143,
+            "line": "2026-02-13 05:51 UTC \u2014 Governance: Z.RUNTIME T1/T2/T3 boundaries fixed (candidate scope, preflight hold/reject, start decision record) with governance-only constraints preserved."
+          },
+          {
+            "file": "/home/architit/work/LAM/DEV_LOGS.md",
+            "pattern_id": "repeated_gate_opening",
+            "severity": "medium",
+            "line_no": 159,
+            "line": "2026-02-17 01:46 UTC \u2014 Governance: S18 transition gate decision published (`P4_PHASE43_TRANSITION_GATE_DECISION_CONTRACT.md`) with result `OPEN_PHASE43_TRANSITION_GATE`; next step moved to transition gate execution."
+          },
+          {
+            "file": "/home/architit/work/LAM/DEV_LOGS.md",
+            "pattern_id": "repeated_gate_opening",
+            "severity": "medium",
+            "line_no": 162,
+            "line": "2026-02-17 02:22 UTC \u2014 Governance: S21 final alignment gate decision published (`P4_PHASE43_FINAL_ALIGNMENT_GATE_DECISION_CONTRACT.md`) with result `OPEN_PHASE43_FINAL_ALIGNMENT_GATE`; next step moved to final alignment gate execution."
+          },
+          {
+            "file": "/home/architit/work/LAM/DEV_LOGS.md",
+            "pattern_id": "repeated_gate_opening",
+            "severity": "medium",
+            "line_no": 165,
+            "line": "2026-02-17 02:58 UTC \u2014 Governance: S24 closure gate decision published (`P4_PHASE43_CLOSURE_GATE_DECISION_CONTRACT.md`) with result `OPEN_PHASE43_CLOSURE_GATE`; next step moved to closure gate execution."
+          },
+          {
+            "file": "/home/architit/work/LAM/DEV_LOGS.md",
+            "pattern_id": "governance_only_progress",
+            "severity": "high",
+            "line_no": 168,
+            "line": "2026-02-17 03:34 UTC \u2014 Governance: deadloop-break protocol activated for repetitive Phase 4.3 governance-only chain (`P4_PHASE43_DEADLOOP_BREAK_PROTOCOL_CONTRACT.md`); `S27` moved to `HOLD_BY_DEADLOOP_BREAK_PROTOCOL`, release requires `MAP_EXECUTION_WAVE_1` + `CODE_TEST_DELTA_GATE`."
+          },
+          {
+            "file": "/home/architit/work/LAM/DEV_LOGS.md",
+            "pattern_id": "deadloop_hold_state",
+            "severity": "high",
+            "line_no": 168,
+            "line": "2026-02-17 03:34 UTC \u2014 Governance: deadloop-break protocol activated for repetitive Phase 4.3 governance-only chain (`P4_PHASE43_DEADLOOP_BREAK_PROTOCOL_CONTRACT.md`); `S27` moved to `HOLD_BY_DEADLOOP_BREAK_PROTOCOL`, release requires `MAP_EXECUTION_WAVE_1` + `CODE_TEST_DELTA_GATE`."
+          },
+          {
+            "file": "/home/architit/work/LAM/DEV_LOGS.md",
+            "pattern_id": "repeated_gate_opening",
+            "severity": "medium",
+            "line_no": 185,
+            "line": "2026-02-17 21:25 UTC \u2014 Governance: S27 decision finalized (`P4_PHASE43_CLOSURE_FINALIZATION_GATE_DECISION_CONTRACT.md`) with `OPEN_PHASE43_CLOSURE_FINALIZATION_GATE`; unified guard run confirmed `preflight=PASS` (`non_doc_code_delta_count=5`, `test_delta_count=2`) and `resume=PASS` (operator-confirmed), next target pinned to `PHASE43_CLOSURE_FINALIZATION_GATE_EXECUTION` (`S28`)."
+          },
+          {
+            "file": "/home/architit/work/LAM/ROADMAP.md",
+            "pattern_id": "governance_only_progress",
+            "severity": "high",
+            "line_no": 141,
+            "line": "- [x] T3: Governance-only operator block \u0434\u043b\u044f P4.1 evidence capture (read-only + smoke refs)."
+          },
+          {
+            "file": "/home/architit/work/LAM/ROADMAP.md",
+            "pattern_id": "governance_only_progress",
+            "severity": "high",
+            "line_no": 152,
+            "line": "- [x] Cost-aware routing contract draft (governance-only): `P4_FOLLOWUP_F1_COST_AWARE_CONTRACT.md`"
+          },
+          {
+            "file": "/home/architit/work/LAM/ROADMAP.md",
+            "pattern_id": "governance_only_progress",
+            "severity": "high",
+            "line_no": 153,
+            "line": "- [x] Quality-aware routing contract draft (governance-only): `P4_FOLLOWUP_F2_QUALITY_AWARE_CONTRACT.md`"
+          },
+          {
+            "file": "/home/architit/work/LAM/ROADMAP.md",
+            "pattern_id": "governance_only_progress",
+            "severity": "high",
+            "line_no": 154,
+            "line": "- [x] Policy v3 config contract draft (governance-only): `P4_FOLLOWUP_F3_POLICY_V3_CONFIG_CONTRACT.md`"
+          },
+          {
+            "file": "/home/architit/work/LAM/ROADMAP.md",
+            "pattern_id": "governance_only_progress",
+            "severity": "high",
+            "line_no": 155,
+            "line": "- [x] Provider metrics contract draft (governance-only): `P4_FOLLOWUP_F4_PROVIDER_METRICS_CONTRACT.md`"
+          },
+          {
+            "file": "/home/architit/work/LAM/ROADMAP.md",
+            "pattern_id": "governance_only_progress",
+            "severity": "high",
+            "line_no": 156,
+            "line": "- [x] Follow-up backlog contract published: `P4_FOLLOWUP_BACKLOG_CONTRACT.md` (F1-F4 wave plan, governance-only)"
+          },
+          {
+            "file": "/home/architit/work/LAM/ROADMAP.md",
+            "pattern_id": "governance_only_progress",
+            "severity": "high",
+            "line_no": 161,
+            "line": "> **\u0421\u0442\u0430\u0442\u0443\u0441:** POST-RUNTIME-TASK PACKAGE CLOSED (governance-only) (2026-02-13) \u2014 `P5.RG`, `P5.RT`, `P5.POST` \u0437\u0430\u043a\u0440\u044b\u0442\u044b."
+          },
+          {
+            "file": "/home/architit/work/LAM/ROADMAP.md",
+            "pattern_id": "governance_only_progress",
+            "severity": "high",
+            "line_no": 167,
+            "line": "- [x] \u041e\u043f\u0443\u0431\u043b\u0438\u043a\u043e\u0432\u0430\u0442\u044c P5 prep backlog \u043a\u043e\u043d\u0442\u0440\u0430\u043a\u0442 (governance-only): `P5_PREP_BACKLOG_CONTRACT.md`"
+          },
+          {
+            "file": "/home/architit/work/LAM/ROADMAP.md",
+            "pattern_id": "governance_only_progress",
+            "severity": "high",
+            "line_no": 171,
+            "line": "- [x] \u041e\u0442\u043a\u0440\u044b\u0442\u044c execution gate \u043a\u043e\u043d\u0442\u0440\u0430\u043a\u0442 (governance-only): `P5_EXECUTION_GATE_CONTRACT.md`"
+          },
+          {
+            "file": "/home/architit/work/LAM/ROADMAP.md",
+            "pattern_id": "governance_only_progress",
+            "severity": "high",
+            "line_no": 175,
+            "line": "- [x] \u041e\u0442\u043a\u0440\u044b\u0442\u044c runtime-facing gate decision \u043a\u043e\u043d\u0442\u0440\u0430\u043a\u0442 (governance-only): `P5_RUNTIME_FACING_GATE_DECISION_CONTRACT.md`"
+          },
+          {
+            "file": "/home/architit/work/LAM/ROADMAP.md",
+            "pattern_id": "governance_only_progress",
+            "severity": "high",
+            "line_no": 179,
+            "line": "- [x] \u041e\u0442\u043a\u0440\u044b\u0442\u044c runtime task wave \u043a\u043e\u043d\u0442\u0440\u0430\u043a\u0442 (governance-only): `P5_RUNTIME_TASK_WAVE_CONTRACT.md`"
+          },
+          {
+            "file": "/home/architit/work/LAM/ROADMAP.md",
+            "pattern_id": "governance_only_progress",
+            "severity": "high",
+            "line_no": 183,
+            "line": "- [x] \u041e\u0442\u043a\u0440\u044b\u0442\u044c post-runtime-task \u043f\u0430\u043a\u0435\u0442 (governance-only): `P5_POST_RUNTIME_TASK_WAVE_CONTRACT.md`"
+          },
+          {
+            "file": "/home/architit/work/LAM/ROADMAP.md",
+            "pattern_id": "governance_only_progress",
+            "severity": "high",
+            "line_no": 191,
+            "line": "> **\u0421\u0442\u0430\u0442\u0443\u0441:** PREP CLOSED (governance-only) (2026-02-13) \u2014 prep-\u043f\u0430\u043a\u0435\u0442 `P6.T1-T3` \u0437\u0430\u0432\u0435\u0440\u0448\u0451\u043d."
+          },
+          {
+            "file": "/home/architit/work/LAM/ROADMAP.md",
+            "pattern_id": "governance_only_progress",
+            "severity": "high",
+            "line_no": 202,
+            "line": "- [x] \u041e\u0442\u043a\u0440\u044b\u0442\u044c P6 prep backlog \u043a\u043e\u043d\u0442\u0440\u0430\u043a\u0442 (governance-only): `P6_PREP_CONTROL_PLANE_BACKLOG_CONTRACT.md`"
+          },
+          {
+            "file": "/home/architit/work/LAM/ROADMAP.md",
+            "pattern_id": "governance_only_progress",
+            "severity": "high",
+            "line_no": 219,
+            "line": "- [x] 2026-02-10 \u2014 contracts: PolicyConstraint v1 added (policy boundaries, contract-only)"
+          },
+          {
+            "file": "/home/architit/work/LAM/ROADMAP.md",
+            "pattern_id": "governance_only_progress",
+            "severity": "high",
+            "line_no": 227,
+            "line": "> **\u0421\u0442\u0430\u0442\u0443\u0441:** PREP CLOSED + POST PACKAGE CLOSED + RUNTIME PREP CLOSED (governance-only) (2026-02-13) \u2014 `Z.T1-T3`, `Z.POST1-Z.POST3`, `Z.RUNTIME.PREP` \u0437\u0430\u0432\u0435\u0440\u0448\u0435\u043d\u044b."
+          },
+          {
+            "file": "/home/architit/work/LAM/ROADMAP.md",
+            "pattern_id": "governance_only_progress",
+            "severity": "high",
+            "line_no": 232,
+            "line": "- [x] \u041e\u0442\u043a\u0440\u044b\u0442\u044c Z prep backlog \u043a\u043e\u043d\u0442\u0440\u0430\u043a\u0442 (governance-only): `Z_PREP_AGENT_SDK_BACKLOG_CONTRACT.md`"
+          },
+          {
+            "file": "/home/architit/work/LAM/ROADMAP.md",
+            "pattern_id": "governance_only_progress",
+            "severity": "high",
+            "line_no": 245,
+            "line": "- [x] Z.RUNTIME.START: decision record published (`Z_RUNTIME_START_DECISION_RECORD.md`) -> `approved` (governance-only)"
+          },
+          {
+            "file": "/home/architit/work/LAM/ROADMAP.md",
+            "pattern_id": "governance_only_progress",
+            "severity": "high",
+            "line_no": 258,
+            "line": "- [x] Recommendation: addressed via **v1.x addenda (contract-only)** before Phase 4.3 (`P4_PRE43_REVIEW_FINDINGS_ADDENDA_CONTRACT.md`)"
+          },
+          {
+            "file": "/home/architit/work/LAM/ROADMAP.md",
+            "pattern_id": "governance_only_progress",
+            "severity": "high",
+            "line_no": 261,
+            "line": "- [x] Start gate OPEN (contract-only): `P4_PHASE43_ADAPTATION_PROPOSALS_START_GATE_CONTRACT.md`"
+          },
+          {
+            "file": "/home/architit/work/LAM/ROADMAP.md",
+            "pattern_id": "repeated_gate_opening",
+            "severity": "medium",
+            "line_no": 274,
+            "line": "- [x] S9 controlled gate review decision: `OPEN_REVIEW` (`P4_PHASE43_CONTROLLED_GATE_REVIEW_DECISION_CONTRACT.md`)"
+          },
+          {
+            "file": "/home/architit/work/LAM/ROADMAP.md",
+            "pattern_id": "repeated_gate_opening",
+            "severity": "medium",
+            "line_no": 280,
+            "line": "- [x] S12 post-review gate decision: `OPEN_POST_REVIEW_GATE` (`P4_PHASE43_POST_REVIEW_GATE_DECISION_CONTRACT.md`)"
+          },
+          {
+            "file": "/home/architit/work/LAM/ROADMAP.md",
+            "pattern_id": "repeated_gate_opening",
+            "severity": "medium",
+            "line_no": 286,
+            "line": "- [x] S15 next controlled gate decision: `OPEN_NEXT_CONTROLLED_GATE` (`P4_PHASE43_NEXT_CONTROLLED_GATE_DECISION_CONTRACT.md`)"
+          },
+          {
+            "file": "/home/architit/work/LAM/ROADMAP.md",
+            "pattern_id": "governance_only_progress",
+            "severity": "high",
+            "line_no": 357,
+            "line": "- [x] 2026-02-13 \u2014 governance: P4.T3 operator evidence blocks published (`P4_ROUTER_OPERATOR_BLOCKS.md`), T3 marked DONE (governance-only, read-only evidence flow)"
+          },
+          {
+            "file": "/home/architit/work/LAM/ROADMAP.md",
+            "pattern_id": "governance_only_progress",
+            "severity": "high",
+            "line_no": 381,
+            "line": "- [x] 2026-02-13 \u2014 governance: Phase 5 prep activated (governance-only); `P5_PREP_BACKLOG_CONTRACT.md` published and P5 queue (`T1-T3`) fixed"
+          },
+          {
+            "file": "/home/architit/work/LAM/ROADMAP.md",
+            "pattern_id": "governance_only_progress",
+            "severity": "high",
+            "line_no": 389,
+            "line": "- [x] 2026-02-13 \u2014 governance: P5 execution gate activated (governance-only); `P5_EXECUTION_GATE_CONTRACT.md` published with queue `P5.G1/P5.G2/P5.G3`"
+          },
+          {
+            "file": "/home/architit/work/LAM/ROADMAP.md",
+            "pattern_id": "governance_only_progress",
+            "severity": "high",
+            "line_no": 461,
+            "line": "- [x] 2026-02-13 \u2014 governance: `Z.RUNTIME.START` decision record published (`Z_RUNTIME_START_DECISION_RECORD.md`) with `approved` outcome (governance-only)."
+          },
+          {
+            "file": "/home/architit/work/LAM/ROADMAP.md",
+            "pattern_id": "repeated_gate_opening",
+            "severity": "medium",
+            "line_no": 481,
+            "line": "- [x] 2026-02-17 \u2014 governance: S18 transition gate decision published (`P4_PHASE43_TRANSITION_GATE_DECISION_CONTRACT.md`) with result `OPEN_PHASE43_TRANSITION_GATE`; next step moved to transition gate execution."
+          },
+          {
+            "file": "/home/architit/work/LAM/ROADMAP.md",
+            "pattern_id": "repeated_gate_opening",
+            "severity": "medium",
+            "line_no": 484,
+            "line": "- [x] 2026-02-17 \u2014 governance: S21 final alignment gate decision published (`P4_PHASE43_FINAL_ALIGNMENT_GATE_DECISION_CONTRACT.md`) with result `OPEN_PHASE43_FINAL_ALIGNMENT_GATE`; next step moved to final alignment gate execution."
+          },
+          {
+            "file": "/home/architit/work/LAM/ROADMAP.md",
+            "pattern_id": "repeated_gate_opening",
+            "severity": "medium",
+            "line_no": 487,
+            "line": "- [x] 2026-02-17 \u2014 governance: S24 closure gate decision published (`P4_PHASE43_CLOSURE_GATE_DECISION_CONTRACT.md`) with result `OPEN_PHASE43_CLOSURE_GATE`; next step moved to closure gate execution."
+          },
+          {
+            "file": "/home/architit/work/LAM/ROADMAP.md",
+            "pattern_id": "deadloop_hold_state",
+            "severity": "high",
+            "line_no": 490,
+            "line": "- [x] 2026-02-17 \u2014 governance: deadloop-break protocol activated for Phase 4.3 repetitive governance chain (`P4_PHASE43_DEADLOOP_BREAK_PROTOCOL_CONTRACT.md`); `S27` moved to `HOLD_BY_DEADLOOP_BREAK_PROTOCOL` until `MAP_EXECUTION_WAVE_1` + `CODE_TEST_DELTA_GATE` completion."
+          },
+          {
+            "file": "/home/architit/work/LAM/ROADMAP.md",
+            "pattern_id": "repeated_gate_opening",
+            "severity": "medium",
+            "line_no": 500,
+            "line": "- [x] 2026-02-17 \u2014 governance: S27 closure-finalization gate decision published (`P4_PHASE43_CLOSURE_FINALIZATION_GATE_DECISION_CONTRACT.md`) with result `OPEN_PHASE43_CLOSURE_FINALIZATION_GATE`; deadloop guard entrypoint returned `preflight=PASS` + `resume=PASS`; next step moved to `PHASE43_CLOSURE_FINALIZATION_GATE_EXECUTION` (task `S28`)."
+          },
+          {
+            "file": "/home/architit/work/LAM/TASK_LIST.md",
+            "pattern_id": "repeated_gate_opening",
+            "severity": "medium",
+            "line_no": 17,
+            "line": "- [x] S12 follow-up: post-review gate decision (`OPEN_POST_REVIEW_GATE` vs `HOLD_POST_REVIEW_GATE`)"
+          },
+          {
+            "file": "/home/architit/work/LAM/TASK_LIST.md",
+            "pattern_id": "repeated_gate_opening",
+            "severity": "medium",
+            "line_no": 18,
+            "line": "- [x] S13 follow-up: execute post-review gate stage after `OPEN_POST_REVIEW_GATE`"
+          },
+          {
+            "file": "/home/architit/work/LAM/TASK_LIST.md",
+            "pattern_id": "repeated_gate_opening",
+            "severity": "medium",
+            "line_no": 20,
+            "line": "- [x] S15 follow-up: next controlled gate decision (`OPEN_NEXT_CONTROLLED_GATE` vs `HOLD_NEXT_CONTROLLED_GATE`)"
+          },
+          {
+            "file": "/home/architit/work/LAM/TASK_LIST.md",
+            "pattern_id": "repeated_gate_opening",
+            "severity": "medium",
+            "line_no": 21,
+            "line": "- [x] S16 follow-up: execute next-controlled gate stage after `OPEN_NEXT_CONTROLLED_GATE`"
+          },
+          {
+            "file": "/home/architit/work/LAM/TASK_LIST.md",
+            "pattern_id": "repeated_gate_opening",
+            "severity": "medium",
+            "line_no": 23,
+            "line": "- [x] S18 follow-up: transition gate decision (`OPEN_PHASE43_TRANSITION_GATE` vs `HOLD_PHASE43_TRANSITION_GATE`)"
+          },
+          {
+            "file": "/home/architit/work/LAM/TASK_LIST.md",
+            "pattern_id": "repeated_gate_opening",
+            "severity": "medium",
+            "line_no": 24,
+            "line": "- [x] S19 follow-up: execute transition gate stage after `OPEN_PHASE43_TRANSITION_GATE`"
+          },
+          {
+            "file": "/home/architit/work/LAM/TASK_LIST.md",
+            "pattern_id": "repeated_gate_opening",
+            "severity": "medium",
+            "line_no": 26,
+            "line": "- [x] S21 follow-up: final alignment gate decision (`OPEN_PHASE43_FINAL_ALIGNMENT_GATE` vs `HOLD_PHASE43_FINAL_ALIGNMENT_GATE`)"
+          },
+          {
+            "file": "/home/architit/work/LAM/TASK_LIST.md",
+            "pattern_id": "repeated_gate_opening",
+            "severity": "medium",
+            "line_no": 27,
+            "line": "- [x] S22 follow-up: execute final alignment gate stage after `OPEN_PHASE43_FINAL_ALIGNMENT_GATE`"
+          },
+          {
+            "file": "/home/architit/work/LAM/TASK_LIST.md",
+            "pattern_id": "repeated_gate_opening",
+            "severity": "medium",
+            "line_no": 29,
+            "line": "- [x] S24 follow-up: closure gate decision (`OPEN_PHASE43_CLOSURE_GATE` vs `HOLD_PHASE43_CLOSURE_GATE`)"
+          },
+          {
+            "file": "/home/architit/work/LAM/TASK_LIST.md",
+            "pattern_id": "repeated_gate_opening",
+            "severity": "medium",
+            "line_no": 30,
+            "line": "- [x] S25 follow-up: execute closure gate stage after `OPEN_PHASE43_CLOSURE_GATE`"
+          },
+          {
+            "file": "/home/architit/work/LAM/TASK_LIST.md",
+            "pattern_id": "repeated_gate_opening",
+            "severity": "medium",
+            "line_no": 32,
+            "line": "- [x] S27 follow-up: closure-finalization gate decision (`OPEN_PHASE43_CLOSURE_FINALIZATION_GATE` vs `HOLD_PHASE43_CLOSURE_FINALIZATION_GATE`) [`OPEN_PHASE43_CLOSURE_FINALIZATION_GATE` via guard PASS]"
+          },
+          {
+            "file": "/home/architit/work/LAM/TASK_LIST.md",
+            "pattern_id": "repeated_gate_opening",
+            "severity": "medium",
+            "line_no": 33,
+            "line": "- [ ] S28 follow-up: execute closure-finalization gate stage after `OPEN_PHASE43_CLOSURE_FINALIZATION_GATE`"
+          },
+          {
+            "file": "/home/architit/work/LAM/WORKFLOW_SNAPSHOT_STATE.md",
+            "pattern_id": "governance_only_progress",
+            "severity": "high",
+            "line_no": 21,
+            "line": "- preserve closed Z.RUNTIME.START decision record (`approved`, governance-only)"
+          },
+          {
+            "file": "/home/architit/work/LAM/WORKFLOW_SNAPSHOT_STATE.md",
+            "pattern_id": "repeated_gate_opening",
+            "severity": "medium",
+            "line_no": 208,
+            "line": "- phase43_post_review_gate_decision: OPEN_POST_REVIEW_GATE"
+          },
+          {
+            "file": "/home/architit/work/LAM/WORKFLOW_SNAPSHOT_STATE.md",
+            "pattern_id": "repeated_gate_opening",
+            "severity": "medium",
+            "line_no": 233,
+            "line": "- phase43_next_controlled_gate_decision: OPEN_NEXT_CONTROLLED_GATE"
+          },
+          {
+            "file": "/home/architit/work/LAM/WORKFLOW_SNAPSHOT_STATE.md",
+            "pattern_id": "repeated_gate_opening",
+            "severity": "medium",
+            "line_no": 258,
+            "line": "- phase43_transition_gate_decision: OPEN_PHASE43_TRANSITION_GATE"
+          },
+          {
+            "file": "/home/architit/work/LAM/WORKFLOW_SNAPSHOT_STATE.md",
+            "pattern_id": "repeated_gate_opening",
+            "severity": "medium",
+            "line_no": 283,
+            "line": "- phase43_final_alignment_gate_decision: OPEN_PHASE43_FINAL_ALIGNMENT_GATE"
+          },
+          {
+            "file": "/home/architit/work/LAM/WORKFLOW_SNAPSHOT_STATE.md",
+            "pattern_id": "repeated_gate_opening",
+            "severity": "medium",
+            "line_no": 308,
+            "line": "- phase43_closure_gate_decision: OPEN_PHASE43_CLOSURE_GATE"
+          },
+          {
+            "file": "/home/architit/work/LAM/WORKFLOW_SNAPSHOT_STATE.md",
+            "pattern_id": "deadloop_hold_state",
+            "severity": "high",
+            "line_no": 334,
+            "line": "- s27_state: HOLD_BY_DEADLOOP_BREAK_PROTOCOL"
+          },
+          {
+            "file": "/home/architit/work/LAM/WORKFLOW_SNAPSHOT_STATE.md",
+            "pattern_id": "deadloop_hold_state",
+            "severity": "high",
+            "line_no": 355,
+            "line": "- s27_state: HOLD_BY_DEADLOOP_BREAK_PROTOCOL"
+          },
+          {
+            "file": "/home/architit/work/LAM/WORKFLOW_SNAPSHOT_STATE.md",
+            "pattern_id": "governance_only_progress",
+            "severity": "high",
+            "line_no": 395,
+            "line": "- runtime_check: `python3 scripts/deadloop_preflight_gate.py --governance-only-streak 0 --changed-path src/deadloop_gate.py --changed-path tests/test_deadloop_gate.py --validation pass`"
+          },
+          {
+            "file": "/home/architit/work/LAM/WORKFLOW_SNAPSHOT_STATE.md",
+            "pattern_id": "deadloop_hold_state",
+            "severity": "high",
+            "line_no": 425,
+            "line": "- negative_check: `python3 scripts/deadloop_resume_gate.py ... --validation-result PASS` => HOLD_BY_DEADLOOP_BREAK_PROTOCOL"
+          },
+          {
+            "file": "/home/architit/work/LAM/WORKFLOW_SNAPSHOT_STATE.md",
+            "pattern_id": "repeated_gate_opening",
+            "severity": "medium",
+            "line_no": 450,
+            "line": "- phase43_closure_finalization_gate_decision: OPEN_PHASE43_CLOSURE_FINALIZATION_GATE"
+          },
+          {
+            "file": "/home/architit/work/LAM/INTERACTION_PROTOCOL.md",
+            "pattern_id": "governance_only_progress",
+            "severity": "high",
+            "line_no": 280,
+            "line": "\u0414\u043b\u044f \u0446\u0435\u043f\u043e\u0447\u0435\u043a governance-only \u0432 `P4_PHASE43_*` \u043e\u0431\u044f\u0437\u0430\u0442\u0435\u043b\u0435\u043d anti-deadloop \u0440\u0430\u0437\u0440\u044b\u0432, \u0435\u0441\u043b\u0438 \u043f\u0440\u043e\u0433\u0440\u0435\u0441\u0441 \u0438\u0434\u0435\u0442 \u0442\u043e\u043b\u044c\u043a\u043e \u043f\u043e \u043d\u0443\u043c\u0435\u0440\u0430\u0446\u0438\u0438 \u0448\u0430\u0433\u043e\u0432 \u0431\u0435\u0437 \u0438\u043d\u0436\u0435\u043d\u0435\u0440\u043d\u043e\u0433\u043e \u0434\u0435\u043b\u044c\u0442\u0430-\u0440\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442\u0430."
+          },
+          {
+            "file": "/home/architit/work/LAM/INTERACTION_PROTOCOL.md",
+            "pattern_id": "deadloop_hold_state",
+            "severity": "high",
+            "line_no": 287,
+            "line": "1) `BREAK`: \u0437\u0430\u043c\u043e\u0440\u043e\u0437\u0438\u0442\u044c \u0441\u043b\u0435\u0434\u0443\u044e\u0449\u0438\u0439 governance gate (`HOLD_BY_DEADLOOP_BREAK_PROTOCOL`)."
+          },
+          {
+            "file": "/home/architit/work/LAM/INTERACTION_PROTOCOL.md",
+            "pattern_id": "deadloop_hold_state",
+            "severity": "high",
+            "line_no": 302,
+            "line": "   - \u0435\u0441\u043b\u0438 `governance_only_streak >= 3` \u0438 (`non_doc_code_delta_count == 0` \u0438\u043b\u0438 `test_delta_count == 0`) -> \u0443\u0441\u0442\u0430\u043d\u043e\u0432\u0438\u0442\u044c `HOLD_BY_DEADLOOP_BREAK_PROTOCOL`."
+          }
+        ],
+        "summary": {
+          "critical": 0,
+          "high": 72,
+          "medium": 33,
+          "low": 0
+        }
+      },
+      {
+        "repo": "/home/architit/work/LAM_Test_Agent",
+        "hits": [],
+        "summary": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 0
+        }
+      },
+      {
+        "repo": "/home/architit/work/RADRILONIUMA-PROJECT",
+        "hits": [
+          {
+            "file": "/home/architit/work/RADRILONIUMA-PROJECT/DEV_LOGS.md",
+            "pattern_id": "governance_only_progress",
+            "severity": "high",
+            "line_no": 258,
+            "line": "2026-02-16 01:04 UTC \u2014 Governance: continued automatic maps/protocols cycle and activated Phase 33717731 mirror-letter execution queue (`phase33717731-mirror-letter-activation-queue-start`); governance-only tracking started for internal archive-core activation/initiation package."
+          },
+          {
+            "file": "/home/architit/work/RADRILONIUMA-PROJECT/DEV_LOGS.md",
+            "pattern_id": "governance_only_progress",
+            "severity": "high",
+            "line_no": 357,
+            "line": "2026-02-16 22:44 UTC \u2014 Governance: executed S3 LAM Phase 4 pre-4.3 review closure (`s3-lam-r1-r5-addenda-gate-open-v1`); `R1..R5` findings closed through `P4_PRE43_REVIEW_FINDINGS_ADDENDA_CONTRACT.md`, LAM roadmap flags set to DONE, and Phase 4.3 entry gate marked OPEN (contract-only, no runtime impact); registered closure in `TASK_MAP.md` as `t78 DONE`."
+          },
+          {
+            "file": "/home/architit/work/RADRILONIUMA-PROJECT/DEV_LOGS.md",
+            "pattern_id": "governance_only_progress",
+            "severity": "high",
+            "line_no": 358,
+            "line": "2026-02-16 22:53 UTC \u2014 Governance: executed S3 follow-up for LAM (`s3-followup-phase43-adaptation-proposals-start-gate-v1`); published `P4_PHASE43_ADAPTATION_PROPOSALS_START_GATE_CONTRACT.md` with governance-only `A1/A2/A3` wave plan and synchronized LAM roadmap/log/snapshot pointers; registered closure in `TASK_MAP.md` as `t79 DONE`."
+          },
+          {
+            "file": "/home/architit/work/RADRILONIUMA-PROJECT/DEV_LOGS.md",
+            "pattern_id": "repeated_gate_opening",
+            "severity": "medium",
+            "line_no": 367,
+            "line": "2026-02-17 00:32 UTC \u2014 Governance: executed S12 for LAM (`s12-post-review-gate-decision-open-v1`); published `P4_PHASE43_POST_REVIEW_GATE_DECISION_CONTRACT.md` with decision `OPEN_POST_REVIEW_GATE` and registered closure in `TASK_MAP.md` as `t88 DONE`."
+          },
+          {
+            "file": "/home/architit/work/RADRILONIUMA-PROJECT/DEV_LOGS.md",
+            "pattern_id": "repeated_gate_opening",
+            "severity": "medium",
+            "line_no": 370,
+            "line": "2026-02-17 01:10 UTC \u2014 Governance: executed S15 for LAM (`s15-next-controlled-gate-decision-open-v1`); published `P4_PHASE43_NEXT_CONTROLLED_GATE_DECISION_CONTRACT.md` with decision `OPEN_NEXT_CONTROLLED_GATE` and registered closure in `TASK_MAP.md` as `t91 DONE`."
+          },
+          {
+            "file": "/home/architit/work/RADRILONIUMA-PROJECT/DEV_LOGS.md",
+            "pattern_id": "repeated_gate_opening",
+            "severity": "medium",
+            "line_no": 373,
+            "line": "2026-02-17 01:46 UTC \u2014 Governance: executed S18 for LAM (`s18-phase43-transition-gate-decision-open-v1`); published `P4_PHASE43_TRANSITION_GATE_DECISION_CONTRACT.md` with decision `OPEN_PHASE43_TRANSITION_GATE` and registered closure in `TASK_MAP.md` as `t94 DONE`."
+          },
+          {
+            "file": "/home/architit/work/RADRILONIUMA-PROJECT/DEV_LOGS.md",
+            "pattern_id": "repeated_gate_opening",
+            "severity": "medium",
+            "line_no": 376,
+            "line": "2026-02-17 02:22 UTC \u2014 Governance: executed S21 for LAM (`s21-phase43-final-alignment-gate-decision-open-v1`); published `P4_PHASE43_FINAL_ALIGNMENT_GATE_DECISION_CONTRACT.md` with decision `OPEN_PHASE43_FINAL_ALIGNMENT_GATE` and registered closure in `TASK_MAP.md` as `t97 DONE`."
+          },
+          {
+            "file": "/home/architit/work/RADRILONIUMA-PROJECT/DEV_LOGS.md",
+            "pattern_id": "repeated_gate_opening",
+            "severity": "medium",
+            "line_no": 379,
+            "line": "2026-02-17 02:58 UTC \u2014 Governance: executed S24 for LAM (`s24-phase43-closure-gate-decision-open-v1`); published `P4_PHASE43_CLOSURE_GATE_DECISION_CONTRACT.md` with decision `OPEN_PHASE43_CLOSURE_GATE` and registered closure in `TASK_MAP.md` as `t100 DONE`."
+          },
+          {
+            "file": "/home/architit/work/RADRILONIUMA-PROJECT/DEV_LOGS.md",
+            "pattern_id": "deadloop_hold_state",
+            "severity": "high",
+            "line_no": 382,
+            "line": "2026-02-17 03:34 UTC \u2014 Governance: activated Phase43 deadloop-break protocol (`phase43-deadloop-break-protocol-activation-v1`); published `P4_PHASE43_DEADLOOP_BREAK_PROTOCOL_CONTRACT.md`, updated interaction protocols, moved `S27` to `HOLD_BY_DEADLOOP_BREAK_PROTOCOL`, and registered closure in `TASK_MAP.md` as `t103 DONE`."
+          },
+          {
+            "file": "/home/architit/work/RADRILONIUMA-PROJECT/ROADMAP.md",
+            "pattern_id": "repeated_gate_opening",
+            "severity": "medium",
+            "line_no": 373,
+            "line": "- [x] 2026-02-16 \u2014 governance: phase33717731 remediation r3+r4 completed (`phase33717731-r3-r4-autopilot-protocol-compliance-and-pointer-sync`); watchdog/cadence tuple verified GREEN, missing metrics (`last_drift_gate_utc`, `active_open_closure_gates`) restored, pointers synchronized, next step r5."
+          },
+          {
+            "file": "/home/architit/work/RADRILONIUMA-PROJECT/INTERACTION_PROTOCOL.md",
+            "pattern_id": "governance_only_progress",
+            "severity": "high",
+            "line_no": 1053,
+            "line": "\u0414\u043b\u044f \u0446\u0435\u043f\u043e\u0447\u0435\u043a governance-only \u0432 `P4_PHASE43_*` \u043e\u0431\u044f\u0437\u0430\u0442\u0435\u043b\u0435\u043d anti-deadloop \u0440\u0430\u0437\u0440\u044b\u0432, \u0435\u0441\u043b\u0438 \u043d\u0430\u0431\u043b\u044e\u0434\u0430\u0435\u0442\u0441\u044f \u043f\u0440\u043e\u0433\u0440\u0435\u0441\u0441 \u0442\u043e\u043b\u044c\u043a\u043e \u043f\u043e \u043d\u0443\u043c\u0435\u0440\u0430\u0446\u0438\u0438 \u0437\u0430\u0434\u0430\u0447 \u0431\u0435\u0437 engineering-\u0434\u0435\u043b\u044c\u0442\u044b."
+          },
+          {
+            "file": "/home/architit/work/RADRILONIUMA-PROJECT/INTERACTION_PROTOCOL.md",
+            "pattern_id": "deadloop_hold_state",
+            "severity": "high",
+            "line_no": 1060,
+            "line": "1) `BREAK`: \u0437\u0430\u0444\u0438\u043a\u0441\u0438\u0440\u043e\u0432\u0430\u0442\u044c `HOLD_BY_DEADLOOP_BREAK_PROTOCOL` \u0434\u043b\u044f \u0441\u043b\u0435\u0434\u0443\u044e\u0449\u0435\u0433\u043e gate-step."
+          },
+          {
+            "file": "/home/architit/work/RADRILONIUMA-PROJECT/INTERACTION_PROTOCOL.md",
+            "pattern_id": "deadloop_hold_state",
+            "severity": "high",
+            "line_no": 1075,
+            "line": "   - if `governance_only_streak >= 3` and (`non_doc_code_delta_count == 0` or `test_delta_count == 0`) -> enforce `HOLD_BY_DEADLOOP_BREAK_PROTOCOL`."
+          }
+        ],
+        "summary": {
+          "critical": 0,
+          "high": 7,
+          "medium": 6,
+          "low": 0
+        }
+      }
+    ]
+  },
+  "deadloop_test_suite": {
+    "exit_code": 0,
+    "output": "............                                                             [100%]"
+  }
+}

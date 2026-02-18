@@ -1,0 +1,4 @@
+/home/architit/global_collect_debuglogs_maps_journals_atlass_2026-02-17.tar.gz
+/home/architit/work/Archivator_Agent/SubtreeHub/repos/RADRILONIUMA-PROJECT/LRPT/journal/.gitkeep
+/home/architit/work/RADRILONIUMA-PROJECT/LRPT/journal/.gitkeep
+/home/architit/work/RADRILONIUMA-PROJECT/LRPT/journal/SYNAPTIC_WEIGHTS_V1.yaml

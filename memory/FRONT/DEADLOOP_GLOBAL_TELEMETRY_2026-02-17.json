@@ -1,0 +1,270 @@
+{
+  "generated_at_utc": "2026-02-17T23:37:51.215682+00:00",
+  "ecosystem_root": "/home/architit/work",
+  "lam_root": "/home/architit/work/LAM",
+  "files": [
+    "DEV_LOGS.md",
+    "ROADMAP.md",
+    "TASK_LIST.md",
+    "WORKFLOW_SNAPSHOT_STATE.md",
+    "INTERACTION_PROTOCOL.md"
+  ],
+  "summary": {
+    "repo_count": 16,
+    "repos_with_hits": 2,
+    "repos_with_abab_tail_cycle": 0,
+    "max_risk_score": 282
+  },
+  "repos": [
+    {
+      "repo": "/home/architit/work/LAM",
+      "repo_name": "LAM",
+      "scanned_files": [
+        "DEV_LOGS.md",
+        "ROADMAP.md",
+        "TASK_LIST.md",
+        "WORKFLOW_SNAPSHOT_STATE.md",
+        "INTERACTION_PROTOCOL.md"
+      ],
+      "hit_count": 105,
+      "severity_counts": {
+        "high": 72,
+        "medium": 33
+      },
+      "pattern_counts": {
+        "governance_only_progress": 65,
+        "repeated_gate_opening": 33,
+        "deadloop_hold_state": 7
+      },
+      "abab_tail_cycle": null,
+      "risk_score": 282
+    },
+    {
+      "repo": "/home/architit/work/RADRILONIUMA-PROJECT",
+      "repo_name": "RADRILONIUMA-PROJECT",
+      "scanned_files": [
+        "DEV_LOGS.md",
+        "ROADMAP.md",
+        "WORKFLOW_SNAPSHOT_STATE.md",
+        "INTERACTION_PROTOCOL.md"
+      ],
+      "hit_count": 13,
+      "severity_counts": {
+        "high": 7,
+        "medium": 6
+      },
+      "pattern_counts": {
+        "governance_only_progress": 4,
+        "repeated_gate_opening": 6,
+        "deadloop_hold_state": 3
+      },
+      "abab_tail_cycle": null,
+      "risk_score": 33
+    },
+    {
+      "repo": "/home/architit/work/Archivator_Agent",
+      "repo_name": "Archivator_Agent",
+      "scanned_files": [
+        "DEV_LOGS.md",
+        "ROADMAP.md",
+        "WORKFLOW_SNAPSHOT_STATE.md",
+        "INTERACTION_PROTOCOL.md"
+      ],
+      "hit_count": 0,
+      "severity_counts": {},
+      "pattern_counts": {},
+      "abab_tail_cycle": null,
+      "risk_score": 0
+    },
+    {
+      "repo": "/home/architit/work/Archivator_Agent/SubtreeHub",
+      "repo_name": "SubtreeHub",
+      "scanned_files": [],
+      "hit_count": 0,
+      "severity_counts": {},
+      "pattern_counts": {},
+      "abab_tail_cycle": null,
+      "risk_score": 0
+    },
+    {
+      "repo": "/home/architit/work/CORE",
+      "repo_name": "CORE",
+      "scanned_files": [
+        "DEV_LOGS.md",
+        "ROADMAP.md",
+        "WORKFLOW_SNAPSHOT_STATE.md",
+        "INTERACTION_PROTOCOL.md"
+      ],
+      "hit_count": 0,
+      "severity_counts": {},
+      "pattern_counts": {},
+      "abab_tail_cycle": null,
+      "risk_score": 0
+    },
+    {
+      "repo": "/home/architit/work/J.A.R.V.I.S",
+      "repo_name": "J.A.R.V.I.S",
+      "scanned_files": [
+        "DEV_LOGS.md",
+        "ROADMAP.md",
+        "WORKFLOW_SNAPSHOT_STATE.md",
+        "INTERACTION_PROTOCOL.md"
+      ],
+      "hit_count": 0,
+      "severity_counts": {},
+      "pattern_counts": {},
+      "abab_tail_cycle": null,
+      "risk_score": 0
+    },
+    {
+      "repo": "/home/architit/work/LAM-Codex_Agent",
+      "repo_name": "LAM-Codex_Agent",
+      "scanned_files": [
+        "DEV_LOGS.md",
+        "ROADMAP.md",
+        "WORKFLOW_SNAPSHOT_STATE.md",
+        "INTERACTION_PROTOCOL.md"
+      ],
+      "hit_count": 0,
+      "severity_counts": {},
+      "pattern_counts": {},
+      "abab_tail_cycle": null,
+      "risk_score": 0
+    },
+    {
+      "repo": "/home/architit/work/LAM_Comunication_Agent",
+      "repo_name": "LAM_Comunication_Agent",
+      "scanned_files": [
+        "DEV_LOGS.md",
+        "ROADMAP.md",
+        "WORKFLOW_SNAPSHOT_STATE.md",
+        "INTERACTION_PROTOCOL.md"
+      ],
+      "hit_count": 0,
+      "severity_counts": {},
+      "pattern_counts": {},
+      "abab_tail_cycle": null,
+      "risk_score": 0
+    },
+    {
+      "repo": "/home/architit/work/LAM_DATA_Src",
+      "repo_name": "LAM_DATA_Src",
+      "scanned_files": [
+        "DEV_LOGS.md",
+        "ROADMAP.md",
+        "WORKFLOW_SNAPSHOT_STATE.md",
+        "INTERACTION_PROTOCOL.md"
+      ],
+      "hit_count": 0,
+      "severity_counts": {},
+      "pattern_counts": {},
+      "abab_tail_cycle": null,
+      "risk_score": 0
+    },
+    {
+      "repo": "/home/architit/work/LAM_Test_Agent",
+      "repo_name": "LAM_Test_Agent",
+      "scanned_files": [
+        "DEV_LOGS.md",
+        "ROADMAP.md",
+        "WORKFLOW_SNAPSHOT_STATE.md",
+        "INTERACTION_PROTOCOL.md"
+      ],
+      "hit_count": 0,
+      "severity_counts": {},
+      "pattern_counts": {},
+      "abab_tail_cycle": null,
+      "risk_score": 0
+    },
+    {
+      "repo": "/home/architit/work/Operator_Agent",
+      "repo_name": "Operator_Agent",
+      "scanned_files": [
+        "DEV_LOGS.md",
+        "ROADMAP.md",
+        "WORKFLOW_SNAPSHOT_STATE.md",
+        "INTERACTION_PROTOCOL.md"
+      ],
+      "hit_count": 0,
+      "severity_counts": {},
+      "pattern_counts": {},
+      "abab_tail_cycle": null,
+      "risk_score": 0
+    },
+    {
+      "repo": "/home/architit/work/Roaudter-agent",
+      "repo_name": "Roaudter-agent",
+      "scanned_files": [
+        "DEV_LOGS.md",
+        "ROADMAP.md",
+        "WORKFLOW_SNAPSHOT_STATE.md",
+        "INTERACTION_PROTOCOL.md"
+      ],
+      "hit_count": 0,
+      "severity_counts": {},
+      "pattern_counts": {},
+      "abab_tail_cycle": null,
+      "risk_score": 0
+    },
+    {
+      "repo": "/home/architit/work/System-",
+      "repo_name": "System-",
+      "scanned_files": [
+        "DEV_LOGS.md",
+        "ROADMAP.md",
+        "WORKFLOW_SNAPSHOT_STATE.md",
+        "INTERACTION_PROTOCOL.md"
+      ],
+      "hit_count": 0,
+      "severity_counts": {},
+      "pattern_counts": {},
+      "abab_tail_cycle": null,
+      "risk_score": 0
+    },
+    {
+      "repo": "/home/architit/work/TRIANIUMA_DATA_BASE",
+      "repo_name": "TRIANIUMA_DATA_BASE",
+      "scanned_files": [
+        "DEV_LOGS.md",
+        "ROADMAP.md",
+        "WORKFLOW_SNAPSHOT_STATE.md",
+        "INTERACTION_PROTOCOL.md"
+      ],
+      "hit_count": 0,
+      "severity_counts": {},
+      "pattern_counts": {},
+      "abab_tail_cycle": null,
+      "risk_score": 0
+    },
+    {
+      "repo": "/home/architit/work/Trianiuma",
+      "repo_name": "Trianiuma",
+      "scanned_files": [
+        "DEV_LOGS.md",
+        "ROADMAP.md",
+        "WORKFLOW_SNAPSHOT_STATE.md",
+        "INTERACTION_PROTOCOL.md"
+      ],
+      "hit_count": 0,
+      "severity_counts": {},
+      "pattern_counts": {},
+      "abab_tail_cycle": null,
+      "risk_score": 0
+    },
+    {
+      "repo": "/home/architit/work/Trianiuma_MEM_CORE",
+      "repo_name": "Trianiuma_MEM_CORE",
+      "scanned_files": [
+        "DEV_LOGS.md",
+        "ROADMAP.md",
+        "WORKFLOW_SNAPSHOT_STATE.md",
+        "INTERACTION_PROTOCOL.md"
+      ],
+      "hit_count": 0,
+      "severity_counts": {},
+      "pattern_counts": {},
+      "abab_tail_cycle": null,
+      "risk_score": 0
+    }
+  ]
+}

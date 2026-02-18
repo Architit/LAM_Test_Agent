@@ -1,0 +1,215 @@
+{
+  "generated_at_utc": "2026-02-18T00:31:45.144487+00:00",
+  "repository_root": "/home/architit/work/LAM_Test_Agent",
+  "missing_submodule_paths": [],
+  "summary": {
+    "routes_total": 9,
+    "unique_route_ids": 8,
+    "live_ready": true,
+    "deadloop_cross_repo": {
+      "has_cross_repo_assertions": true,
+      "guard_script_present": true,
+      "ecosystem_scan_script_present": true,
+      "cross_repo_ready": true
+    },
+    "priority_counts": {
+      "P0": 0,
+      "P1": 0,
+      "P2": 9
+    },
+    "priorities_present": [
+      "P2"
+    ]
+  },
+  "routes": [
+    {
+      "route_id": "R-001",
+      "scenario_id": "scn_codex_comm_ping_pong",
+      "source": "comm-agent",
+      "target": "codex-agent",
+      "layer": "agent",
+      "expected_status": "ok",
+      "required_contracts": [
+        "ping_payload_schema_v1",
+        "ping_reply_envelope_v1",
+        "trace_propagation_v1"
+      ],
+      "has_mock_execution": true,
+      "has_contract_assertions": true,
+      "has_failure_assertions": true,
+      "has_deadloop_cross_repo_assertions": true,
+      "live_ready": true,
+      "live_executed": false,
+      "gap_tags": [],
+      "priority": "P2"
+    },
+    {
+      "route_id": "R-002",
+      "scenario_id": "scn_codex_comm_ping_pong",
+      "source": "codex-core",
+      "target": "comm-agent",
+      "layer": "core",
+      "expected_status": "ok",
+      "required_contracts": [
+        "ping_payload_schema_v1",
+        "ping_reply_envelope_v1",
+        "trace_propagation_v1"
+      ],
+      "has_mock_execution": true,
+      "has_contract_assertions": true,
+      "has_failure_assertions": true,
+      "has_deadloop_cross_repo_assertions": true,
+      "live_ready": true,
+      "live_executed": false,
+      "gap_tags": [],
+      "priority": "P2"
+    },
+    {
+      "route_id": "R-003",
+      "scenario_id": "scn_comm_roaudter_fallback",
+      "source": "comm-agent",
+      "target": "roaudter-agent",
+      "layer": "agent",
+      "expected_status": "degraded",
+      "required_contracts": [
+        "provider_hint_contract_v1",
+        "fallback_determinism_contract_v1",
+        "usage_unified_contract_v1"
+      ],
+      "has_mock_execution": true,
+      "has_contract_assertions": true,
+      "has_failure_assertions": true,
+      "has_deadloop_cross_repo_assertions": true,
+      "live_ready": true,
+      "live_executed": false,
+      "gap_tags": [],
+      "priority": "P2"
+    },
+    {
+      "route_id": "R-004",
+      "scenario_id": "scn_comm_roaudter_fallback",
+      "source": "roaudter-agent",
+      "target": "provider-router-core",
+      "layer": "core",
+      "expected_status": "degraded",
+      "required_contracts": [
+        "provider_hint_contract_v1",
+        "fallback_determinism_contract_v1",
+        "usage_unified_contract_v1"
+      ],
+      "has_mock_execution": true,
+      "has_contract_assertions": true,
+      "has_failure_assertions": true,
+      "has_deadloop_cross_repo_assertions": true,
+      "live_ready": true,
+      "live_executed": false,
+      "gap_tags": [],
+      "priority": "P2"
+    },
+    {
+      "route_id": "R-005",
+      "scenario_id": "scn_comm_roaudter_fallback",
+      "source": "provider-router-core",
+      "target": "local-provider",
+      "layer": "ecosystem",
+      "expected_status": "degraded",
+      "required_contracts": [
+        "provider_hint_contract_v1",
+        "fallback_determinism_contract_v1",
+        "usage_unified_contract_v1"
+      ],
+      "has_mock_execution": true,
+      "has_contract_assertions": true,
+      "has_failure_assertions": true,
+      "has_deadloop_cross_repo_assertions": true,
+      "live_ready": true,
+      "live_executed": false,
+      "gap_tags": [],
+      "priority": "P2"
+    },
+    {
+      "route_id": "R-006",
+      "scenario_id": "scn_taskarid_chain_route",
+      "source": "taskarid-core",
+      "target": "comm-agent",
+      "layer": "core",
+      "expected_status": "ok",
+      "required_contracts": [
+        "task_envelope_v2",
+        "trace_continuity_v1",
+        "cross_agent_route_contract_v1"
+      ],
+      "has_mock_execution": true,
+      "has_contract_assertions": true,
+      "has_failure_assertions": true,
+      "has_deadloop_cross_repo_assertions": true,
+      "live_ready": true,
+      "live_executed": false,
+      "gap_tags": [],
+      "priority": "P2"
+    },
+    {
+      "route_id": "R-007",
+      "scenario_id": "scn_taskarid_chain_route",
+      "source": "comm-agent",
+      "target": "codex-agent",
+      "layer": "agent",
+      "expected_status": "ok",
+      "required_contracts": [
+        "task_envelope_v2",
+        "trace_continuity_v1",
+        "cross_agent_route_contract_v1"
+      ],
+      "has_mock_execution": true,
+      "has_contract_assertions": true,
+      "has_failure_assertions": true,
+      "has_deadloop_cross_repo_assertions": true,
+      "live_ready": true,
+      "live_executed": false,
+      "gap_tags": [],
+      "priority": "P2"
+    },
+    {
+      "route_id": "R-007",
+      "scenario_id": "scn_taskarid_chain_route",
+      "source": "codex-agent",
+      "target": "comm-agent",
+      "layer": "agent",
+      "expected_status": "ok",
+      "required_contracts": [
+        "task_envelope_v2",
+        "trace_continuity_v1",
+        "cross_agent_route_contract_v1"
+      ],
+      "has_mock_execution": true,
+      "has_contract_assertions": true,
+      "has_failure_assertions": true,
+      "has_deadloop_cross_repo_assertions": true,
+      "live_ready": true,
+      "live_executed": false,
+      "gap_tags": [],
+      "priority": "P2"
+    },
+    {
+      "route_id": "R-008",
+      "scenario_id": "scn_taskarid_chain_route",
+      "source": "comm-agent",
+      "target": "roaudter-agent",
+      "layer": "agent",
+      "expected_status": "ok",
+      "required_contracts": [
+        "task_envelope_v2",
+        "trace_continuity_v1",
+        "cross_agent_route_contract_v1"
+      ],
+      "has_mock_execution": true,
+      "has_contract_assertions": true,
+      "has_failure_assertions": true,
+      "has_deadloop_cross_repo_assertions": true,
+      "live_ready": true,
+      "live_executed": false,
+      "gap_tags": [],
+      "priority": "P2"
+    }
+  ]
+}

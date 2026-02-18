@@ -1,0 +1,71 @@
+{
+  "generated_at_utc": "2026-02-17T22:47:58.186238+00:00",
+  "status": "BLOCKED",
+  "recommended_mode": "mock_only",
+  "dirty_repo_budget": 0,
+  "p0_budget": 0,
+  "checks": [
+    {
+      "id": "network_resolution_gate",
+      "ok": false,
+      "details": "github_dns_resolvable=False",
+      "severity": "critical"
+    },
+    {
+      "id": "submodule_readiness_gate",
+      "ok": false,
+      "details": "live_ready=False, missing_submodule_paths=2",
+      "severity": "critical"
+    },
+    {
+      "id": "degraded_mode_conformance_gate",
+      "ok": true,
+      "details": "degraded_routes=3, required_assertions=contract+failure",
+      "severity": "critical"
+    },
+    {
+      "id": "dirty_repo_budget_gate",
+      "ok": false,
+      "details": "dirty_repos=16, budget=0",
+      "severity": "high"
+    },
+    {
+      "id": "p0_gap_budget_gate",
+      "ok": false,
+      "details": "p0_count=9, budget=0",
+      "severity": "critical"
+    },
+    {
+      "id": "growth_checkpoint_gate",
+      "ok": true,
+      "details": "requires summary.deadloop_cross_repo with cross_repo_assertions+guard+scan+ready all true",
+      "severity": "critical"
+    }
+  ],
+  "blockers": [
+    {
+      "id": "network_resolution_gate",
+      "ok": false,
+      "details": "github_dns_resolvable=False",
+      "severity": "critical"
+    },
+    {
+      "id": "submodule_readiness_gate",
+      "ok": false,
+      "details": "live_ready=False, missing_submodule_paths=2",
+      "severity": "critical"
+    },
+    {
+      "id": "dirty_repo_budget_gate",
+      "ok": false,
+      "details": "dirty_repos=16, budget=0",
+      "severity": "high"
+    },
+    {
+      "id": "p0_gap_budget_gate",
+      "ok": false,
+      "details": "p0_count=9, budget=0",
+      "severity": "critical"
+    }
+  ]
+}

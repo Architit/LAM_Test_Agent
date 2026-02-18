@@ -1,0 +1,47 @@
+{
+  "generated_at_utc": "2026-02-17T22:23:30Z",
+  "scope": "deadloop inter-repo matrix growth checkpoint",
+  "source_snapshot": "memory/FRONT/TEST_MATRIX_GROWTH_SNAPSHOT.json",
+  "before": {
+    "observed_snapshot_generated_at_utc": "2026-02-17T21:46:28.606312+00:00",
+    "routes_total": 9,
+    "unique_route_ids": 8,
+    "live_ready": false,
+    "priority_counts": {
+      "P0": 9,
+      "P1": 0,
+      "P2": 0
+    },
+    "deadloop_cross_repo_block_present": false,
+    "per_route_deadloop_assertion_field_present": false
+  },
+  "after": {
+    "observed_snapshot_generated_at_utc": "2026-02-17T22:22:18.093527+00:00",
+    "routes_total": 9,
+    "unique_route_ids": 8,
+    "live_ready": false,
+    "priority_counts": {
+      "P0": 9,
+      "P1": 0,
+      "P2": 0
+    },
+    "deadloop_cross_repo": {
+      "has_cross_repo_assertions": true,
+      "guard_script_present": true,
+      "ecosystem_scan_script_present": true,
+      "cross_repo_ready": true
+    },
+    "per_route_deadloop_assertion_field_present": true
+  },
+  "delta": {
+    "routes_total_change": 0,
+    "unique_route_ids_change": 0,
+    "new_summary_blocks": [
+      "deadloop_cross_repo"
+    ],
+    "new_per_route_fields": [
+      "has_deadloop_cross_repo_assertions"
+    ],
+    "coverage_signal_change": "deadloop inter-repo coverage became explicit and machine-readable"
+  }
+}

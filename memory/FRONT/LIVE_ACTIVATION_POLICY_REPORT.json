@@ -1,0 +1,65 @@
+{
+  "generated_at_utc": "2026-02-18T00:43:01.204989+00:00",
+  "status": "READY",
+  "recommended_mode": "live_plus_mock",
+  "dirty_repo_budget": 0,
+  "p0_budget": 0,
+  "checks": [
+    {
+      "id": "network_resolution_gate",
+      "ok": true,
+      "details": "github_dns_resolvable=False, local_dependency_mirror_ready=True",
+      "severity": "critical"
+    },
+    {
+      "id": "submodule_readiness_gate",
+      "ok": true,
+      "details": "live_ready=True, missing_submodule_paths=0",
+      "severity": "critical"
+    },
+    {
+      "id": "degraded_mode_conformance_gate",
+      "ok": true,
+      "details": "degraded_routes=3, required_assertions=contract+failure",
+      "severity": "critical"
+    },
+    {
+      "id": "dirty_repo_budget_gate",
+      "ok": false,
+      "details": "dirty_repos=16, budget=0",
+      "severity": "high"
+    },
+    {
+      "id": "p0_gap_budget_gate",
+      "ok": true,
+      "details": "p0_count=0, budget=0",
+      "severity": "critical"
+    },
+    {
+      "id": "growth_checkpoint_gate",
+      "ok": true,
+      "details": "requires summary.deadloop_cross_repo with cross_repo_assertions+guard+scan+ready all true",
+      "severity": "critical"
+    },
+    {
+      "id": "archivator_handoff_gate",
+      "ok": true,
+      "details": "requires Archivator mirror freshness for workflow snapshots when scope_active=true; scope_active=True, handoff_ok=True, missing=0, stale=0",
+      "severity": "critical"
+    },
+    {
+      "id": "semantic_identity_governance_gate",
+      "ok": true,
+      "details": "blocks rollout on unresolved/provisional/template identity naming in subtree maps; scope_active=True, identity_ok=True, unresolved=0, provisional=0, templated=0",
+      "severity": "critical"
+    }
+  ],
+  "blockers": [
+    {
+      "id": "dirty_repo_budget_gate",
+      "ok": false,
+      "details": "dirty_repos=16, budget=0",
+      "severity": "high"
+    }
+  ]
+}
