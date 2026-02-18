@@ -32,8 +32,6 @@ if [[ -f "$STAMP_FILE" ]]; then
     fi
   fi
 fi
-echo "$now" > "$STAMP_FILE"
-
 log="$LOG_DIR/${NAME}.log"
 {
   echo "[$(date -Iseconds)] aess_autostart begin repo=${NAME}"
@@ -63,4 +61,5 @@ log="$LOG_DIR/${NAME}.log"
   echo "[$(date -Iseconds)] aess_autostart end"
 } >> "$log" 2>&1
 
+echo "$now" > "$STAMP_FILE"
 echo "OK ${NAME}: autostart contract processed"

@@ -168,8 +168,8 @@ case "$cmd" in
   verify)
     rc=0
     verify_github || rc=1
-    verify_onedrive || true
-    verify_gworkspace || true
+    verify_onedrive || rc=1
+    verify_gworkspace || rc=1
     exit "$rc"
     ;;
   export)
