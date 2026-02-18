@@ -68,6 +68,7 @@ fi
 WORK_ROOT="$(cd "$ROOT/.." && pwd)"
 CODX_DST="$ROOT/LAM_Test/agents/codex-agent"
 COMM_DST="$ROOT/LAM_Test/agents/comm-agent"
+OPER_DST="$ROOT/LAM_Test/agents/operator-agent"
 
 if [[ ! -d "$CODX_DST/src" ]]; then
   fallback_clone_local_repo "$CODX_DST" \
@@ -79,10 +80,15 @@ if [[ ! -d "$COMM_DST/src" ]]; then
     "$WORK_ROOT/LAM_Comunication_Agent" \
     "$WORK_ROOT/LAM_Communication_Agent" || true
 fi
+if [[ ! -d "$OPER_DST/agent" ]]; then
+  fallback_clone_local_repo "$OPER_DST" \
+    "$WORK_ROOT/Operator_Agent" || true
+fi
 
 required=(
   "$ROOT/LAM_Test/agents/codex-agent/src"
   "$ROOT/LAM_Test/agents/comm-agent/src"
+  "$ROOT/LAM_Test/agents/operator-agent/agent"
 )
 
 missing=0
