@@ -103,6 +103,31 @@ jobs:
             --mode verify \
             --manifest memory/FRONT/TELEMETRY_INTEGRITY_MANIFEST.json
 
+      - name: Build OpenAI feedback bundle
+        run: |
+          python -m lam_test_agent_openai_feedback_bundle \
+            --input .gateway/external_debug/codex_openai_codefix_debug.jsonl \
+            --output-json memory/FRONT/OPENAI_FEEDBACK_BUNDLE.json \
+            --output-md memory/FRONT/OPENAI_FEEDBACK_BUNDLE.md
+
+      - name: Send OpenAI feedback bundle
+        run: |
+          python -m lam_test_agent_openai_feedback_sender \
+            --bundle-json memory/FRONT/OPENAI_FEEDBACK_BUNDLE.json \
+            --spool-dir .gateway/feedback_spool \
+            --receipts-dir .gateway/receipts
+        env:
+          OPENAI_DEBUG_UPLOAD_URL: ${{ secrets.OPENAI_DEBUG_UPLOAD_URL }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_DEBUG_TIMEOUT_SEC: "60"
+
+      - name: Feedback delivery gate
+        run: |
+          python -m lam_test_agent_feedback_delivery_gate \
+            --bundle-json memory/FRONT/OPENAI_FEEDBACK_BUNDLE.json \
+            --spool-dir .gateway/feedback_spool \
+            --receipts-dir .gateway/receipts
+
   unit-runtime-cov:
     runs-on: ubuntu-latest
     steps:
