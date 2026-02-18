@@ -9,7 +9,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           submodules: recursive
-          token: ${{ secrets.LAM_SUBMODULE_ACCESS_TOKEN != '' && secrets.LAM_SUBMODULE_ACCESS_TOKEN || secrets.LAM_Submodule_Acces != '' && secrets.LAM_Submodule_Acces || github.token }}
+          token: ${{ github.token }}
 
       - name: Verify submodule sources
         run: bash scripts/bootstrap_submodules.sh
@@ -110,7 +110,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           submodules: recursive
-          token: ${{ secrets.LAM_SUBMODULE_ACCESS_TOKEN != '' && secrets.LAM_SUBMODULE_ACCESS_TOKEN || secrets.LAM_Submodule_Acces != '' && secrets.LAM_Submodule_Acces || github.token }}
+          token: ${{ github.token }}
 
       - name: Verify submodule sources
         run: bash scripts/bootstrap_submodules.sh
@@ -142,7 +142,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           submodules: recursive
-          token: ${{ secrets.LAM_SUBMODULE_ACCESS_TOKEN != '' && secrets.LAM_SUBMODULE_ACCESS_TOKEN || secrets.LAM_Submodule_Acces != '' && secrets.LAM_Submodule_Acces || github.token }}
+          token: ${{ github.token }}
 
       - name: Verify submodule sources
         run: bash scripts/bootstrap_submodules.sh
