@@ -1,10 +1,16 @@
 from __future__ import annotations
 
+import json
 from pathlib import Path
 
 import pytest
 
-from lam_test_agent_phasee_drift import build_drift_report, implemented_layers, unblock_conditions
+from lam_test_agent_phasee_drift import (
+    build_drift_report,
+    implemented_layers,
+    main as phasee_main,
+    unblock_conditions,
+)
 
 
 @pytest.mark.unit
@@ -53,3 +59,25 @@ def test_implemented_layers_requires_runtime_and_text_for_contract_schema_lock(t
     )
     found_with_runtime = implemented_layers(tmp_path)
     assert "contract_schema_lock" in found_with_runtime
+
+
+@pytest.mark.unit
+def test_phasee_main_returns_code_2_for_invalid_stack_json(tmp_path: Path) -> None:
+    stack = tmp_path / "stack.json"
+    policy = tmp_path / "policy.json"
+    stack.write_text("not-json", encoding="utf-8")
+    policy.write_text(json.dumps({"status": "READY", "checks": []}), encoding="utf-8")
+
+    rc = phasee_main(
+        [
+            "--stack",
+            str(stack),
+            "--policy",
+            str(policy),
+            "--output-json",
+            str(tmp_path / "drift.json"),
+            "--output-md",
+            str(tmp_path / "drift.md"),
+        ]
+    )
+    assert rc == 2

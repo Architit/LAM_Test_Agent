@@ -6,7 +6,7 @@ from pathlib import Path
 import pytest
 
 import lam_test_agent_growth_data as growth_data
-from lam_test_agent_growth_data import collect_growth_snapshot, write_snapshot
+from lam_test_agent_growth_data import collect_growth_snapshot, main as growth_data_main, write_snapshot
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -67,3 +67,14 @@ def test_collect_growth_snapshot_fails_on_route_count_mismatch(monkeypatch: pyte
     monkeypatch.setattr(growth_data, "SCENARIO_ROUTE_IDS", patched)
     with pytest.raises(ValueError, match="route count mismatch"):
         collect_growth_snapshot(ROOT)
+
+
+@pytest.mark.unit
+def test_growth_data_main_returns_2_when_scenario_mapping_invalid(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.setattr(
+        growth_data,
+        "SCENARIO_ROUTE_IDS",
+        {"scn_codex_comm_ping_pong": ("R-001", "R-002")},
+    )
+    rc = growth_data_main(["--root", str(ROOT), "--output", "memory/FRONT/_tmp_growth_snapshot.json"])
+    assert rc == 2

@@ -230,8 +230,18 @@ def main(argv: list[str] | None = None) -> int:
         print(f"LIVE_POLICY_FAIL: growth snapshot not found: {growth_path}")
         return 2
 
-    telemetry = json.loads(telemetry_path.read_text(encoding="utf-8"))
-    growth = json.loads(growth_path.read_text(encoding="utf-8"))
+    try:
+        telemetry = json.loads(telemetry_path.read_text(encoding="utf-8"))
+        growth = json.loads(growth_path.read_text(encoding="utf-8"))
+    except Exception as exc:
+        print(f"LIVE_POLICY_FAIL invalid_json error={type(exc).__name__}")
+        return 2
+    if not isinstance(telemetry, dict):
+        print("LIVE_POLICY_FAIL telemetry_json_must_be_object")
+        return 2
+    if not isinstance(growth, dict):
+        print("LIVE_POLICY_FAIL growth_json_must_be_object")
+        return 2
     policy = evaluate_live_activation_policy(
         telemetry,
         growth,

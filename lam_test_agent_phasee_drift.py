@@ -199,17 +199,21 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--fail-on-missing", action="store_true")
     args = parser.parse_args(argv)
 
-    root = Path(".").resolve()
-    stack = load_json(Path(args.stack).resolve())
-    policy = load_json(Path(args.policy).resolve())
-    report = build_drift_report(root, stack, policy)
+    try:
+        root = Path(".").resolve()
+        stack = load_json(Path(args.stack).resolve())
+        policy = load_json(Path(args.policy).resolve())
+        report = build_drift_report(root, stack, policy)
 
-    out_json = Path(args.output_json).resolve()
-    out_md = Path(args.output_md).resolve()
-    out_json.parent.mkdir(parents=True, exist_ok=True)
-    out_md.parent.mkdir(parents=True, exist_ok=True)
-    out_json.write_text(json.dumps(report, indent=2, ensure_ascii=True) + "\n", encoding="utf-8")
-    out_md.write_text(render_markdown(report), encoding="utf-8")
+        out_json = Path(args.output_json).resolve()
+        out_md = Path(args.output_md).resolve()
+        out_json.parent.mkdir(parents=True, exist_ok=True)
+        out_md.parent.mkdir(parents=True, exist_ok=True)
+        out_json.write_text(json.dumps(report, indent=2, ensure_ascii=True) + "\n", encoding="utf-8")
+        out_md.write_text(render_markdown(report), encoding="utf-8")
+    except Exception as exc:
+        print(f"PHASE_E_DRIFT_FAIL error={type(exc).__name__}: {exc}")
+        return 2
     print(
         "PHASE_E_DRIFT_OK "
         f"coverage={report['implementation_coverage_percent']} missing={len(report['missing_layers'])}"

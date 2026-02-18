@@ -1,8 +1,11 @@
 from __future__ import annotations
 
+import json
+from pathlib import Path
+
 import pytest
 
-from lam_test_agent_live_policy import evaluate_live_activation_policy
+from lam_test_agent_live_policy import evaluate_live_activation_policy, main as live_policy_main
 
 
 @pytest.mark.unit
@@ -182,3 +185,47 @@ def test_live_policy_blocks_when_semantic_identity_is_not_governed() -> None:
     failed = [c for c in policy["checks"] if c["id"] == "semantic_identity_governance_gate"][0]
     assert not failed["ok"]
     assert policy["status"] == "BLOCKED"
+
+
+@pytest.mark.unit
+def test_live_policy_main_returns_code_2_for_invalid_input_json(tmp_path: Path) -> None:
+    telemetry = tmp_path / "telemetry.json"
+    growth = tmp_path / "growth.json"
+    telemetry.write_text("not-json", encoding="utf-8")
+    growth.write_text(json.dumps({"summary": {}}), encoding="utf-8")
+
+    rc = live_policy_main(
+        [
+            "--telemetry",
+            str(telemetry),
+            "--growth",
+            str(growth),
+            "--output-json",
+            str(tmp_path / "policy.json"),
+            "--output-md",
+            str(tmp_path / "policy.md"),
+        ]
+    )
+    assert rc == 2
+
+
+@pytest.mark.unit
+def test_live_policy_main_requires_object_json(tmp_path: Path) -> None:
+    telemetry = tmp_path / "telemetry.json"
+    growth = tmp_path / "growth.json"
+    telemetry.write_text(json.dumps([]), encoding="utf-8")
+    growth.write_text(json.dumps({"summary": {}}), encoding="utf-8")
+
+    rc = live_policy_main(
+        [
+            "--telemetry",
+            str(telemetry),
+            "--growth",
+            str(growth),
+            "--output-json",
+            str(tmp_path / "policy.json"),
+            "--output-md",
+            str(tmp_path / "policy.md"),
+        ]
+    )
+    assert rc == 2

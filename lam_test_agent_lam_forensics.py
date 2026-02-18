@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import json
 import subprocess
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -25,6 +26,13 @@ def _parse_guard_json(raw: str) -> dict[str, Any]:
     except json.JSONDecodeError:
         pass
     return {"raw": raw}
+
+
+def _python_executable_for_repo(repo_root: Path) -> str:
+    venv_python = repo_root / ".venv" / "bin" / "python"
+    if venv_python.exists():
+        return str(venv_python)
+    return sys.executable
 
 
 def collect_lam_forensics(lam_root: Path) -> dict[str, Any]:
@@ -55,9 +63,10 @@ def collect_lam_forensics(lam_root: Path) -> dict[str, Any]:
     workflow_hit_count = len([ln for ln in workflow_hits.splitlines() if ln.strip()]) if rc == 0 else 0
 
     # Forced HOLD scenario: governance-only cycle (journal paths only, streak >= 3)
+    py = _python_executable_for_repo(lam_root)
     rc_hold, hold_raw = _run(
         [
-            "python3",
+            py,
             "scripts/deadloop_guard_entrypoint.py",
             "--governance-only-streak",
             "3",
@@ -75,7 +84,7 @@ def collect_lam_forensics(lam_root: Path) -> dict[str, Any]:
     # PASS scenario: non-doc code + test deltas + validation command + operator confirmation
     rc_pass, pass_raw = _run(
         [
-            "python3",
+            py,
             "scripts/deadloop_guard_entrypoint.py",
             "--governance-only-streak",
             "0",
@@ -95,7 +104,7 @@ def collect_lam_forensics(lam_root: Path) -> dict[str, Any]:
 
     rc_scan, scan_raw = _run(
         [
-            "python3",
+            py,
             "scripts/deadloop_ecosystem_scan.py",
             "--repo",
             str(lam_root),
@@ -115,7 +124,7 @@ def collect_lam_forensics(lam_root: Path) -> dict[str, Any]:
 
     rc_tests, tests_raw = _run(
         [
-            ".venv/bin/python",
+            py,
             "-m",
             "pytest",
             "-q",

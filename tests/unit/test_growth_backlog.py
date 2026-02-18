@@ -8,6 +8,7 @@ from lam_test_agent_growth_data import collect_growth_snapshot, write_snapshot
 from lam_test_agent_growth_backlog import (
     generate_backlog_items,
     load_snapshot,
+    main as growth_backlog_main,
     render_backlog_markdown,
 )
 
@@ -65,3 +66,18 @@ def test_load_snapshot_rejects_too_large_routes(tmp_path: Path) -> None:
     bad.write_text('{"routes": [%s]}' % ",".join(["{}"] * 201), encoding="utf-8")
     with pytest.raises(ValueError, match="snapshot.routes too large"):
         load_snapshot(bad)
+
+
+@pytest.mark.unit
+def test_growth_backlog_main_returns_2_on_invalid_snapshot_json(tmp_path: Path) -> None:
+    bad = tmp_path / "bad.json"
+    bad.write_text("not-json", encoding="utf-8")
+    rc = growth_backlog_main(
+        [
+            "--snapshot",
+            str(bad),
+            "--output",
+            str(tmp_path / "out.md"),
+        ]
+    )
+    assert rc == 2

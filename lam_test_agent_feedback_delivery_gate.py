@@ -74,7 +74,11 @@ def main(argv: list[str] | None = None) -> int:
         print(f"FEEDBACK_DELIVERY_GATE_FAIL missing_bundle={bundle_path}")
         return 2
 
-    bundle = json.loads(bundle_path.read_text(encoding="utf-8"))
+    try:
+        bundle = json.loads(bundle_path.read_text(encoding="utf-8"))
+    except Exception as exc:
+        print(f"FEEDBACK_DELIVERY_GATE_FAIL invalid_bundle_json error={type(exc).__name__}")
+        return 2
     if not isinstance(bundle, dict):
         print("FEEDBACK_DELIVERY_GATE_FAIL bundle_not_object")
         return 2

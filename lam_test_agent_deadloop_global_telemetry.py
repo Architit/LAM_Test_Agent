@@ -223,8 +223,12 @@ def main(argv: list[str] | None = None) -> int:
         print(f"DEADLOOP_TELEMETRY_FAIL: lam root not found: {lam_root}")
         return 2
 
-    snapshot = collect_snapshot(root=root, lam_root=lam_root, files=DEFAULT_SCAN_FILES)
-    write_outputs(snapshot, Path(args.json_output), Path(args.md_output))
+    try:
+        snapshot = collect_snapshot(root=root, lam_root=lam_root, files=DEFAULT_SCAN_FILES)
+        write_outputs(snapshot, Path(args.json_output), Path(args.md_output))
+    except Exception as exc:
+        print(f"DEADLOOP_TELEMETRY_FAIL error={type(exc).__name__}: {exc}")
+        return 2
     print(
         "DEADLOOP_TELEMETRY_OK "
         f"repos={snapshot['summary']['repo_count']} "

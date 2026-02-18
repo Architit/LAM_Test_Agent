@@ -62,3 +62,21 @@ def test_gate_passes_for_critical_when_receipt_exists(tmp_path: Path) -> None:
         ]
     )
     assert rc == 0
+
+
+@pytest.mark.unit
+def test_gate_returns_code_2_for_invalid_bundle_json(tmp_path: Path) -> None:
+    bundle_path = tmp_path / "bundle.json"
+    bundle_path.write_text("not-json", encoding="utf-8")
+
+    rc = gate_main(
+        [
+            "--bundle-json",
+            str(bundle_path),
+            "--spool-dir",
+            str(tmp_path / "spool"),
+            "--receipts-dir",
+            str(tmp_path / "receipts"),
+        ]
+    )
+    assert rc == 2

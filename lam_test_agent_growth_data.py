@@ -162,9 +162,13 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
 
     root = Path(args.root).resolve()
-    snapshot = collect_growth_snapshot(root)
-    output = root / args.output
-    write_snapshot(snapshot, output)
+    try:
+        snapshot = collect_growth_snapshot(root)
+        output = root / args.output
+        write_snapshot(snapshot, output)
+    except Exception as exc:
+        print(f"GROWTH_SNAPSHOT_FAIL error={type(exc).__name__}: {exc}")
+        return 2
     print(f"GROWTH_SNAPSHOT_OK routes={snapshot['summary']['routes_total']} output={output}")
     return 0
 

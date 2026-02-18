@@ -30,6 +30,15 @@ def critical_count(bundle: dict[str, Any]) -> int:
         return 0
 
 
+def env_timeout_sec() -> int:
+    raw = os.environ.get("OPENAI_DEBUG_TIMEOUT_SEC", "60")
+    try:
+        value = int(raw)
+    except Exception:
+        return 60
+    return max(value, 5)
+
+
 def post_bundle(upload_url: str, payload: dict[str, Any], timeout_sec: int, api_key: str = "") -> tuple[int, str]:
     body = json.dumps(payload, ensure_ascii=True).encode("utf-8")
     headers = {"Content-Type": "application/json"}
@@ -66,7 +75,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--receipts-dir", default=".gateway/receipts")
     parser.add_argument("--upload-url", default=os.environ.get("OPENAI_DEBUG_UPLOAD_URL", ""))
     parser.add_argument("--api-key", default=os.environ.get("OPENAI_API_KEY", ""))
-    parser.add_argument("--timeout-sec", type=int, default=int(os.environ.get("OPENAI_DEBUG_TIMEOUT_SEC", "60")))
+    parser.add_argument("--timeout-sec", type=int, default=env_timeout_sec())
     args = parser.parse_args(argv)
 
     bundle_path = Path(args.bundle_json).resolve()
@@ -77,7 +86,11 @@ def main(argv: list[str] | None = None) -> int:
         print(f"OPENAI_FEEDBACK_SEND_FAIL missing_bundle={bundle_path}")
         return 2
 
-    bundle = json.loads(bundle_path.read_text(encoding="utf-8"))
+    try:
+        bundle = json.loads(bundle_path.read_text(encoding="utf-8"))
+    except Exception as exc:
+        print(f"OPENAI_FEEDBACK_SEND_FAIL invalid_bundle_json error={type(exc).__name__}")
+        return 2
     if not isinstance(bundle, dict):
         print("OPENAI_FEEDBACK_SEND_FAIL bundle_not_object")
         return 2

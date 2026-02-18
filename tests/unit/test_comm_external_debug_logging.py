@@ -20,7 +20,7 @@ if str(CODEX_SRC) not in sys.path:
 
 @pytest.mark.unit
 @pytest.mark.submodule_required
-def test_send_data_emits_external_debug_record(monkeypatch: pytest.MonkeyPatch) -> None:
+def test_send_data_emits_enqueue_record(monkeypatch: pytest.MonkeyPatch) -> None:
     comm_module = importlib.import_module("interfaces.com_agent_interface")
     ComAgent = getattr(comm_module, "ComAgent")
 
@@ -46,10 +46,9 @@ def test_send_data_emits_external_debug_record(monkeypatch: pytest.MonkeyPatch) 
     )
     assert ok is True
 
-    debug_records = [r for r in captured if r[1] == "comm.external.debug"]
-    assert debug_records, "expected external debug record"
-    _, _, _, fields = debug_records[-1]
-    assert fields["external_system"] == "codex_openai"
-    assert fields["request_id"] == "req-42"
+    enqueue_records = [r for r in captured if r[1] == "comm.enqueue"]
+    assert enqueue_records, "expected comm.enqueue record"
+    _, _, _, fields = enqueue_records[-1]
+    assert fields["intent"] == "code_fix_request"
     assert fields["trace_id"] == "trace-abc"
-    assert "payload_preview" in fields
+    assert fields["task_id"] == "task-7"

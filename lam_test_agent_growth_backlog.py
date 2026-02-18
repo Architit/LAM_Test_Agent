@@ -175,12 +175,17 @@ def main(argv: list[str] | None = None) -> int:
         print(f"snapshot not found: {snapshot_path}")
         return 2
 
-    snapshot = load_snapshot(snapshot_path)
-    items = generate_backlog_items(snapshot, max_total=args.max_total, max_per_route=args.max_per_route)
-    text = render_backlog_markdown(items, snapshot)
+    try:
+        snapshot = load_snapshot(snapshot_path)
+        items = generate_backlog_items(snapshot, max_total=args.max_total, max_per_route=args.max_per_route)
+        text = render_backlog_markdown(items, snapshot)
 
-    output = Path(args.output).resolve()
-    write_backlog(text, output)
+        output = Path(args.output).resolve()
+        write_backlog(text, output)
+    except Exception as exc:
+        print(f"GROWTH_BACKLOG_FAIL error={type(exc).__name__}: {exc}")
+        return 2
+
     print(f"GROWTH_BACKLOG_OK items={len(items)} output={output}")
     return 0
 

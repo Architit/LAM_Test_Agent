@@ -4,7 +4,7 @@ from pathlib import Path
 
 import pytest
 
-from lam_test_agent_deadloop_global_telemetry import _discover_repos
+from lam_test_agent_deadloop_global_telemetry import _discover_repos, main as deadloop_global_main
 
 
 @pytest.mark.unit
@@ -29,3 +29,25 @@ def test_discover_repos_accepts_git_file_layout(tmp_path: Path) -> None:
     repos = _discover_repos(tmp_path)
     names = {p.name for p in repos}
     assert "SubmoduleLike" in names
+
+
+@pytest.mark.unit
+def test_deadloop_global_main_returns_code_2_when_pattern_module_missing(tmp_path: Path) -> None:
+    root = tmp_path / "ecosystem"
+    lam_root = tmp_path / "LAM"
+    root.mkdir(parents=True)
+    lam_root.mkdir(parents=True)
+
+    rc = deadloop_global_main(
+        [
+            "--root",
+            str(root),
+            "--lam-root",
+            str(lam_root),
+            "--json-output",
+            str(tmp_path / "out.json"),
+            "--md-output",
+            str(tmp_path / "out.md"),
+        ]
+    )
+    assert rc == 2
