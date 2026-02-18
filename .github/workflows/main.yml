@@ -2,14 +2,17 @@ name: CI
 on: [push, pull_request]
 
 jobs:
-  test:
+  quality:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo + submodules
         uses: actions/checkout@v4
         with:
           submodules: recursive
-          token: ${{ secrets.LAM_Submodule_Acces }}
+          token: ${{ secrets.LAM_SUBMODULE_ACCESS_TOKEN != '' && secrets.LAM_SUBMODULE_ACCESS_TOKEN || secrets.LAM_Submodule_Acces != '' && secrets.LAM_Submodule_Acces || github.token }}
+
+      - name: Verify submodule sources
+        run: bash scripts/bootstrap_submodules.sh
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -24,5 +27,135 @@ jobs:
       - name: Ruff
         run: ruff check .
 
-      - name: Tests + coverage
-        run: pytest --cov=./ --cov-report=xml --cov-fail-under=20
+      - name: Mypy
+        run: mypy .
+
+      - name: Plan deadloop guard
+        run: python -m lam_test_agent_plan_guard --ecosystem .
+
+      - name: Safety resource stack validation
+        run: python -m lam_test_agent_safety_stack --stack memory/FRONT/ECOSYSTEM_SAFETY_RESOURCE_STACK_V1.json
+
+      - name: Growth data snapshot
+        run: python -m lam_test_agent_growth_data --root . --output memory/FRONT/TEST_MATRIX_GROWTH_SNAPSHOT.json
+
+      - name: Growth backlog (bounded)
+        run: python -m lam_test_agent_growth_backlog --snapshot memory/FRONT/TEST_MATRIX_GROWTH_SNAPSHOT.json --output memory/FRONT/TEST_MATRIX_GROWTH_BACKLOG.md --max-total 24 --max-per-route 3
+
+      - name: Growth checkpoint artifact gate
+        run: |
+          python -m lam_test_agent_growth_checkpoint_gate \
+            --json memory/FRONT/TEST_MATRIX_GROWTH_BEFORE_AFTER.json \
+            --md memory/FRONT/TEST_MATRIX_GROWTH_BEFORE_AFTER.md \
+            --snapshot memory/FRONT/TEST_MATRIX_GROWTH_SNAPSHOT.json
+
+      - name: Telemetry integrity manifest (create)
+        run: |
+          python -m lam_test_agent_telemetry_integrity_gate \
+            --mode create \
+            --manifest memory/FRONT/TELEMETRY_INTEGRITY_MANIFEST.json \
+            --file memory/FRONT/TEST_MATRIX_GROWTH_SNAPSHOT.json \
+            --file memory/FRONT/TEST_MATRIX_GROWTH_BEFORE_AFTER.json \
+            --file memory/FRONT/TEST_MATRIX_GROWTH_BEFORE_AFTER.md
+
+      - name: Ecosystem telemetry snapshot
+        run: |
+          python -m lam_test_agent_ecosystem_telemetry \
+            --root . \
+            --json-output memory/FRONT/ECOSYSTEM_TELEMETRY_SNAPSHOT.json \
+            --md-output memory/FRONT/ECOSYSTEM_TELEMETRY_SNAPSHOT.md
+
+      - name: Live activation policy gate (critical enforcing)
+        run: |
+          python -m lam_test_agent_live_policy \
+            --telemetry memory/FRONT/ECOSYSTEM_TELEMETRY_SNAPSHOT.json \
+            --growth memory/FRONT/TEST_MATRIX_GROWTH_SNAPSHOT.json \
+            --output-json memory/FRONT/LIVE_ACTIVATION_POLICY_REPORT.json \
+            --output-md memory/FRONT/LIVE_ACTIVATION_POLICY_REPORT.md \
+            --dirty-repo-budget 0 \
+            --p0-budget 0 \
+            --ignore-check network_resolution_gate \
+            --ignore-check submodule_readiness_gate \
+            --ignore-check p0_gap_budget_gate \
+            --enforce-critical
+
+      - name: Phase E drift report (enforcing)
+        run: |
+          python -m lam_test_agent_phasee_drift \
+            --stack memory/FRONT/ECOSYSTEM_SAFETY_RESOURCE_STACK_V1.json \
+            --policy memory/FRONT/LIVE_ACTIVATION_POLICY_REPORT.json \
+            --output-json memory/FRONT/PHASE_E_DRIFT_REPORT.json \
+            --output-md memory/FRONT/PHASE_E_DRIFT_REPORT.md \
+            --fail-on-missing
+
+      - name: Telemetry freshness gate
+        run: |
+          python -m lam_test_agent_telemetry_freshness_gate \
+            --ttl-hours 12 \
+            --growth memory/FRONT/TEST_MATRIX_GROWTH_SNAPSHOT.json \
+            --before-after memory/FRONT/TEST_MATRIX_GROWTH_BEFORE_AFTER.json \
+            --live-policy memory/FRONT/LIVE_ACTIVATION_POLICY_REPORT.json \
+            --phase-drift memory/FRONT/PHASE_E_DRIFT_REPORT.json
+
+      - name: Telemetry integrity gate (verify)
+        run: |
+          python -m lam_test_agent_telemetry_integrity_gate \
+            --mode verify \
+            --manifest memory/FRONT/TELEMETRY_INTEGRITY_MANIFEST.json
+
+  unit-runtime-cov:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo + submodules
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          token: ${{ secrets.LAM_SUBMODULE_ACCESS_TOKEN != '' && secrets.LAM_SUBMODULE_ACCESS_TOKEN || secrets.LAM_Submodule_Acces != '' && secrets.LAM_Submodule_Acces || github.token }}
+
+      - name: Verify submodule sources
+        run: bash scripts/bootstrap_submodules.sh
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.12"
+
+      - name: Install dev deps
+        run: |
+          python -m pip install -U pip
+          pip install -r requirements-dev.txt
+
+      - name: Unit tests with runtime-only coverage gate
+        run: |
+          python -m pytest -m "not integration" \
+            --cov=lam_test_agent_bootstrap \
+            --cov=lam_test_agent_contracts \
+            --cov=lam_test_agent_scenarios \
+            --cov=lam_test_agent_route_matrix \
+            --cov-report=xml \
+            --cov-fail-under=65
+
+  integration:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo + submodules
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          token: ${{ secrets.LAM_SUBMODULE_ACCESS_TOKEN != '' && secrets.LAM_SUBMODULE_ACCESS_TOKEN || secrets.LAM_Submodule_Acces != '' && secrets.LAM_Submodule_Acces || github.token }}
+
+      - name: Verify submodule sources
+        run: bash scripts/bootstrap_submodules.sh
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.12"
+
+      - name: Install dev deps
+        run: |
+          python -m pip install -U pip
+          pip install -r requirements-dev.txt
+
+      - name: Integration tests
+        run: python -m pytest -m "integration"
