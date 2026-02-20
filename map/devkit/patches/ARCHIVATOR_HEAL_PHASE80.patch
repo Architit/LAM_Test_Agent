@@ -1,0 +1,35 @@
+--- archivator_raw.py
++++ archivator_raw.py
+@@ -10,7 +10,7 @@
+ import argparse, os, sys, hashlib, shutil, uuid, datetime, pathlib, stat, json, errno, io, threading, glob
+ 
+ def utcnow_iso():
+-    return datetime.datetime.utcnow().replace(microsecond=0).isoformat() + "Z"
++    return datetime.datetime.now(datetime.timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
+ 
+ FORBIDDEN = r'\/:*?"<>|'
+ 
+@@ -26,7 +26,10 @@
+     stem = sanitize_name(stem).replace(" ", "-").lower()
+     # map exotic to underscore
+     stem = "".join(ch if (ch.isalnum() or ch in "-_.") else "_" for ch in stem)
+-    return stem[:64] or "unnamed"
++    res = stem[:64].strip("_")
++    if not res:
++        return f"unnamed_{uuid.uuid4().hex[:8]}"
++    return res
+ 
+ def file_read_chunks(src_path, chunk=4*1024*1024):
+     with open(src_path, "rb") as f:
+@@ -83,8 +86,8 @@
+ 
+ def ensure_ro(path):
+     try:
+         os.chmod(path, stat.S_IREAD | stat.S_IRGRP | stat.S_IROTH)
+-    except Exception:
+-        pass
++    except Exception as e:
++        print(f"[-] Warning: Failed to set read-only on {path}: {e}")
+ 
+ def copy_with_hash(src, dst_part, hasher):
+     os.makedirs(os.path.dirname(dst_part), exist_ok=True)
