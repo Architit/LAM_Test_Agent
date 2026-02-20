@@ -1,0 +1,28 @@
+version: "1"
+
+id: "phase_3_1_c_1_contract_add"
+title: "Add TASK_SPEC.md declarative contract"
+phase: "3.1.C.1"
+intent: "Introduce declarative Task Spec contract without runtime impact"
+
+source_of_truth: "LAM/Taskarid"
+
+derivation:
+  produced_by: "human"
+  produced_at: "2026-02-11T00:00:00Z"
+  method: "governance-approved architectural decision"
+
+patch:
+  path: "tasks/patches/phase_3_1_c_1.patch"
+  sha256: "<replace_with_real_sha256>"
+
+preconditions:
+  - "Repository clean"
+  - "On branch main"
+
+verification:
+  - "git diff --cached --stat"
+
+observability:
+  - "staged diff output"
+  - "commit hash after apply"
