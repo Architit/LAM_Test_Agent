@@ -12,6 +12,7 @@ from lam_logging import log
 def test_debug_channel_can_be_mirrored_to_external_stream(monkeypatch: pytest.MonkeyPatch, tmp_path: Path) -> None:
     monkeypatch.chdir(tmp_path)
     monkeypatch.setenv("LAM_EXTERNAL_DEBUG_LOG_DIR", str(tmp_path / "ext"))
+    monkeypatch.setenv("LAM_RUNTIME_LOG_FILE", str(tmp_path / "memory" / "FRONT" / "LAM_RUNTIME_LOG.jsonl"))
 
     log(
         "debug",
@@ -35,6 +36,7 @@ def test_debug_channel_can_be_mirrored_to_external_stream(monkeypatch: pytest.Mo
 def test_non_debug_events_are_not_mirrored(monkeypatch: pytest.MonkeyPatch, tmp_path: Path) -> None:
     monkeypatch.chdir(tmp_path)
     monkeypatch.setenv("LAM_EXTERNAL_DEBUG_LOG_DIR", str(tmp_path / "ext"))
+    monkeypatch.setenv("LAM_RUNTIME_LOG_FILE", str(tmp_path / "memory" / "FRONT" / "LAM_RUNTIME_LOG.jsonl"))
 
     log("info", "comm.enqueue", "enqueue", recipient="codex")
 
