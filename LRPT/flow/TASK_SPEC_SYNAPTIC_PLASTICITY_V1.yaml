@@ -1,0 +1,9 @@
+version: "1"
+id: "synaptic_plasticity_v1"
+title: "Initialize Learning Signals and Anti-Samsara Memory"
+phase: "12.0"
+intent: "Embed the deadloop survival experience into static synaptic weights for future agent context"
+preconditions:
+  - "Council of Three debate protocol is active (Phase 11.1)"
+verification:
+  - "cat LRPT/journal/SYNAPTIC_WEIGHTS_V1.yaml"

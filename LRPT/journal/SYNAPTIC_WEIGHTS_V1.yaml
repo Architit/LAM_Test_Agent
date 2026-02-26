@@ -1,0 +1,10 @@
+version: "1"
+last_updated_utc: "2026-02-18T01:21:51Z"
+purpose: "Immutable episodic memory weights for ecosystem neuroplasticity"
+
+weights:
+  - id: "w_anti_samsara_001"
+    context: "Samsara Deadloop / Infinite Wave Circulation"
+    trigger_pattern: "Agent attempts to repeat the same failing patch or bypass verification gates"
+    enforced_precondition: "If a loop is detected, agent MUST halt generation, invoke EASSR/Mirashani heal protocol, and request Architect intervention."
+    severity: "CRITICAL"
