@@ -1,2 +1,0 @@
-icacls $target /grant "$me:(OI)(CI)(RX)" /T /C
-icacls $target /grant "${me}:(OI)(CI)(RX)" /T /C
