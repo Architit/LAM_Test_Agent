@@ -4,7 +4,7 @@ set -euo pipefail
 # DevKit patch helper.
 #
 # Usage:
-#   cat change.patch | devkit/patch.sh
+#   cat change.patch | LRPT/patch.sh
 #
 # Reads a unified diff from stdin, applies it via git in a reproducible way,
 # and stages the result (canonical diff).
@@ -14,8 +14,8 @@ usage() {
 DevKit patch helper.
 
 Usage:
-  cat change.patch | devkit/patch.sh
-  devkit/patch.sh --file <path>
+  cat change.patch | LRPT/patch.sh
+  LRPT/patch.sh --file <path>
 
 Reads a unified diff, applies it via git in a reproducible way,
 and stages the result.
@@ -85,7 +85,7 @@ if [ -n "$PATCH_INPUT_FILE" ]; then
 else
   # Read patch from stdin.
   if [ -t 0 ]; then
-    echo "ERROR: no patch provided on stdin (pipe a .patch into devkit/patch.sh)" >&2
+    echo "ERROR: no patch provided on stdin (pipe a .patch into LRPT/patch.sh)" >&2
     echo >&2
     usage >&2
     exit 2
