@@ -36,11 +36,14 @@ case "$MODE" in
   --memory)
     run_pytest -q tests/test_phase_c_memory_kickoff.py tests/test_phase_b_patch_runtime_contract.py
     ;;
+  --transport)
+    run_pytest -q tests/test_phase_d_transport_regression.py tests/test_phase_b_patch_runtime_contract.py
+    ;;
   --ci)
     run_pytest -q
     ;;
   *)
-    echo "Usage: scripts/test_entrypoint.sh [--all|--unit-only|--integration|--governance|--patch-runtime|--memory|--ci]"
+    echo "Usage: scripts/test_entrypoint.sh [--all|--unit-only|--integration|--governance|--patch-runtime|--memory|--transport|--ci]"
     exit 2
     ;;
 esac
