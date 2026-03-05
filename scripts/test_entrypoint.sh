@@ -45,11 +45,14 @@ case "$MODE" in
   --p0-safety)
     run_pytest -q tests/test_phase_f_p0_safety_regression.py tests/test_phase_b_patch_runtime_contract.py
     ;;
+  --research-gate)
+    run_pytest -q tests/test_phase_r_research_gate_regression.py tests/test_phase_b_patch_runtime_contract.py
+    ;;
   --ci)
     run_pytest -q
     ;;
   *)
-    echo "Usage: scripts/test_entrypoint.sh [--all|--unit-only|--integration|--governance|--patch-runtime|--memory|--transport|--flow-control|--p0-safety|--ci]"
+    echo "Usage: scripts/test_entrypoint.sh [--all|--unit-only|--integration|--governance|--patch-runtime|--memory|--transport|--flow-control|--p0-safety|--research-gate|--ci]"
     exit 2
     ;;
 esac
