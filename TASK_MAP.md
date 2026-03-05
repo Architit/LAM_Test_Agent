@@ -1,6 +1,6 @@
 # TASK_MAP
 
-last_updated_utc: 2026-03-05T16:49:00Z
+last_updated_utc: 2026-03-05T17:28:00Z
 owner_repo: LAM_Test_Agent
 scope: master-plan aligned owner tasks (Phase A/B/C/D/E)
 
@@ -14,3 +14,4 @@ scope: master-plan aligned owner tasks (Phase A/B/C/D/E)
 | phaseC_C3 | Phase C owner memory wave execution | COMPLETE | LTA-01 | `contract/PHASE_C_MEMORY_KICKOFF_CONTRACT_V1.md`, `tests/test_phase_c_memory_kickoff.py`, `gov/report/phaseC_lam_test_wave1_execution_2026-03-05.md` |
 | phaseD_D2 | Phase D owner transport wave execution | COMPLETE | LTA-01 | `contract/PHASE_D_TRANSPORT_REGRESSION_CONTRACT_V1.md`, `tests/test_phase_d_transport_regression.py`, `gov/report/phaseD_lam_test_transport_wave1_execution_2026-03-05.md` |
 | phaseE_E2 | Phase E owner flow-control wave execution | COMPLETE | LTA-01 | `contract/PHASE_E_FLOW_CONTROL_REGRESSION_CONTRACT_V1.md`, `tests/test_phase_e_flow_control_regression.py`, `gov/report/phaseE_lam_test_flow_control_wave1_execution_2026-03-05.md` |
+| phaseF_F2 | Phase F owner p0-safety wave execution | COMPLETE | LTA-01 | `contract/PHASE_F_P0_SAFETY_REGRESSION_CONTRACT_V1.md`, `tests/test_phase_f_p0_safety_regression.py`, `gov/report/phaseF_lam_test_p0_safety_wave1_execution_2026-03-05.md` |

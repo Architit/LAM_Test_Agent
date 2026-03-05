@@ -42,11 +42,14 @@ case "$MODE" in
   --flow-control)
     run_pytest -q tests/test_phase_e_flow_control_regression.py tests/test_phase_b_patch_runtime_contract.py
     ;;
+  --p0-safety)
+    run_pytest -q tests/test_phase_f_p0_safety_regression.py tests/test_phase_b_patch_runtime_contract.py
+    ;;
   --ci)
     run_pytest -q
     ;;
   *)
-    echo "Usage: scripts/test_entrypoint.sh [--all|--unit-only|--integration|--governance|--patch-runtime|--memory|--transport|--flow-control|--ci]"
+    echo "Usage: scripts/test_entrypoint.sh [--all|--unit-only|--integration|--governance|--patch-runtime|--memory|--transport|--flow-control|--p0-safety|--ci]"
     exit 2
     ;;
 esac
