@@ -33,11 +33,14 @@ case "$MODE" in
   --patch-runtime)
     run_pytest -q tests/test_phase_b_patch_runtime_contract.py
     ;;
+  --memory)
+    run_pytest -q tests/test_phase_c_memory_kickoff.py tests/test_phase_b_patch_runtime_contract.py
+    ;;
   --ci)
     run_pytest -q
     ;;
   *)
-    echo "Usage: scripts/test_entrypoint.sh [--all|--unit-only|--integration|--governance|--patch-runtime|--ci]"
+    echo "Usage: scripts/test_entrypoint.sh [--all|--unit-only|--integration|--governance|--patch-runtime|--memory|--ci]"
     exit 2
     ;;
 esac
