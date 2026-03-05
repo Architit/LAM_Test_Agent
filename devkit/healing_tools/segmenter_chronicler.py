@@ -154,8 +154,7 @@ def split_into_blocks(text: str, max_chars: int, max_bytes: int) -> List[str]:
         
         for i in range(1, lookback_limit):
             char_idx = end - i
-            if text[char_idx] in " 
-	.,;:?!":
+            if text[char_idx] in " \n\t.,;:?!":
                 split_point = char_idx + 1
                 blocks.append(text[start:split_point].strip())
                 start = split_point
@@ -232,12 +231,11 @@ def process_file(
         with FileLock(blocks_index_path.parent / "index.lock"):
             with open(blocks_index_path, "a", encoding="utf-8") as f:
                 f.write(json.dumps({
-                    "id": block_id, 
-                    "src": rel_path, 
-                    "vector": vector, 
+                    "id": block_id,
+                    "src": rel_path,
+                    "vector": vector,
                     "path": str(block_path.relative_to(archive_root))
-                }, ensure_ascii=False) + "
-")
+                }, ensure_ascii=False) + "\n")
                 
     return len(blocks)
 
