@@ -5,3 +5,11 @@ desktop.ini
 Desktop.ini
 .coverage
 coverage.xml
+
+# Artifact reconciliation (session/telemetry)
+.gemini/
+chronolog/STATE.md
+gov/asr/
+data/local/guard_test.txt
+data/source/
+memory/FRONT/DEADLOOP_*
