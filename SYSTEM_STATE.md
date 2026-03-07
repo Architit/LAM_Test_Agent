@@ -5,7 +5,7 @@
 - role: regression owner (phase gates + contract verification)
 - status: ACTIVE_READY
 - gate: MASTER_ALIGNMENT = PASS
-- current_phase_focus: PHASE_F_OWNER_EXECUTION_DONE
+- current_phase_focus: PHASE_R_RESEARCH_GATE_EXECUTION_DONE
 
 ## Canonical Source Chain
 - L0 source: /home/architit/MASTER_ARCHITECTURE_PLAN_V1.md
@@ -37,6 +37,10 @@
 ## Phase F (Owner Scope)
 - phaseF_owner_p0_safety_execution: DONE
 - closure_evidence: gov/report/phaseF_lam_test_p0_safety_wave1_execution_2026-03-05.md
+
+## Phase R (Owner Scope)
+- phaseR_owner_research_gate_execution: DONE
+- closure_evidence: gov/report/phaseR_lam_test_research_gate_wave1_execution_2026-03-05.md
 
 ## Required Runtime Markers
 - mandatory args: --sha256, --task-id, --spec-file

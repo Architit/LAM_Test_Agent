@@ -45,3 +45,5 @@ Format:
 
 2026-03-05 17:28 UTC — phaseF owner closure: p0-safety regression contract execution staged (contract+tests+--p0-safety+report).
 2026-03-05 17:30 UTC — phaseF owner closure: p0-safety regression contract execution completed; verify passed (--p0-safety 6, --patch-runtime 4, --governance 1/185 deselected, --all 184 passed 2 skipped), evidence synced.
+
+2026-03-05 18:15 UTC — phaseR owner closure: research-gate regression contract execution completed; verify passed (--research-gate 6, --patch-runtime 4, --governance 1/187 deselected, --all 186 passed 2 skipped), evidence synced.
