@@ -5,6 +5,8 @@ desktop.ini
 Desktop.ini
 .coverage
 coverage.xml
+.cloud_fabric/
+.gateway/
 
 # Artifact reconciliation (session/telemetry)
 .gemini/

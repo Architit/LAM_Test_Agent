@@ -1,0 +1,17 @@
+{
+  "default_profile": "portable_core",
+  "rules": [
+    {
+      "match": {"node_type": "server"},
+      "profile": "critical_lifeline"
+    },
+    {
+      "match": {"node_type": "edge"},
+      "profile": "edge_gateway"
+    },
+    {
+      "match": {"hostname_regex": ".*laptop.*"},
+      "profile": "portable_core"
+    }
+  ]
+}

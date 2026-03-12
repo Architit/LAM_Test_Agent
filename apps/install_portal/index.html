@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RADRILONIUMA</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <main class="shell">
+    <section class="hero">
+      <p class="kicker">RADRILONIUMA Network</p>
+      <h1>RADRILONIUMA</h1>
+      <p class="lead">
+        Universal control site.
+        OS installation is routed through the subdomain gateway.
+      </p>
+      <p id="domainHint" class="meta">
+        Main site: <strong>radriloniuma</strong> | OS subdomain: <strong>os.radriloniuma</strong>
+      </p>
+      <p class="lead">
+        Click once, get the correct install command for your current OS.
+      </p>
+      <div class="cta-row">
+        <button id="installBtn" class="install-btn">Install RADRILONIUMA OS</button>
+        <button id="copyBtn" class="ghost-btn">Copy Command</button>
+      </div>
+      <p id="detectedOs" class="meta">Detected OS: unknown</p>
+    </section>
+
+    <section class="panel">
+      <h2>Installer Command</h2>
+      <pre id="commandBox" class="code"></pre>
+      <div class="downloads">
+        <a id="linuxScript" href="../../scripts/install_oneclick.sh" download>Download Linux Installer</a>
+        <a id="windowsScript" href="../../scripts/windows/install_oneclick.ps1" download>Download Windows Installer</a>
+      </div>
+    </section>
+
+    <section class="panel compact">
+      <h2>Modes</h2>
+      <ul>
+        <li>Linux native: autonomous boot + services + Captain Bridge</li>
+        <li>Windows: WSL bridge stack + portal tabs</li>
+        <li>macOS/other: local development control plane</li>
+      </ul>
+    </section>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>

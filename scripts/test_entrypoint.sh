@@ -51,8 +51,50 @@ case "$MODE" in
   --ci)
     run_pytest -q
     ;;
+  --cascade-quick)
+    "$ROOT/scripts/test_phase_cascade.sh" --quick
+    ;;
+  --cascade-standard)
+    "$ROOT/scripts/test_phase_cascade.sh" --standard
+    ;;
+  --cascade-full)
+    "$ROOT/scripts/test_phase_cascade.sh" --full
+    ;;
+  --microtick-quick)
+    "$ROOT/scripts/test_microtick_orchestrator.sh" --quick
+    ;;
+  --microtick-standard)
+    "$ROOT/scripts/test_microtick_orchestrator.sh" --standard
+    ;;
+  --microtick-full)
+    "$ROOT/scripts/test_microtick_orchestrator.sh" --full
+    ;;
+  --bg-start)
+    "$ROOT/scripts/test_background_daemon.sh" start --mode standard
+    ;;
+  --bg-stop)
+    "$ROOT/scripts/test_background_daemon.sh" stop
+    ;;
+  --bg-status)
+    "$ROOT/scripts/test_background_daemon.sh" status
+    ;;
+  --bg-errors)
+    "$ROOT/scripts/test_background_daemon.sh" errors
+    ;;
+  --isolation-status)
+    "$ROOT/scripts/test_isolation_status.sh"
+    ;;
+  --license-audit)
+    "$ROOT/scripts/license_audit_scan.sh"
+    ;;
+  --license-baseline)
+    "$ROOT/scripts/license_change_guard.sh" --mode snapshot
+    ;;
+  --license-verify)
+    "$ROOT/scripts/license_change_guard.sh" --mode verify
+    ;;
   *)
-    echo "Usage: scripts/test_entrypoint.sh [--all|--unit-only|--integration|--governance|--patch-runtime|--memory|--transport|--flow-control|--p0-safety|--research-gate|--ci]"
+    echo "Usage: scripts/test_entrypoint.sh [--all|--unit-only|--integration|--governance|--patch-runtime|--memory|--transport|--flow-control|--p0-safety|--research-gate|--ci|--cascade-quick|--cascade-standard|--cascade-full|--microtick-quick|--microtick-standard|--microtick-full|--bg-start|--bg-stop|--bg-status|--bg-errors|--isolation-status|--license-audit|--license-baseline|--license-verify]"
     exit 2
     ;;
 esac

@@ -11,6 +11,8 @@ This is the sovereign source for all developmental tools and scripts within the 
 ## II. CONTENTS
 - **Evolution Tools:** Scripts for patching and mutation (patch.sh).
 - **Validation Tools:** Preflight checkers and environment bootstrappers.
+- **Gateway Recovery:** `healing_tools/gemini_gateway_autoheal.sh` enforces
+  policy/settings baseline and auto-recovers `google-workspace` MCP transport.
 - **Task Specs:** Templates for defining sovereign intent.
 
 ---

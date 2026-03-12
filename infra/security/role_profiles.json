@@ -1,0 +1,21 @@
+{
+  "default_profile": "portable_core",
+  "profiles": {
+    "portable_core": {
+      "wake_actions": ["rebind_roles", "gws_health", "gws_sync_pull", "run_queue"],
+      "max_queue_jobs": 20
+    },
+    "edge_gateway": {
+      "wake_actions": ["rebind_roles", "gws_health", "run_queue"],
+      "max_queue_jobs": 10
+    },
+    "critical_lifeline": {
+      "wake_actions": ["rebind_roles", "gws_health", "gws_sync_pull", "run_queue"],
+      "max_queue_jobs": 50
+    },
+    "critical_lifeline_degraded": {
+      "wake_actions": ["rebind_roles", "gws_health", "run_queue"],
+      "max_queue_jobs": 15
+    }
+  }
+}

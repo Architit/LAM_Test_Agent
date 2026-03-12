@@ -1,0 +1,130 @@
+:root {
+  --bg0: #0d1117;
+  --bg1: #141b23;
+  --bg2: #1f2935;
+  --ink: #e5edf5;
+  --ink-dim: #a8b8c8;
+  --accent: #3ddc97;
+  --accent-2: #0ea5e9;
+  --danger: #f97316;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  color: var(--ink);
+  background:
+    radial-gradient(1200px 500px at 90% -10%, rgba(61, 220, 151, 0.18), transparent 60%),
+    radial-gradient(900px 500px at -10% 110%, rgba(14, 165, 233, 0.16), transparent 62%),
+    var(--bg0);
+  font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
+}
+
+.shell {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 2rem 1rem 3rem;
+}
+
+.hero {
+  border: 1px solid #243244;
+  border-radius: 16px;
+  padding: 1.25rem;
+  background: linear-gradient(180deg, rgba(31, 41, 53, 0.86), rgba(20, 27, 35, 0.9));
+}
+
+.kicker {
+  margin: 0;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.78rem;
+}
+
+h1 {
+  margin: 0.2rem 0 0.3rem;
+  font-family: "Alegreya Sans SC", "Trebuchet MS", sans-serif;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+}
+
+.lead {
+  margin: 0.35rem 0 1rem;
+  color: var(--ink-dim);
+  max-width: 65ch;
+}
+
+.cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+button {
+  border: 0;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0.75rem 1rem;
+}
+
+.install-btn {
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  color: #082015;
+}
+
+.ghost-btn {
+  background: #0f1722;
+  color: var(--ink);
+  border: 1px solid #2f3f54;
+}
+
+.meta {
+  margin-top: 0.8rem;
+  color: var(--ink-dim);
+  font-size: 0.9rem;
+}
+
+.panel {
+  margin-top: 1rem;
+  border: 1px solid #243244;
+  border-radius: 16px;
+  padding: 1rem;
+  background: var(--bg1);
+}
+
+.panel.compact ul {
+  margin: 0.5rem 0 0;
+  color: var(--ink-dim);
+}
+
+.code {
+  margin: 0.3rem 0 0;
+  background: var(--bg2);
+  border: 1px solid #32465e;
+  border-radius: 10px;
+  padding: 0.8rem;
+  color: #d4fff0;
+  overflow: auto;
+  min-height: 76px;
+  font-family: "IBM Plex Mono", Consolas, monospace;
+}
+
+.downloads {
+  margin-top: 0.8rem;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+a {
+  color: #8bd6ff;
+  text-decoration: none;
+}
+
+a:hover { text-decoration: underline; }
+
+@media (max-width: 700px) {
+  .shell { padding: 1rem 0.75rem 2rem; }
+}
+

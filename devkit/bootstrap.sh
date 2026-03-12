@@ -24,3 +24,16 @@ else
 fi
 
 echo "[devkit] OK: $PY"
+
+AUTOHEAL_SCRIPT="$REPO/devkit/healing_tools/gemini_gateway_autoheal.sh"
+if [[ "${LARPAT_GATEWAY_AUTOHEAL:-1}" == "1" && -x "$AUTOHEAL_SCRIPT" ]]; then
+  if "$AUTOHEAL_SCRIPT"; then
+    echo "[devkit] Gateway auto-heal: OK"
+  else
+    if [[ "${LARPAT_GATEWAY_STRICT:-0}" == "1" ]]; then
+      echo "[devkit] Gateway auto-heal: FAIL (strict mode)" >&2
+      exit 1
+    fi
+    echo "[devkit] Gateway auto-heal: WARN (continuing; set LARPAT_GATEWAY_STRICT=1 to fail)" >&2
+  fi
+fi

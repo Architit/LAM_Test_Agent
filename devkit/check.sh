@@ -14,9 +14,17 @@ fi
 export TMPDIR=/tmp TEMP=/tmp TMP=/tmp
 
 if [[ -f "scripts/lam_env.sh" ]]; then
-  bash scripts/lam_env.sh "$PY" -m pytest -q "${@:-}"
+  if [[ "$#" -gt 0 ]]; then
+    bash scripts/lam_env.sh "$PY" -m pytest -q "$@"
+  else
+    bash scripts/lam_env.sh "$PY" -m pytest -q
+  fi
 else
-  "$PY" -m pytest -q "${@:-}"
+  if [[ "$#" -gt 0 ]]; then
+    "$PY" -m pytest -q "$@"
+  else
+    "$PY" -m pytest -q
+  fi
 fi
 
 echo "[devkit] OK"
