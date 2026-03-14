@@ -88,6 +88,23 @@ if [ -d "$WORKSPACE_ROOT/RADRILONIUMA" ]; then
     echo "[BIOS BOOT] Автопилоты Моста запущены."
 fi
 
+
+# 5. Запуск Sovereign Shell (UI Interface)
+echo "[BIOS BOOT] 5. Запуск пользовательского интерфейса Sovereign Shell..."
+if [ -f "$WORKSPACE_ROOT/LAM_Test_Agent/apps/sovereign_shell/bridge_api.py" ]; then
+    nohup python3 "$WORKSPACE_ROOT/LAM_Test_Agent/apps/sovereign_shell/bridge_api.py" >> "$WORKSPACE_ROOT/LAM_Test_Agent/.gateway/hub/logs/sovereign_ui.log" 2>&1 &
+    echo "[BIOS BOOT] UI Backend запущен на http://localhost:8080"
+    
+    # Пытаемся открыть браузер (если есть дисплей)
+    if command -v xdg-open >/dev/null 2>&1; then
+        xdg-open "http://localhost:8080" &
+    elif command -v google-chrome >/dev/null 2>&1; then
+        google-chrome --app="http://localhost:8080" &
+    elif [ -n "$BROWSER" ]; then
+        $BROWSER "http://localhost:8080" &
+    fi
+fi
+
 echo "[BIOS BOOT] ====================================================="
 echo "[BIOS BOOT] ПОСЛЕДОВАТЕЛЬНОСТЬ BIOS ЗАВЕРШЕНА УСПЕШНО."
 echo "[BIOS BOOT] ОС RADRILONIUMA СТАРТОВАЛА КАК ЧАСЫ. ⚜️"

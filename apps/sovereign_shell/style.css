@@ -1,0 +1,23 @@
+
+:root { --bg-color: #050505; --glass-bg: rgba(20, 20, 20, 0.7); --accent-glow: #00f2ff; --text-main: #e0e0e0; --text-dim: #a0a0a0; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--bg-color); color: var(--text-main); font-family: "Segoe UI", sans-serif; overflow: hidden; height: 100vh; background-image: radial-gradient(circle at 50% 50%, #101010 0%, transparent 100%), linear-gradient(rgba(0, 242, 255, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 242, 255, 0.05) 1px, transparent 1px); background-size: 100% 100%, 40px 40px, 40px 40px; }
+.skip-link { position: absolute; top: -40px; left: 0; background: var(--accent-glow); color: black; padding: 8px; z-index: 100; transition: top 0.3s; }
+.skip-link:focus { top: 0; }
+.glass { background: var(--glass-bg); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8); }
+header { height: 60px; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; z-index: 10; }
+.logo { display: flex; align-items: center; gap: 10px; }
+.logo h1 { font-size: 1.2rem; letter-spacing: 2px; font-weight: 300; }
+.omni-bar input { width: 400px; background: rgba(0,0,0,0.5); border: 1px solid var(--accent-glow); color: white; padding: 8px 15px; border-radius: 20px; outline: none; }
+main { display: flex; height: calc(100vh - 100px); padding: 20px; gap: 20px; }
+.vavima-container { flex: 1; display: flex; align-items: center; justify-content: center; }
+.hex-grid { display: grid; grid-template-columns: repeat(6, 100px); gap: 10px; }
+.organ-hex { width: 100px; height: 110px; background: rgba(0, 242, 255, 0.1); clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; border: none; color: var(--text-dim); transition: all 0.3s; font-size: 0.6rem; text-align: center; padding: 10px; }
+.organ-hex:hover, .organ-hex:focus { background: rgba(0, 242, 255, 0.3); color: white; transform: scale(1.1); outline: 2px solid var(--accent-glow); }
+.organ-hex.active { box-shadow: 0 0 20px var(--accent-glow); color: white; background: rgba(0, 242, 255, 0.2); }
+.sidebar { width: 350px; display: flex; flex-direction: column; gap: 20px; padding: 20px; }
+.panel { flex: 1; overflow-y: auto; }
+#log-stream { font-family: monospace; font-size: 0.8rem; color: #00ff41; }
+.action-btn { width: 100%; padding: 15px; background: transparent; border: 1px solid var(--accent-glow); color: var(--accent-glow); cursor: pointer; transition: all 0.3s; letter-spacing: 2px; }
+.action-btn:hover { background: var(--accent-glow); color: black; box-shadow: 0 0 20px var(--accent-glow); }
+footer { height: 40px; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; color: var(--text-dim); letter-spacing: 1px; }
