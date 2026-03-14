@@ -78,6 +78,25 @@ def build_domain_matrix(repo_root: Path) -> dict[str, list[Path]]:
             repo_root / "journal",
             repo_root / "DEV_LOGS.md",
         ],
+        "lifecycle_expansion": [
+            repo_root / "infra/governance/LIFECYCLE_EXPANSION_SYSTEMS_V1.md",
+            repo_root / "concept",
+            repo_root / "design",
+            repo_root / "realization",
+            repo_root / "incarnation",
+            repo_root / "imagination",
+            repo_root / "creation",
+            repo_root / "tvorion",
+            repo_root / "generation",
+            repo_root / "formation",
+            repo_root / "selection",
+            repo_root / "synthesis",
+            repo_root / "creativation",
+            repo_root / "hibernation",
+            repo_root / "stasization",
+            repo_root / "hydrogenation",
+            repo_root / "aeranation",
+        ],
     }
 
 

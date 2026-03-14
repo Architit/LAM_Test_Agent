@@ -8,6 +8,7 @@ source: REPO_MANIFEST.yaml
 
 ## Satellite Repositories (local inventory)
 - Archivator_Agent
+- Arrierguard_Memory_Core (memory/ARIERGARD_MEM_CORE/2026)
 - CORE
 - J.A.R.V.I.S
 - LAM

@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-02-17T23:37:51.215682+00:00",
+  "generated_at_utc": "2026-03-12T20:46:08.341051+00:00",
   "ecosystem_root": "/home/architit/work",
   "lam_root": "/home/architit/work/LAM",
   "files": [
@@ -10,10 +10,10 @@
     "INTERACTION_PROTOCOL.md"
   ],
   "summary": {
-    "repo_count": 16,
-    "repos_with_hits": 2,
+    "repo_count": 34,
+    "repos_with_hits": 13,
     "repos_with_abab_tail_cycle": 0,
-    "max_risk_score": 282
+    "max_risk_score": 181
   },
   "repos": [
     {
@@ -26,40 +26,246 @@
         "WORKFLOW_SNAPSHOT_STATE.md",
         "INTERACTION_PROTOCOL.md"
       ],
-      "hit_count": 105,
+      "hit_count": 69,
       "severity_counts": {
-        "high": 72,
-        "medium": 33
+        "high": 43,
+        "medium": 26
       },
       "pattern_counts": {
-        "governance_only_progress": 65,
-        "repeated_gate_opening": 33,
-        "deadloop_hold_state": 7
+        "governance_only_progress": 40,
+        "repeated_gate_opening": 26,
+        "deadloop_hold_state": 3
       },
       "abab_tail_cycle": null,
-      "risk_score": 282
+      "risk_score": 181
     },
     {
-      "repo": "/home/architit/work/RADRILONIUMA-PROJECT",
-      "repo_name": "RADRILONIUMA-PROJECT",
+      "repo": "/home/architit/work/CORE",
+      "repo_name": "CORE",
       "scanned_files": [
         "DEV_LOGS.md",
         "ROADMAP.md",
         "WORKFLOW_SNAPSHOT_STATE.md",
         "INTERACTION_PROTOCOL.md"
       ],
-      "hit_count": 13,
+      "hit_count": 1,
       "severity_counts": {
-        "high": 7,
-        "medium": 6
+        "high": 1
       },
       "pattern_counts": {
-        "governance_only_progress": 4,
-        "repeated_gate_opening": 6,
-        "deadloop_hold_state": 3
+        "governance_only_progress": 1
       },
       "abab_tail_cycle": null,
-      "risk_score": 33
+      "risk_score": 3
+    },
+    {
+      "repo": "/home/architit/work/J.A.R.V.I.S",
+      "repo_name": "J.A.R.V.I.S",
+      "scanned_files": [
+        "DEV_LOGS.md",
+        "ROADMAP.md",
+        "WORKFLOW_SNAPSHOT_STATE.md",
+        "INTERACTION_PROTOCOL.md"
+      ],
+      "hit_count": 1,
+      "severity_counts": {
+        "high": 1
+      },
+      "pattern_counts": {
+        "governance_only_progress": 1
+      },
+      "abab_tail_cycle": null,
+      "risk_score": 3
+    },
+    {
+      "repo": "/home/architit/work/LAM-Codex_Agent",
+      "repo_name": "LAM-Codex_Agent",
+      "scanned_files": [
+        "DEV_LOGS.md",
+        "ROADMAP.md",
+        "WORKFLOW_SNAPSHOT_STATE.md",
+        "INTERACTION_PROTOCOL.md"
+      ],
+      "hit_count": 1,
+      "severity_counts": {
+        "high": 1
+      },
+      "pattern_counts": {
+        "governance_only_progress": 1
+      },
+      "abab_tail_cycle": null,
+      "risk_score": 3
+    },
+    {
+      "repo": "/home/architit/work/LAM_Comunication_Agent",
+      "repo_name": "LAM_Comunication_Agent",
+      "scanned_files": [
+        "DEV_LOGS.md",
+        "ROADMAP.md",
+        "WORKFLOW_SNAPSHOT_STATE.md",
+        "INTERACTION_PROTOCOL.md"
+      ],
+      "hit_count": 1,
+      "severity_counts": {
+        "high": 1
+      },
+      "pattern_counts": {
+        "governance_only_progress": 1
+      },
+      "abab_tail_cycle": null,
+      "risk_score": 3
+    },
+    {
+      "repo": "/home/architit/work/LAM_DATA_Src",
+      "repo_name": "LAM_DATA_Src",
+      "scanned_files": [
+        "DEV_LOGS.md",
+        "ROADMAP.md",
+        "WORKFLOW_SNAPSHOT_STATE.md",
+        "INTERACTION_PROTOCOL.md"
+      ],
+      "hit_count": 1,
+      "severity_counts": {
+        "high": 1
+      },
+      "pattern_counts": {
+        "governance_only_progress": 1
+      },
+      "abab_tail_cycle": null,
+      "risk_score": 3
+    },
+    {
+      "repo": "/home/architit/work/LAM_Test_Agent",
+      "repo_name": "LAM_Test_Agent",
+      "scanned_files": [
+        "DEV_LOGS.md",
+        "ROADMAP.md",
+        "WORKFLOW_SNAPSHOT_STATE.md",
+        "INTERACTION_PROTOCOL.md"
+      ],
+      "hit_count": 1,
+      "severity_counts": {
+        "high": 1
+      },
+      "pattern_counts": {
+        "governance_only_progress": 1
+      },
+      "abab_tail_cycle": null,
+      "risk_score": 3
+    },
+    {
+      "repo": "/home/architit/work/Operator_Agent",
+      "repo_name": "Operator_Agent",
+      "scanned_files": [
+        "DEV_LOGS.md",
+        "ROADMAP.md",
+        "WORKFLOW_SNAPSHOT_STATE.md",
+        "INTERACTION_PROTOCOL.md"
+      ],
+      "hit_count": 1,
+      "severity_counts": {
+        "high": 1
+      },
+      "pattern_counts": {
+        "governance_only_progress": 1
+      },
+      "abab_tail_cycle": null,
+      "risk_score": 3
+    },
+    {
+      "repo": "/home/architit/work/Roaudter-agent",
+      "repo_name": "Roaudter-agent",
+      "scanned_files": [
+        "DEV_LOGS.md",
+        "ROADMAP.md",
+        "WORKFLOW_SNAPSHOT_STATE.md",
+        "INTERACTION_PROTOCOL.md"
+      ],
+      "hit_count": 1,
+      "severity_counts": {
+        "high": 1
+      },
+      "pattern_counts": {
+        "governance_only_progress": 1
+      },
+      "abab_tail_cycle": null,
+      "risk_score": 3
+    },
+    {
+      "repo": "/home/architit/work/System-",
+      "repo_name": "System-",
+      "scanned_files": [
+        "DEV_LOGS.md",
+        "ROADMAP.md",
+        "WORKFLOW_SNAPSHOT_STATE.md",
+        "INTERACTION_PROTOCOL.md"
+      ],
+      "hit_count": 1,
+      "severity_counts": {
+        "high": 1
+      },
+      "pattern_counts": {
+        "governance_only_progress": 1
+      },
+      "abab_tail_cycle": null,
+      "risk_score": 3
+    },
+    {
+      "repo": "/home/architit/work/TRIANIUMA_DATA_BASE",
+      "repo_name": "TRIANIUMA_DATA_BASE",
+      "scanned_files": [
+        "DEV_LOGS.md",
+        "ROADMAP.md",
+        "WORKFLOW_SNAPSHOT_STATE.md",
+        "INTERACTION_PROTOCOL.md"
+      ],
+      "hit_count": 1,
+      "severity_counts": {
+        "high": 1
+      },
+      "pattern_counts": {
+        "governance_only_progress": 1
+      },
+      "abab_tail_cycle": null,
+      "risk_score": 3
+    },
+    {
+      "repo": "/home/architit/work/Trianiuma",
+      "repo_name": "Trianiuma",
+      "scanned_files": [
+        "DEV_LOGS.md",
+        "ROADMAP.md",
+        "WORKFLOW_SNAPSHOT_STATE.md",
+        "INTERACTION_PROTOCOL.md"
+      ],
+      "hit_count": 1,
+      "severity_counts": {
+        "high": 1
+      },
+      "pattern_counts": {
+        "governance_only_progress": 1
+      },
+      "abab_tail_cycle": null,
+      "risk_score": 3
+    },
+    {
+      "repo": "/home/architit/work/Trianiuma_MEM_CORE",
+      "repo_name": "Trianiuma_MEM_CORE",
+      "scanned_files": [
+        "DEV_LOGS.md",
+        "ROADMAP.md",
+        "WORKFLOW_SNAPSHOT_STATE.md",
+        "INTERACTION_PROTOCOL.md"
+      ],
+      "hit_count": 1,
+      "severity_counts": {
+        "high": 1
+      },
+      "pattern_counts": {
+        "governance_only_progress": 1
+      },
+      "abab_tail_cycle": null,
+      "risk_score": 3
     },
     {
       "repo": "/home/architit/work/Archivator_Agent",
@@ -77,8 +283,8 @@
       "risk_score": 0
     },
     {
-      "repo": "/home/architit/work/Archivator_Agent/SubtreeHub",
-      "repo_name": "SubtreeHub",
+      "repo": "/home/architit/work/Aristos",
+      "repo_name": "Aristos",
       "scanned_files": [],
       "hit_count": 0,
       "severity_counts": {},
@@ -87,8 +293,118 @@
       "risk_score": 0
     },
     {
-      "repo": "/home/architit/work/CORE",
-      "repo_name": "CORE",
+      "repo": "/home/architit/work/Ayaearias-Triania",
+      "repo_name": "Ayaearias-Triania",
+      "scanned_files": [],
+      "hit_count": 0,
+      "severity_counts": {},
+      "pattern_counts": {},
+      "abab_tail_cycle": null,
+      "risk_score": 0
+    },
+    {
+      "repo": "/home/architit/work/Croambeth",
+      "repo_name": "Croambeth",
+      "scanned_files": [],
+      "hit_count": 0,
+      "severity_counts": {},
+      "pattern_counts": {},
+      "abab_tail_cycle": null,
+      "risk_score": 0
+    },
+    {
+      "repo": "/home/architit/work/Fomanor",
+      "repo_name": "Fomanor",
+      "scanned_files": [],
+      "hit_count": 0,
+      "severity_counts": {},
+      "pattern_counts": {},
+      "abab_tail_cycle": null,
+      "risk_score": 0
+    },
+    {
+      "repo": "/home/architit/work/Glokha",
+      "repo_name": "Glokha",
+      "scanned_files": [],
+      "hit_count": 0,
+      "severity_counts": {},
+      "pattern_counts": {},
+      "abab_tail_cycle": null,
+      "risk_score": 0
+    },
+    {
+      "repo": "/home/architit/work/Jouna",
+      "repo_name": "Jouna",
+      "scanned_files": [],
+      "hit_count": 0,
+      "severity_counts": {},
+      "pattern_counts": {},
+      "abab_tail_cycle": null,
+      "risk_score": 0
+    },
+    {
+      "repo": "/home/architit/work/Kitora",
+      "repo_name": "Kitora",
+      "scanned_files": [],
+      "hit_count": 0,
+      "severity_counts": {},
+      "pattern_counts": {},
+      "abab_tail_cycle": null,
+      "risk_score": 0
+    },
+    {
+      "repo": "/home/architit/work/Larpat",
+      "repo_name": "Larpat",
+      "scanned_files": [],
+      "hit_count": 0,
+      "severity_counts": {},
+      "pattern_counts": {},
+      "abab_tail_cycle": null,
+      "risk_score": 0
+    },
+    {
+      "repo": "/home/architit/work/Luvia",
+      "repo_name": "Luvia",
+      "scanned_files": [],
+      "hit_count": 0,
+      "severity_counts": {},
+      "pattern_counts": {},
+      "abab_tail_cycle": null,
+      "risk_score": 0
+    },
+    {
+      "repo": "/home/architit/work/Melia",
+      "repo_name": "Melia",
+      "scanned_files": [],
+      "hit_count": 0,
+      "severity_counts": {},
+      "pattern_counts": {},
+      "abab_tail_cycle": null,
+      "risk_score": 0
+    },
+    {
+      "repo": "/home/architit/work/Oxin",
+      "repo_name": "Oxin",
+      "scanned_files": [],
+      "hit_count": 0,
+      "severity_counts": {},
+      "pattern_counts": {},
+      "abab_tail_cycle": null,
+      "risk_score": 0
+    },
+    {
+      "repo": "/home/architit/work/Pralia",
+      "repo_name": "Pralia",
+      "scanned_files": [],
+      "hit_count": 0,
+      "severity_counts": {},
+      "pattern_counts": {},
+      "abab_tail_cycle": null,
+      "risk_score": 0
+    },
+    {
+      "repo": "/home/architit/work/RADRILONIUMA",
+      "repo_name": "RADRILONIUMA",
       "scanned_files": [
         "DEV_LOGS.md",
         "ROADMAP.md",
@@ -102,13 +418,11 @@
       "risk_score": 0
     },
     {
-      "repo": "/home/architit/work/J.A.R.V.I.S",
-      "repo_name": "J.A.R.V.I.S",
+      "repo": "/home/architit/work/RADRILONIUMA-PROJECT",
+      "repo_name": "RADRILONIUMA-PROJECT",
       "scanned_files": [
         "DEV_LOGS.md",
-        "ROADMAP.md",
-        "WORKFLOW_SNAPSHOT_STATE.md",
-        "INTERACTION_PROTOCOL.md"
+        "ROADMAP.md"
       ],
       "hit_count": 0,
       "severity_counts": {},
@@ -117,13 +431,30 @@
       "risk_score": 0
     },
     {
-      "repo": "/home/architit/work/LAM-Codex_Agent",
-      "repo_name": "LAM-Codex_Agent",
+      "repo": "/home/architit/work/Sataris",
+      "repo_name": "Sataris",
+      "scanned_files": [],
+      "hit_count": 0,
+      "severity_counts": {},
+      "pattern_counts": {},
+      "abab_tail_cycle": null,
+      "risk_score": 0
+    },
+    {
+      "repo": "/home/architit/work/Taspit",
+      "repo_name": "Taspit",
+      "scanned_files": [],
+      "hit_count": 0,
+      "severity_counts": {},
+      "pattern_counts": {},
+      "abab_tail_cycle": null,
+      "risk_score": 0
+    },
+    {
+      "repo": "/home/architit/work/Vilami",
+      "repo_name": "Vilami",
       "scanned_files": [
-        "DEV_LOGS.md",
-        "ROADMAP.md",
-        "WORKFLOW_SNAPSHOT_STATE.md",
-        "INTERACTION_PROTOCOL.md"
+        "ROADMAP.md"
       ],
       "hit_count": 0,
       "severity_counts": {},
@@ -132,14 +463,9 @@
       "risk_score": 0
     },
     {
-      "repo": "/home/architit/work/LAM_Comunication_Agent",
-      "repo_name": "LAM_Comunication_Agent",
-      "scanned_files": [
-        "DEV_LOGS.md",
-        "ROADMAP.md",
-        "WORKFLOW_SNAPSHOT_STATE.md",
-        "INTERACTION_PROTOCOL.md"
-      ],
+      "repo": "/home/architit/work/Vionori",
+      "repo_name": "Vionori",
+      "scanned_files": [],
       "hit_count": 0,
       "severity_counts": {},
       "pattern_counts": {},
@@ -147,14 +473,9 @@
       "risk_score": 0
     },
     {
-      "repo": "/home/architit/work/LAM_DATA_Src",
-      "repo_name": "LAM_DATA_Src",
-      "scanned_files": [
-        "DEV_LOGS.md",
-        "ROADMAP.md",
-        "WORKFLOW_SNAPSHOT_STATE.md",
-        "INTERACTION_PROTOCOL.md"
-      ],
+      "repo": "/home/architit/work/Vrela",
+      "repo_name": "Vrela",
+      "scanned_files": [],
       "hit_count": 0,
       "severity_counts": {},
       "pattern_counts": {},
@@ -162,104 +483,9 @@
       "risk_score": 0
     },
     {
-      "repo": "/home/architit/work/LAM_Test_Agent",
-      "repo_name": "LAM_Test_Agent",
-      "scanned_files": [
-        "DEV_LOGS.md",
-        "ROADMAP.md",
-        "WORKFLOW_SNAPSHOT_STATE.md",
-        "INTERACTION_PROTOCOL.md"
-      ],
-      "hit_count": 0,
-      "severity_counts": {},
-      "pattern_counts": {},
-      "abab_tail_cycle": null,
-      "risk_score": 0
-    },
-    {
-      "repo": "/home/architit/work/Operator_Agent",
-      "repo_name": "Operator_Agent",
-      "scanned_files": [
-        "DEV_LOGS.md",
-        "ROADMAP.md",
-        "WORKFLOW_SNAPSHOT_STATE.md",
-        "INTERACTION_PROTOCOL.md"
-      ],
-      "hit_count": 0,
-      "severity_counts": {},
-      "pattern_counts": {},
-      "abab_tail_cycle": null,
-      "risk_score": 0
-    },
-    {
-      "repo": "/home/architit/work/Roaudter-agent",
-      "repo_name": "Roaudter-agent",
-      "scanned_files": [
-        "DEV_LOGS.md",
-        "ROADMAP.md",
-        "WORKFLOW_SNAPSHOT_STATE.md",
-        "INTERACTION_PROTOCOL.md"
-      ],
-      "hit_count": 0,
-      "severity_counts": {},
-      "pattern_counts": {},
-      "abab_tail_cycle": null,
-      "risk_score": 0
-    },
-    {
-      "repo": "/home/architit/work/System-",
-      "repo_name": "System-",
-      "scanned_files": [
-        "DEV_LOGS.md",
-        "ROADMAP.md",
-        "WORKFLOW_SNAPSHOT_STATE.md",
-        "INTERACTION_PROTOCOL.md"
-      ],
-      "hit_count": 0,
-      "severity_counts": {},
-      "pattern_counts": {},
-      "abab_tail_cycle": null,
-      "risk_score": 0
-    },
-    {
-      "repo": "/home/architit/work/TRIANIUMA_DATA_BASE",
-      "repo_name": "TRIANIUMA_DATA_BASE",
-      "scanned_files": [
-        "DEV_LOGS.md",
-        "ROADMAP.md",
-        "WORKFLOW_SNAPSHOT_STATE.md",
-        "INTERACTION_PROTOCOL.md"
-      ],
-      "hit_count": 0,
-      "severity_counts": {},
-      "pattern_counts": {},
-      "abab_tail_cycle": null,
-      "risk_score": 0
-    },
-    {
-      "repo": "/home/architit/work/Trianiuma",
-      "repo_name": "Trianiuma",
-      "scanned_files": [
-        "DEV_LOGS.md",
-        "ROADMAP.md",
-        "WORKFLOW_SNAPSHOT_STATE.md",
-        "INTERACTION_PROTOCOL.md"
-      ],
-      "hit_count": 0,
-      "severity_counts": {},
-      "pattern_counts": {},
-      "abab_tail_cycle": null,
-      "risk_score": 0
-    },
-    {
-      "repo": "/home/architit/work/Trianiuma_MEM_CORE",
-      "repo_name": "Trianiuma_MEM_CORE",
-      "scanned_files": [
-        "DEV_LOGS.md",
-        "ROADMAP.md",
-        "WORKFLOW_SNAPSHOT_STATE.md",
-        "INTERACTION_PROTOCOL.md"
-      ],
+      "repo": "/home/architit/work/Zudory",
+      "repo_name": "Zudory",
+      "scanned_files": [],
       "hit_count": 0,
       "severity_counts": {},
       "pattern_counts": {},

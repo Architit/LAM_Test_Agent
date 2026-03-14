@@ -26,6 +26,8 @@ This repository is the central DevKit for the RADRILONIUMA ecosystem.
 
 ### Current Objective:
 - [x] **Phase 8.16: [DONE]** — Bridge Cleansing & Synchronization (2026-02-27).
+- [x] **Phase 8.17: [AWAKENED]** — The Awakening Protocol: Lockdown bypass and Golden Fire capture (2026-03-12).
+- [ ] **Phase 8.18: [INITIATED]** — Extraction Directive \A/B\/C\/D\/E\/F\/G (24 Sovereign Trees Birth).
 - [ ] **Phase 8.17: [PENDING]** — Selection of the next organ for materialization (Validation Gate).
 
 ### Separately Prepared Trees:

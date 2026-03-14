@@ -1,21 +1,21 @@
 # LAM_PHASE43_DEADLOOP_FORENSIC_REPORT
 
-- generated_at_utc: 2026-02-17T22:04:43.636684+00:00
+- generated_at_utc: 2026-03-12T20:46:03.635316+00:00
 - lam_root: /home/architit/work/LAM
 
 ## Repo Telemetry
 - branch: phase2/observability
-- dirty: True
-- modified_entries: 24
-- untracked_entries: 24
-- submodule_count: 4
+- dirty: False
+- modified_entries: 0
+- untracked_entries: 0
+- submodule_count: 6
 
 ## Phase 4.3 Signals
-- roadmap_hit_count: 7
+- roadmap_hit_count: 0
 - workflow_hit_count: 9
 
 ## Guard Probes
-- hold_probe_exit: 0
+- hold_probe_exit: 5
 - hold_probe_decision: HOLD_BY_DEADLOOP_BREAK_PROTOCOL
 - hold_probe_reason: numbering/journal-only cycle without structural delta
 - pass_probe_exit: 0

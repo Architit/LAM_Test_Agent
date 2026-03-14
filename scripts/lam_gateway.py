@@ -38,14 +38,16 @@ def safe_mkdir(path: Path) -> None:
 
 
 def default_providers() -> dict[str, dict[str, Any]]:
-    gws_root = os.getenv("GATEWAY_GWORKSPACE_ROOT", "").strip()
+    gws_root = os.getenv("GATEWAY_GWORKSPACE_ROOT", os.getenv("LAM_GWS_DRIVE_ROOT", "")).strip()
     onedrive_root = os.getenv("GATEWAY_ONEDRIVE_ROOT", "").strip()
     archive_root = os.getenv("GATEWAY_ARCHIVE_ROOT", "").strip()
+    ssd_root = os.getenv("GATEWAY_SSD_ROOT", "").strip()
     providers: dict[str, dict[str, Any]] = {
         "local": {"kind": "fs", "root": str(STATE_DIR / "storage" / "local")},
         "gdrive": {"kind": "fs", "root": ""},
         "onedrive": {"kind": "fs", "root": ""},
         "archive": {"kind": "fs", "root": ""},
+        "ssd": {"kind": "fs", "root": ""},
     }
     if gws_root:
         providers["gdrive"]["root"] = str(Path(gws_root) / "LAM_GATEWAY" / REPO_NAME)
@@ -53,6 +55,8 @@ def default_providers() -> dict[str, dict[str, Any]]:
         providers["onedrive"]["root"] = str(Path(onedrive_root) / "LAM_GATEWAY" / REPO_NAME)
     if archive_root:
         providers["archive"]["root"] = str(Path(archive_root) / "LAM_GATEWAY" / REPO_NAME)
+    if ssd_root:
+        providers["ssd"]["root"] = str(Path(ssd_root) / "LAM_GATEWAY" / REPO_NAME)
     return providers
 
 
@@ -91,20 +95,21 @@ def default_policy() -> dict[str, Any]:
             "require_contract_for_classes": ["sensitive", "restricted"],
             "require_approval_for_classes": ["sensitive", "restricted"],
             "class_provider_allowlist": {
-                "public": ["local", "archive", "gdrive", "onedrive"],
-                "internal": ["local", "archive", "gdrive", "onedrive"],
-                "sensitive": ["local", "archive", "gdrive", "onedrive"],
-                "restricted": ["local", "archive"],
-                "governance": ["local", "archive", "gdrive"],
-                "memory": ["local", "archive", "gdrive"],
-                "artifacts": ["local", "archive", "gdrive", "onedrive"],
-                "generic": ["local", "archive", "gdrive", "onedrive"],
+                "public": ["local", "archive", "gdrive", "onedrive", "ssd"],
+                "internal": ["local", "archive", "gdrive", "onedrive", "ssd"],
+                "sensitive": ["local", "archive", "gdrive", "onedrive", "ssd"],
+                "restricted": ["local", "archive", "ssd"],
+                "governance": ["local", "archive", "gdrive", "ssd"],
+                "memory": ["local", "archive", "gdrive", "ssd"],
+                "artifacts": ["local", "archive", "gdrive", "onedrive", "ssd"],
+                "generic": ["local", "archive", "gdrive", "onedrive", "ssd"],
             },
             "provider_org": {
                 "local": "internal",
                 "archive": "internal",
                 "gdrive": "google",
                 "onedrive": "microsoft",
+                "ssd": "internal",
             },
             "cross_org_allowed": ["internal", "google", "microsoft"],
         },
@@ -249,11 +254,13 @@ def provider_health(policy: dict[str, Any]) -> list[dict[str, Any]]:
         reachable = False
         free = 0
         if configured:
+            # Non-blocking access check to prevent eternal hang on stale mounts
             try:
-                safe_mkdir(root)
-                reachable = root.exists() and root.is_dir()
-                free = free_gb(root)
-            except OSError:
+                if root.exists():
+                    reachable = root.is_dir()
+                    if reachable:
+                        free = free_gb(root)
+            except (OSError, PermissionError):
                 reachable = False
                 free = 0
         out.append(

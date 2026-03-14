@@ -1,0 +1,25 @@
+{
+  "data_circulation": {
+    "enforce": true,
+    "kill_switch": false,
+    "require_contract_for_classes": ["sensitive", "restricted"],
+    "require_approval_for_classes": ["sensitive", "restricted"],
+    "class_provider_allowlist": {
+      "public": ["local", "archive", "gdrive", "onedrive"],
+      "internal": ["local", "archive", "gdrive", "onedrive"],
+      "sensitive": ["local", "archive", "gdrive", "onedrive"],
+      "restricted": ["local", "archive"],
+      "governance": ["local", "archive", "gdrive"],
+      "memory": ["local", "archive", "gdrive"],
+      "artifacts": ["local", "archive", "gdrive", "onedrive"],
+      "generic": ["local", "archive", "gdrive", "onedrive"]
+    },
+    "provider_org": {
+      "local": "internal",
+      "archive": "internal",
+      "gdrive": "google",
+      "onedrive": "microsoft"
+    },
+    "cross_org_allowed": ["internal", "google", "microsoft"]
+  }
+}
