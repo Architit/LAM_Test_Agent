@@ -54,7 +54,7 @@ for ORGAN_DIR in "$WORKSPACE_ROOT"/*/; do
     # Ищем стандартные триггеры запуска AESS
     if [ -x "$ORGAN_DIR/scripts/aess_autostart.sh" ]; then
         echo "  -> Найден AESS Autostart. Запускаем..."
-        (cd "$ORGAN_DIR" && ./scripts/aess_autostart.sh) &
+        (cd "$ORGAN_DIR" && ./scripts/aess_autostart.sh)
     fi
 
     # Ищем специфичные bridge-стеки
@@ -83,8 +83,8 @@ fi
 # 4. Запуск Глобального Автопилота на Мосту (Bridge)
 echo "[BIOS BOOT] 4. Инициализация автопилота RADRILONIUMA (Directive & Report)..."
 if [ -d "$WORKSPACE_ROOT/RADRILONIUMA" ]; then
-    (cd "$WORKSPACE_ROOT/RADRILONIUMA" && nohup python3 scripts/directive_autopilot.py >> .gateway/hub/logs/directive_autopilot.log 2>&1 &)
-    (cd "$WORKSPACE_ROOT/RADRILONIUMA" && nohup python3 scripts/report_autopilot.py >> .gateway/hub/logs/report_autopilot.log 2>&1 &)
+    (cd "$WORKSPACE_ROOT/RADRILONIUMA" && python3 scripts/directive_autopilot.py)
+    (cd "$WORKSPACE_ROOT/RADRILONIUMA" && python3 scripts/report_autopilot.py)
     echo "[BIOS BOOT] Автопилоты Моста запущены."
 fi
 
