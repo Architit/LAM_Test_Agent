@@ -1,0 +1,4 @@
+# Auto-updated by Autopilot for core
+core
+security
+uuid

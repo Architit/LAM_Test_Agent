@@ -26,6 +26,7 @@ class AmbientLightBridge:
 
         self.devices_file = self.bridge_root / "devices.json"
         self.vector_file = self.bridge_root / "ambient_light_vector.json"
+        self.grid_file = self.bridge_root / "ambient_light_grid.json"
         self.events_file = self.bridge_root / "events.jsonl"
         self.state_file = self.hub_root / "ambient_light_state.json"
         self.min_interval_sec = float(os.getenv("LAM_AMBIENT_DISPATCH_MIN_INTERVAL_SEC", "0.20"))
@@ -63,20 +64,43 @@ class AmbientLightBridge:
 
     def run_once(self) -> dict[str, Any]:
         state = self._load_json(self.state_file, {"last_sent": {}})
+        
+        # Load baseline vector
         vector_payload = self._load_json(self.vector_file, {})
-        vector = vector_payload.get("vector", {}) if isinstance(vector_payload, dict) else {}
-        if not isinstance(vector, dict) or not vector:
-            summary = {"ts_utc": utc_now(), "status": "no_vector", "dispatched": 0}
+        vector = vector_payload.get("vector", {})
+        
+        # Load granular grid (Per-Key/Per-LED)
+        grid_payload = self._load_json(self.grid_file, {})
+        grid = grid_payload.get("grid", {})
+        
+        # Merge grid into vector if present
+        if grid:
+            if not isinstance(vector, dict):
+                vector = {}
+            vector["grid"] = grid
+            # If profile is not explicitly set, use per_key_feedback
+            if not vector_payload.get("profile"):
+                vector_payload["profile"] = "per_key_feedback"
+
+        if not vector and not grid:
+            summary = {"ts_utc": utc_now(), "status": "no_vector_or_grid", "dispatched": 0}
             self.state_file.write_text(json.dumps(summary, ensure_ascii=True, indent=2) + "\n", encoding="utf-8")
             return summary
 
-        raw = json.dumps(vector_payload, ensure_ascii=True, sort_keys=True).encode("utf-8")
+        # Calculate hash for deduplication
+        combined_payload = {
+            "profile": vector_payload.get("profile", "aura_ambient_mirror"),
+            "mode": vector_payload.get("mode", "idle"),
+            "vector": vector
+        }
+        raw = json.dumps(combined_payload, ensure_ascii=True, sort_keys=True).encode("utf-8")
         vector_hash = hashlib.sha256(raw).hexdigest()[:16]
         now = time.time()
 
         last_sent = state.get("last_sent", {})
         if not isinstance(last_sent, dict):
             last_sent = {}
+            
         dispatched = 0
         devices_total = 0
         for device in self._load_devices():
@@ -89,22 +113,42 @@ class AmbientLightBridge:
             prev = last_sent.get(device_id, {})
             prev_hash = str(prev.get("hash", ""))
             prev_ts = float(prev.get("ts_epoch", 0.0))
+            
+            # If hash is the same and interval is too small, skip
             if prev_hash == vector_hash and (now - prev_ts) < self.min_interval_sec:
                 continue
+                
+            # Construct granular event
             event = {
                 "ts_utc": utc_now(),
                 "op": "ambient_light_apply",
                 "device_id": device_id,
-                "profile": vector_payload.get("profile", "aura_ambient_mirror"),
-                "mode": vector_payload.get("mode", "idle"),
-                "pane": vector_payload.get("pane", ""),
-                "mirror_pane": vector_payload.get("mirror_pane", ""),
+                "profile": combined_payload["profile"],
+                "mode": combined_payload["mode"],
                 "vector": vector,
                 "source": "lam_ambient_light_daemon",
+                "hash": vector_hash
             }
-            outbox = self.bridge_root / "device_outbox" / f"{device_id}.jsonl"
-            self._append_jsonl(outbox, event)
-            self._append_jsonl(self.events_file, {"ts_utc": event["ts_utc"], "event": "ambient_light_dispatched", "device_id": device_id, "mode": event["mode"]})
+            
+            # Dispatch to device outbox (both .json and .jsonl for legacy compat)
+            outbox_dir = self.bridge_root / "device_outbox" / device_id
+            outbox_dir.mkdir(parents=True, exist_ok=True)
+            
+            # Legacy .jsonl appending
+            outbox_file = self.bridge_root / "device_outbox" / f"{device_id}.jsonl"
+            self._append_jsonl(outbox_file, event)
+            
+            # High-fidelity single message
+            msg_file = outbox_dir / f"light_{int(now * 1000)}.json"
+            msg_file.write_text(json.dumps(event, ensure_ascii=True, indent=2) + "\n", encoding="utf-8")
+            
+            self._append_jsonl(self.events_file, {
+                "ts_utc": event["ts_utc"], 
+                "event": "ambient_light_dispatched", 
+                "device_id": device_id, 
+                "has_grid": bool(grid)
+            })
+            
             last_sent[device_id] = {"hash": vector_hash, "ts_epoch": now, "ts_utc": event["ts_utc"]}
             dispatched += 1
 
@@ -114,20 +158,24 @@ class AmbientLightBridge:
             "dispatched": dispatched,
             "eligible_devices": devices_total,
             "vector_hash": vector_hash,
-            "vector_mode": vector_payload.get("mode", "idle"),
-            "profile": vector_payload.get("profile", "aura_ambient_mirror"),
+            "has_grid": bool(grid),
             "last_sent": last_sent,
         }
-        self.state_file.write_text(json.dumps(summary, ensure_ascii=True, indent=2) + "\n", encoding="utf-8")
+        
+        state_payload = {
+            "last_sent": last_sent,
+            "last_summary": summary
+        }
+        self.state_file.write_text(json.dumps(state_payload, ensure_ascii=True, indent=2) + "\n", encoding="utf-8")
+        
         return summary
 
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Ambient light vector bridge daemon.")
     parser.add_argument("--once", action="store_true")
-    parser.add_argument("--interval-sec", type=int, default=2)
+    parser.add_argument("--interval-sec", type=float, default=2.0)
     return parser
-
 
 def main() -> int:
     args = build_parser().parse_args()
@@ -138,9 +186,12 @@ def main() -> int:
         return 0
     while True:
         payload = svc.run_once()
-        print(json.dumps({"ts_utc": payload.get("ts_utc"), "dispatched": payload.get("dispatched", 0)}, ensure_ascii=True))
-        time.sleep(max(1, int(args.interval_sec)))
+        print(json.dumps({"ts_utc": payload.get("ts_utc"), "dispatched": payload.get("dispatched", 0), "grid": payload.get("has_grid")}, ensure_ascii=True))
+        time.sleep(max(0.1, float(args.interval_sec)))
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    try:
+        raise SystemExit(main())
+    except KeyboardInterrupt:
+        pass

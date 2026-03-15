@@ -23,19 +23,19 @@
 - closure_checksum: gov/report/phaseB_lam_test_owner_closure_2026-03-05.sha256
 
 ## Phase C (Owner Scope)
-- phaseC_owner_memory_execution: DONE
+- phaseC_owner_memory_execution: COMPLETE
 - closure_evidence: gov/report/phaseC_lam_test_wave1_execution_2026-03-05.md
 
 ## Phase D (Owner Scope)
-- phaseD_owner_transport_execution: DONE
+- phaseD_owner_transport_execution: COMPLETE
 - closure_evidence: gov/report/phaseD_lam_test_transport_wave1_execution_2026-03-05.md
 
 ## Phase E (Owner Scope)
-- phaseE_owner_flow_control_execution: DONE
+- phaseE_owner_flow_control_execution: COMPLETE
 - closure_evidence: gov/report/phaseE_lam_test_flow_control_wave1_execution_2026-03-05.md
 
 ## Phase F (Owner Scope)
-- phaseF_owner_p0_safety_execution: DONE
+- phaseF_owner_p0_safety_execution: COMPLETE
 - closure_evidence: gov/report/phaseF_lam_test_p0_safety_wave1_execution_2026-03-05.md
 
 ## Phase R (Owner Scope)

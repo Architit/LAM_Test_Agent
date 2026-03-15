@@ -1,0 +1,61 @@
+{
+  "timestamp": 1773603871.2099333,
+  "sessions": [
+    {
+      "pid": "2234",
+      "name": "bash",
+      "cpu": "0.0",
+      "mem_kb": "5120",
+      "status": "MONITORED"
+    },
+    {
+      "pid": "2816",
+      "name": "bash",
+      "cpu": "0.0",
+      "mem_kb": "5120",
+      "status": "MONITORED"
+    },
+    {
+      "pid": "2831",
+      "name": "node",
+      "cpu": "0.6",
+      "mem_kb": "206440",
+      "status": "MONITORED"
+    },
+    {
+      "pid": "2886",
+      "name": "node",
+      "cpu": "11.7",
+      "mem_kb": "614192",
+      "status": "MONITORED"
+    },
+    {
+      "pid": "2947",
+      "name": "node",
+      "cpu": "0.1",
+      "mem_kb": "150748",
+      "status": "MONITORED"
+    },
+    {
+      "pid": "2948",
+      "name": "node",
+      "cpu": "0.1",
+      "mem_kb": "93804",
+      "status": "MONITORED"
+    },
+    {
+      "pid": "3151",
+      "name": "bash",
+      "cpu": "0.0",
+      "mem_kb": "3328",
+      "status": "MONITORED"
+    },
+    {
+      "pid": "3153",
+      "name": "python3",
+      "cpu": "75.0",
+      "mem_kb": "11520",
+      "status": "MONITORED"
+    }
+  ]
+}

@@ -46,3 +46,6 @@
 {"ts_utc": "2026-03-07T18:15:32.284096+00:00", "level": "debug", "channel": "comm.registry", "message": "register", "fields": {"action": "register", "agent": "codex"}}
 {"ts_utc": "2026-03-07T18:15:32.286372+00:00", "level": "info", "channel": "comm.enqueue", "message": "enqueue", "fields": {"recipient": "codex", "intent": "ping_pong", "task_id": null, "trace_id": null}}
 {"ts_utc": "2026-03-07T18:15:32.286567+00:00", "level": "info", "channel": "comm.dequeue", "message": "dequeue", "fields": {"sender": "codex", "status": null, "task_id": null, "trace_id": null}}
+{"ts_utc": "2026-03-15T20:38:07.187335+00:00", "level": "debug", "channel": "comm.registry", "message": "register", "fields": {"action": "register", "agent": "codex"}}
+{"ts_utc": "2026-03-15T20:38:07.187784+00:00", "level": "info", "channel": "comm.enqueue", "message": "enqueue", "fields": {"recipient": "codex", "intent": "ping_pong", "task_id": null, "trace_id": null}}
+{"ts_utc": "2026-03-15T20:38:07.187958+00:00", "level": "info", "channel": "comm.dequeue", "message": "dequeue", "fields": {"sender": "codex", "status": null, "task_id": null, "trace_id": null}}

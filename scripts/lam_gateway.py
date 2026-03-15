@@ -130,7 +130,12 @@ def write_json(path: Path, payload: Any) -> None:
 def ensure_state() -> None:
     safe_mkdir(STATE_DIR)
     if not POLICY_FILE.exists():
-        write_json(POLICY_FILE, default_policy())
+        policy = default_policy()
+        write_json(POLICY_FILE, policy)
+        # Ensure local storage root exists
+        local_cfg = policy.get("providers", {}).get("local", {})
+        if local_cfg.get("root"):
+            safe_mkdir(Path(local_cfg["root"]))
     if not INDEX_FILE.exists():
         write_json(INDEX_FILE, {"version": "v1", "entries": []})
     if not QUEUE_FILE.exists():
@@ -256,10 +261,11 @@ def provider_health(policy: dict[str, Any]) -> list[dict[str, Any]]:
         if configured:
             # Non-blocking access check to prevent eternal hang on stale mounts
             try:
+                reachable = True
                 if root.exists():
                     reachable = root.is_dir()
-                    if reachable:
-                        free = free_gb(root)
+                if reachable:
+                    free = free_gb(root)
             except (OSError, PermissionError):
                 reachable = False
                 free = 0
@@ -533,11 +539,36 @@ def cmd_put(args: argparse.Namespace) -> int:
     return 0
 
 
+import urllib.request
+
+def github_fetch(repo: str, path: str, dst: Path) -> bool:
+    """Fallback logic to fetch directly from public GitHub."""
+    url = f"https://raw.githubusercontent.com/{repo}/main/{path}"
+    try:
+        req = urllib.request.Request(url)
+        with urllib.request.urlopen(req) as response:
+            if response.status == 200:
+                safe_mkdir(dst.parent)
+                with open(dst, 'wb') as f:
+                    f.write(response.read())
+                return True
+    except Exception as e:
+        print(f"Fallback github_fetch failed for {url}: {e}", file=sys.stderr)
+    return False
+
 def cmd_get(args: argparse.Namespace) -> int:
     ensure_state()
     policy = read_json(POLICY_FILE, default_policy())
     providers = policy.get("providers", {})
     if args.provider not in providers:
+        if args.provider.startswith("github:"):
+            repo = args.provider.split(":", 1)[1]
+            dst = Path(args.dst).resolve()
+            if github_fetch(repo, args.path, dst):
+                print(json.dumps({"status": "ok", "provider": args.provider, "source": f"github://{repo}/{args.path}", "dst": str(dst), "fallback": True}, ensure_ascii=True, indent=2))
+                return 0
+            else:
+                raise RuntimeError(f"github fallback failed for {args.provider}")
         raise RuntimeError(f"unknown provider: {args.provider}")
     root = Path(str(providers[args.provider].get("root", "")))
     if not str(root).strip():

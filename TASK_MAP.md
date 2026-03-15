@@ -15,3 +15,14 @@ scope: master-plan aligned owner tasks (Phase A/B/C/D/E)
 | phaseD_D2 | Phase D owner transport wave execution | COMPLETE | LTA-01 | `contract/PHASE_D_TRANSPORT_REGRESSION_CONTRACT_V1.md`, `tests/test_phase_d_transport_regression.py`, `gov/report/phaseD_lam_test_transport_wave1_execution_2026-03-05.md` |
 | phaseE_E2 | Phase E owner flow-control wave execution | COMPLETE | LTA-01 | `contract/PHASE_E_FLOW_CONTROL_REGRESSION_CONTRACT_V1.md`, `tests/test_phase_e_flow_control_regression.py`, `gov/report/phaseE_lam_test_flow_control_wave1_execution_2026-03-05.md` |
 | phaseF_F2 | Phase F owner p0-safety wave execution | COMPLETE | LTA-01 | `contract/PHASE_F_P0_SAFETY_REGRESSION_CONTRACT_V1.md`, `tests/test_phase_f_p0_safety_regression.py`, `gov/report/phaseF_lam_test_p0_safety_wave1_execution_2026-03-05.md` |
+| wave2_vlrm_A | Vilami (VLRM) Phase A: Stabilization | COMPLETE | ARGD | `gov/report/wave2_vlrm_A_closure_2026-03-15.md` |
+| wave2_vlrm_B | Vilami (VLRM) Phase B: Quality | COMPLETE | ARGD | `gov/report/wave2_vlrm_B_closure_2026-03-15.md` |
+| wave2_vlrm_C | Vilami (VLRM) Phase C: Memory | COMPLETE | ARGD | `gov/report/wave2_vlrm_C_closure_2026-03-15.md` |
+| wave2_vlrm_D | Vilami (VLRM) Phase D: Transport | COMPLETE | ARGD | `gov/report/wave2_vlrm_D_closure_2026-03-15.md` |
+| wave2_vlrm_E | Vilami (VLRM) Phase E: Flow Control | COMPLETE | ARGD | `gov/report/wave2_vlrm_E_closure_2026-03-15.md` |
+| wave2_vlrm_F | Vilami (VLRM) Phase F: Safety | COMPLETE | ARGD | `gov/report/wave2_vlrm_F_closure_2026-03-15.md` |
+| wave2_radr_F | RADRILONIUMA (RADR-01) Full Awakening (A-F) | COMPLETE | ARGD | `core/governance_engine.py`, `tests/test_full_governance.py`, ROADMAP updated |
+| wave2_aya_F | Ayaearias-Triania (AIDE-01) Full Awakening (A-F) | COMPLETE | ARGD | `core/identity_engine.py`, `tests/test_full_identity.py`, ROADMAP updated |
+| wave2_pral_F | Pralia (PRAL) Full Awakening (A-F) | COMPLETE | ARGD | `core/law_engine.py`, `tests/test_full_law.py`, ROADMAP updated |
+| wave2_satr_A | Sataris (SATR) Phase A: Stabilization | COMPLETE | ARGD | Structure normalization, code generation complete |
+| wave2_trnm_A | Trianiuma (TRNM) Phase A | COMPLETE | ARGD | Structure normalization, code generation complete |

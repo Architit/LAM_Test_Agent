@@ -186,6 +186,7 @@ install_services() {
   render_tpl "$SYSTEMD_TPL_DIR/lam-power-fabric.service.tpl" /etc/systemd/system/lam-power-fabric.service
   render_tpl "$SYSTEMD_TPL_DIR/lam-hmac-rotation.service.tpl" /etc/systemd/system/lam-hmac-rotation.service
   render_tpl "$SYSTEMD_TPL_DIR/lam-control-plane.service.tpl" /etc/systemd/system/lam-control-plane.service
+  render_tpl "$SYSTEMD_TPL_DIR/radriloniuma-os-bios.service.tpl" /etc/systemd/system/radriloniuma-os-bios.service
   if [[ "$ENABLE_TTY" == "1" ]]; then
     render_tpl "$SYSTEMD_TPL_DIR/lam-captain-tty.service.tpl" /etc/systemd/system/lam-captain-tty.service
   else
@@ -222,6 +223,8 @@ enable_services() {
   systemctl enable lam-control-plane.service
   systemctl restart lam-control-plane.service
   wait_service_active lam-control-plane.service 45 || die "lam-control-plane.service failed to become active"
+  systemctl enable radriloniuma-os-bios.service
+  systemctl restart radriloniuma-os-bios.service
   if [[ -f /etc/systemd/system/lam-captain-tty.service ]]; then
     systemctl enable lam-captain-tty.service
     systemctl restart lam-captain-tty.service
@@ -231,6 +234,7 @@ enable_services() {
 
 disable_services() {
   require_root
+  systemctl disable --now radriloniuma-os-bios.service 2>/dev/null || true
   systemctl disable --now lam-captain-tty.service 2>/dev/null || true
   systemctl disable --now lam-control-plane.service 2>/dev/null || true
   systemctl disable --now lam-hmac-rotation.service 2>/dev/null || true
@@ -252,6 +256,8 @@ status_services() {
   systemctl is-active --quiet lam-hmac-rotation.service || rc=1
   systemctl --no-pager --full status lam-control-plane.service || true
   systemctl is-active --quiet lam-control-plane.service || rc=1
+  systemctl --no-pager --full status radriloniuma-os-bios.service || true
+  systemctl is-active --quiet radriloniuma-os-bios.service || rc=1
   systemctl --no-pager --full status lam-captain-tty.service || true
   if [[ -f /etc/systemd/system/lam-captain-tty.service ]]; then
     systemctl is-active --quiet lam-captain-tty.service || rc=1

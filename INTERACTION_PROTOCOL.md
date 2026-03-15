@@ -44,10 +44,12 @@
 Работа ведётся циклами:
 
 Context Sync
+→ Planning Mode (Формирование плана)
 → Action Block (1-3 команды)
 → Safety Check
 → Verification
 → Governance (по необходимости)
+→ Return to Planning Mode (Автоматический возврат в режим планирования после завершения исполнения)
 
 После каждого блока: STOP и ожидание сигнала пользователя.
 

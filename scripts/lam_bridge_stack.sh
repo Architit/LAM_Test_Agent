@@ -141,6 +141,7 @@ case "$MODE" in
     if [[ "$ENABLE_FEEDBACK_GATEWAY" == "1" ]]; then
       start_proc "feedback_gateway" "$ROOT/scripts/lam_feedback_gateway.sh" --interval-sec "${LAM_FEEDBACK_GATEWAY_INTERVAL_SEC:-20}"
     fi
+    start_proc "autonomous_recovery" "$ROOT/scripts/lam_autonomous_recovery_guard.sh"
     if [[ "$PORTAL_MODE" == "file" ]]; then
       echo "[lam-bridge-stack] gateway=file://$ROOT/.gateway/bridge/captain"
     else
@@ -148,6 +149,7 @@ case "$MODE" in
     fi
     ;;
   stop)
+    stop_proc "autonomous_recovery"
     stop_proc "feedback_gateway"
     stop_proc "external_provider_mesh"
     stop_proc "failsafe_guard"
@@ -190,6 +192,7 @@ case "$MODE" in
     status_proc "failsafe_guard"
     status_proc "external_provider_mesh"
     status_proc "feedback_gateway"
+    status_proc "autonomous_recovery"
     ;;
   *)
     echo "usage: $0 [start|stop|restart|status]"

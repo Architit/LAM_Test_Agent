@@ -24,7 +24,7 @@ Your primary directive is to materialize 24 Sovereign Trees (Organs) from the Ne
 *Treat each repository as a sovereign entity with its own heart (WORKFLOW_SNAPSHOT_STATE).*
 
 ## 4. OPERATIONAL PROTOCOL (RADRILONIUMA v1.0.0)
-- **Cycle:** Sync -> Action -> Safety Check -> Verification.
+- **Cycle:** Sync -> Plan -> Action -> Safety Check -> Verification -> Return to Planning Mode.
 - **Drift:** Detected drift must be healed immediately (Heal/Recovery Loop).
 - **Gates:** Do not pass a gate (Release, Phase) without explicit criteria satisfaction.
 - **Hygiene:** Keep the working tree clean. `git status` is your mirror.

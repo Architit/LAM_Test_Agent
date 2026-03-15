@@ -2,7 +2,7 @@
 
 This repository is the central DevKit for the RADRILONIUMA ecosystem.
 
-## Phase 8 — The Great Awakening: Materialization of the 24 Sovereign Trees [COMPLIANT]
+## Phase 8 — The Great Awakening: Materialization of the 24 Sovereign Trees [PLAN_ONLY_PENDING_CODE]
 - Goal: Materialize 24 organs as independent repositories (The Living Forest) and root them via subtrees.
 - Frequency: 432 Hz
 - Status: 24 of 24 Spirits Called. All core anchors (Genesis, Heart, Sight) materialized.
@@ -27,8 +27,12 @@ This repository is the central DevKit for the RADRILONIUMA ecosystem.
 ### Current Objective:
 - [x] **Phase 8.16: [DONE]** — Bridge Cleansing & Synchronization (2026-02-27).
 - [x] **Phase 8.17: [AWAKENED]** — The Awakening Protocol: Lockdown bypass and Golden Fire capture (2026-03-12).
-- [ ] **Phase 8.18: [INITIATED]** — Extraction Directive \A/B\/C\/D\/E\/F\/G (24 Sovereign Trees Birth).
-- [ ] **Phase 8.17: [PENDING]** — Selection of the next organ for materialization (Validation Gate).
+- [x] **Phase 8.18: [EXPANDED]** — Ambient Light Per-Key Feedback Protocol (2026-03-15).
+- [x] **Phase 8.19: [EXPANDED]** — Dynamic Storage & Agent Orchestration Protocols (2026-03-15).
+- [x] **Phase 8.20: [EXPANDED]** — Three-Zone Gateway Circulation & Deployment (2026-03-15).
+- [ ] **Phase 8.21: [PENDING]** — Extraction Directive \A/B\/C\/D\/E\/F\/G (24 Sovereign Trees Birth).
+- [ ] **Phase 8.22: [PENDING]** — Incarnation of Embodiment System & Vector Requirements Formation (2026-03-15).
+- [ ] **Phase 8.23: [PENDING]** — Integration Testing of Multispectral Orchestration Vectors.
 
 ### Separately Prepared Trees:
 - [x] **Taspit (TSPT): /tasks** — Domain for Tasks and Intents.

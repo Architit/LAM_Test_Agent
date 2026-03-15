@@ -1,0 +1,12 @@
+{
+  "name": "radriloniuma-mcp",
+  "version": "1.0.0",
+  "description": "RADRILONIUMA MCP Integration for Sovereign Trees",
+  "main": "core/mcp/local_gateway.py",
+  "scripts": {
+    "start": "python3 core/mcp/local_gateway.py",
+    "test": "pytest tests/"
+  },
+  "author": "Ayaearias Triania",
+  "license": "MIT"
+}

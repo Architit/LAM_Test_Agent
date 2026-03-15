@@ -8,6 +8,7 @@ from apps.lam_console.mcp_watchdog import MCPWatchdog
 def test_watchdog_run_once_no_gemini(tmp_path, monkeypatch) -> None:
     monkeypatch.setenv("LAM_HUB_ROOT", str(tmp_path / ".gateway" / "hub"))
     monkeypatch.setenv("LAM_CAPTAIN_BRIDGE_ROOT", str(tmp_path / ".gateway" / "bridge" / "captain"))
+    monkeypatch.setenv("LAM_MCP_AUTO_HEAL", "0")
 
     repo_root = Path(__file__).resolve().parents[2]
     watchdog = MCPWatchdog(repo_root)

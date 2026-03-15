@@ -1,0 +1,37 @@
+{
+  "core": [
+    "uuid",
+    "security",
+    "core"
+  ],
+  "map": [],
+  "gov": [],
+  "security": [
+    "subprocess"
+  ],
+  "identity": [],
+  "nexus": [],
+  "transport": [],
+  "flow": [],
+  "devkit": [
+    "",
+    "codex_agent",
+    "logging",
+    "enum",
+    "shutil",
+    "random",
+    "contextvars",
+    "pathlib",
+    "hashlib",
+    "__future__",
+    "xml",
+    "math",
+    "zipfile",
+    "uuid",
+    "opentelemetry",
+    "tomllib",
+    "dataclasses",
+    "pytest",
+    "argparse"
+  ]
+}

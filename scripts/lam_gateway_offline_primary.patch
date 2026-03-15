@@ -1,0 +1,17 @@
+--- scripts/lam_gateway.py
++++ scripts/lam_gateway.py
+@@ -298,6 +298,14 @@
+     cls = class_policy(policy, data_class)
+     providers = list(cls.get("providers", ["local"]))
+     min_free = int(cls.get("min_free_gb", 1))
++
++    if os.getenv("LAM_GATEWAY_OFFLINE_PRIMARY", "0") in {"1", "true", "True"}:
++        # Reorder to: local -> gdrive -> others (like github)
++        offline_prio = ["local", "gdrive"]
++        others = [p for p in providers if p not in offline_prio]
++        # Keep only configured/reachable offline ones at front
++        reachable_offline = [p for p in offline_prio if p in providers]
++        providers = reachable_offline + others
+ 
+     for provider in providers:
+         h = health.get(provider)

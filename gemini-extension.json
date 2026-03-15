@@ -1,0 +1,7 @@
+{
+  "name": "radriloniuma-mcp",
+  "version": "1.0.0",
+  "description": "RADRILONIUMA MCP Integration for Sovereign Trees",
+  "type": "mcp",
+  "entrypoint": "core/mcp/local_gateway.py"
+}
