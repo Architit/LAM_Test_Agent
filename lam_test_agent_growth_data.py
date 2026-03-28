@@ -69,8 +69,8 @@ def collect_growth_snapshot(root: Path) -> dict[str, Any]:
     has_deadloop_cross_repo_assertions = (root / "tests" / "it" / "test_deadloop_cross_repo.py").exists()
 
     ecosystem_lam_root = lam_root()
-    deadloop_guard_script_exists = (ecosystem_lam_root / "scripts" / "deadloop_guard_entrypoint.py").exists()
-    deadloop_scan_script_exists = (ecosystem_lam_root / "scripts" / "deadloop_ecosystem_scan.py").exists()
+    deadloop_guard_script_exists = (ecosystem_lam_root / "scripts" / "local" / "deadloop_guard_entrypoint.py").exists()
+    deadloop_scan_script_exists = (ecosystem_lam_root / "scripts" / "global" / "deadloop_ecosystem_scan.py").exists()
     deadloop_cross_repo_ready = deadloop_guard_script_exists and deadloop_scan_script_exists
 
     rows: list[RouteGrowthRow] = []

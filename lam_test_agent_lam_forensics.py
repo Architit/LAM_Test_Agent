@@ -58,7 +58,7 @@ def collect_lam_forensics(lam_root: Path) -> dict[str, Any]:
     rc_hold, hold_raw = _run(
         [
             "python3",
-            "scripts/deadloop_guard_entrypoint.py",
+            "scripts/local/deadloop_guard_entrypoint.py",
             "--governance-only-streak",
             "3",
             "--changed-path",
@@ -76,7 +76,7 @@ def collect_lam_forensics(lam_root: Path) -> dict[str, Any]:
     rc_pass, pass_raw = _run(
         [
             "python3",
-            "scripts/deadloop_guard_entrypoint.py",
+            "scripts/local/deadloop_guard_entrypoint.py",
             "--governance-only-streak",
             "0",
             "--changed-path",
@@ -96,7 +96,7 @@ def collect_lam_forensics(lam_root: Path) -> dict[str, Any]:
     rc_scan, scan_raw = _run(
         [
             "python3",
-            "scripts/deadloop_ecosystem_scan.py",
+            "scripts/global/deadloop_ecosystem_scan.py",
             "--repo",
             str(lam_root),
             "--repo",
