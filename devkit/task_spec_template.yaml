@@ -1,32 +1,13 @@
-# Task Spec Template (v1)
-# Declarative only. No runtime logic.
-
-version: "1"
-
-id: "<task_id_snake_case>"
-title: "<short human-readable title>"
-phase: "<phase id, e.g. 3.1.C>"
-intent: "<one-line derivation-only intent>"
-
-source_of_truth: "LAM/Taskarid"
-
-derivation:
-  produced_by: "<agent | human | system>"
-  produced_at: "<ISO-8601 timestamp>"
-  method: "<brief description>"
-
-patch:
-  path: "<relative/path/to/patch.patch>"
-  sha256: "<hex sha256>"
-
+spec_version: "1.1"
+goal: "<describe the specific goal>"
+constraints:
+  derivation_only: true
 preconditions:
-  - "<explicit assumption 1>"
-  - "<explicit assumption 2>"
-
-verification:
-  - "git status -sb"
-  - "git diff --cached --stat"
-
-observability:
-  - "capture staged diff"
-  - "capture patch sha256"
+  - type: file_exists
+    path: "./scripts/global/patch.sh"
+artifacts:
+  patch_path: "task.patch"
+  patch_sha256: "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
+limits:
+  timeout_ms: 10000
+  max_output_tokens: 2000
