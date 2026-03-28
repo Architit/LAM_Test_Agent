@@ -12,11 +12,11 @@ jobs:
 
       - name: Force fetch latest remote submodules
         run: |
-          git config --file .gitmodules submodule."LAM_Test/agents/codex-agent".branch main
-          git config --file .gitmodules submodule."LAM_Test/agents/comm-agent".branch main
-          git config --file .gitmodules submodule."LAM_Test/agents/operator-agent".branch main
-          git submodule sync
-          git submodule update --init --remote --recursive
+          git submodule init
+          git config submodule."LAM_Test/agents/codex-agent".branch main
+          git config submodule."LAM_Test/agents/comm-agent".branch main
+          git config submodule."LAM_Test/agents/operator-agent".branch main
+          git submodule update --remote LAM_Test/agents/codex-agent LAM_Test/agents/comm-agent LAM_Test/agents/operator-agent
 
       - name: Verify submodule sources
         run: bash scripts/local/bootstrap_submodules.sh
@@ -149,11 +149,11 @@ jobs:
 
       - name: Force fetch latest remote submodules
         run: |
-          git config --file .gitmodules submodule."LAM_Test/agents/codex-agent".branch main
-          git config --file .gitmodules submodule."LAM_Test/agents/comm-agent".branch main
-          git config --file .gitmodules submodule."LAM_Test/agents/operator-agent".branch main
-          git submodule sync
-          git submodule update --init --remote --recursive
+          git submodule init
+          git config submodule."LAM_Test/agents/codex-agent".branch main
+          git config submodule."LAM_Test/agents/comm-agent".branch main
+          git config submodule."LAM_Test/agents/operator-agent".branch main
+          git submodule update --remote LAM_Test/agents/codex-agent LAM_Test/agents/comm-agent LAM_Test/agents/operator-agent
 
       - name: Verify submodule sources
         run: bash scripts/local/bootstrap_submodules.sh
@@ -192,11 +192,11 @@ jobs:
 
       - name: Force fetch latest remote submodules
         run: |
-          git config --file .gitmodules submodule."LAM_Test/agents/codex-agent".branch main
-          git config --file .gitmodules submodule."LAM_Test/agents/comm-agent".branch main
-          git config --file .gitmodules submodule."LAM_Test/agents/operator-agent".branch main
-          git submodule sync
-          git submodule update --init --remote --recursive
+          git submodule init
+          git config submodule."LAM_Test/agents/codex-agent".branch main
+          git config submodule."LAM_Test/agents/comm-agent".branch main
+          git config submodule."LAM_Test/agents/operator-agent".branch main
+          git submodule update --remote LAM_Test/agents/codex-agent LAM_Test/agents/comm-agent LAM_Test/agents/operator-agent
 
       - name: Verify submodule sources
         run: bash scripts/local/bootstrap_submodules.sh
