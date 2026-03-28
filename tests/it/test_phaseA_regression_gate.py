@@ -35,7 +35,7 @@ def test_phaseA_task_spec_v11_markers_present() -> None:
 
 @pytest.mark.integration
 def test_phaseA_archivator_integrity_chain_markers_present() -> None:
-    patch_helper = ARCHIVATOR_AGENT / "devkit" / "patch.sh"
+    patch_helper = ARCHIVATOR_AGENT / "scripts" / "global" / "patch.sh"
     assert patch_helper.exists(), f"missing patch helper: {patch_helper}"
     text = patch_helper.read_text(encoding="utf-8")
 

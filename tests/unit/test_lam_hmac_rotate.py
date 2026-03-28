@@ -31,7 +31,7 @@ def test_hmac_rotate_promotes_primary_to_secondary_and_updates_state(tmp_path: P
         }
     )
 
-    script = _repo_root() / "scripts" / "lam_hmac_rotate.sh"
+    script = _repo_root() / "scripts" / "local" / "lam_hmac_rotate.sh"
     subprocess.run([str(script), "rotate"], check=True, cwd=_repo_root(), env=env, capture_output=True, text=True)
 
     assert primary.exists()
@@ -74,7 +74,7 @@ def test_hmac_rotate_clear_secondary_resets_secondary_window(tmp_path: Path) -> 
             "LAM_CIRCULATION_HMAC_ROTATION_STATE_FILE": str(state),
         }
     )
-    script = _repo_root() / "scripts" / "lam_hmac_rotate.sh"
+    script = _repo_root() / "scripts" / "local" / "lam_hmac_rotate.sh"
     subprocess.run([str(script), "clear-secondary"], check=True, cwd=_repo_root(), env=env, capture_output=True, text=True)
 
     assert not secondary.exists()

@@ -7,7 +7,7 @@ from pathlib import Path
 
 def load_gateway_module():
     repo_root = Path(__file__).resolve().parents[2]
-    script = repo_root / "scripts" / "lam_gateway.py"
+    script = repo_root / "scripts" / "roaming" / "lam_gateway.py"
     spec = importlib.util.spec_from_file_location("lam_gateway", script)
     assert spec and spec.loader
     module = importlib.util.module_from_spec(spec)

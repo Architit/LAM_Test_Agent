@@ -7,7 +7,7 @@ from pathlib import Path
 
 def load_module():
     repo_root = Path(__file__).resolve().parents[2]
-    script = repo_root / "scripts" / "license_change_guard.py"
+    script = repo_root / "scripts" / "local" / "license_change_guard.py"
     spec = importlib.util.spec_from_file_location("license_change_guard", script)
     assert spec and spec.loader
     module = importlib.util.module_from_spec(spec)
