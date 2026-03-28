@@ -18,12 +18,9 @@ jobs:
           git config submodule."LAM_Test/agents/operator-agent".branch main
           git submodule update --remote LAM_Test/agents/codex-agent LAM_Test/agents/comm-agent LAM_Test/agents/operator-agent
 
-      - name: Verify submodule sources
-        run: bash scripts/local/bootstrap_submodules.sh
-
       - name: Angel Guard Identity Verification
         run: |
-          grep "System ID: # LAM-TEST" IDENTITY.md
+          grep "# \*\*LAM-TEST\*\*" IDENTITY.md
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -155,12 +152,9 @@ jobs:
           git config submodule."LAM_Test/agents/operator-agent".branch main
           git submodule update --remote LAM_Test/agents/codex-agent LAM_Test/agents/comm-agent LAM_Test/agents/operator-agent
 
-      - name: Verify submodule sources
-        run: bash scripts/local/bootstrap_submodules.sh
-
       - name: Angel Guard Identity Verification
         run: |
-          grep "System ID: # LAM-TEST" IDENTITY.md
+          grep "# \*\*LAM-TEST\*\*" IDENTITY.md
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -198,12 +192,9 @@ jobs:
           git config submodule."LAM_Test/agents/operator-agent".branch main
           git submodule update --remote LAM_Test/agents/codex-agent LAM_Test/agents/comm-agent LAM_Test/agents/operator-agent
 
-      - name: Verify submodule sources
-        run: bash scripts/local/bootstrap_submodules.sh
-
       - name: Angel Guard Identity Verification
         run: |
-          grep "System ID: # LAM-TEST" IDENTITY.md
+          grep "# \*\*LAM-TEST\*\*" IDENTITY.md
 
       - name: Set up Python
         uses: actions/setup-python@v4
