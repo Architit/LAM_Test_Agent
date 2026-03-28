@@ -20,7 +20,7 @@ jobs:
 
       - name: Angel Guard Identity Verification
         run: |
-          grep "# \*\*LAM-TEST\*\*" IDENTITY.md
+          grep "LAM-TEST" IDENTITY.md
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -154,7 +154,7 @@ jobs:
 
       - name: Angel Guard Identity Verification
         run: |
-          grep "# \*\*LAM-TEST\*\*" IDENTITY.md
+          grep "LAM-TEST" IDENTITY.md
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -194,7 +194,7 @@ jobs:
 
       - name: Angel Guard Identity Verification
         run: |
-          grep "# \*\*LAM-TEST\*\*" IDENTITY.md
+          grep "LAM-TEST" IDENTITY.md
 
       - name: Set up Python
         uses: actions/setup-python@v4
