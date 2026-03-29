@@ -38,10 +38,10 @@ def epoch_now() -> int:
 def safe_mkdir(path: Path) -> None:
     path.mkdir(parents=True, exist_ok=True)
 
-# Test-friendly free_gb
+
 def free_gb(path: Path) -> int:
     if "PYTEST_CURRENT_TEST" in os.environ:
-        return 100 # Всегда много места в тестах
+        return 100
     target = path
     while not target.exists() and target.parent != target:
         target = target.parent
@@ -50,12 +50,6 @@ def free_gb(path: Path) -> int:
         return int(usage.free // (1024**3))
     except Exception:
         return 0
-def _old_free_gb(path: Path):
-    target = path
-    if not path.exists():
-        target = path.parent
-    usage = shutil.disk_usage(target)
-    return int(usage.free // (1024**3))
 
 
 def default_providers() -> dict[str, dict[str, Any]]:
@@ -127,6 +121,7 @@ def write_json(path: Path, payload: Any) -> None:
 def resolve_github_url(org: str, repo: str, path: str) -> str:
     return f"https://raw.githubusercontent.com/{org}/{repo}/main/{path}"
 
+
 def github_fetch(org: str, repo: str, path: str, dst: Path) -> bool:
     url = resolve_github_url(org, repo, path)
     cmd = ["curl", "-s", "-f", "-L", url, "-o", str(dst)]
@@ -140,6 +135,7 @@ def github_fetch(org: str, repo: str, path: str, dst: Path) -> bool:
         return res.returncode == 0
     except Exception:
         return False
+
 
 def ensure_state() -> None:
     safe_mkdir(STATE_DIR)
@@ -296,18 +292,12 @@ def provider_health(policy: dict[str, Any]) -> list[dict[str, Any]]:
         )
     return out
 
-# Old class_policy replaced
+
 def class_policy(policy: dict[str, Any], data_class: str) -> dict[str, Any]:
     classes = policy.get("classes", {})
     if data_class in classes:
         return classes[data_class]
-    # Если класс неизвестен (например restricted в тестах), разрешаем только local
     return {"providers": ["local"], "min_free_gb": 1}
-def _old_class_policy(p, d):
-    classes = policy.get("classes", {})
-    if data_class in classes:
-        return classes[data_class]
-    return classes.get("generic", {"providers": ["local"], "min_free_gb": 1})
 
 
 def select_provider(policy: dict[str, Any], data_class: str) -> dict[str, Any]:
@@ -323,10 +313,8 @@ def select_provider_for_object(
     min_free = int(cls.get("min_free_gb", 1))
 
     if os.getenv("LAM_GATEWAY_OFFLINE_PRIMARY", "0") in {"1", "true", "True"}:
-        # Reorder to: local -> gdrive -> others (like github)
         offline_prio = ["local", "gdrive"]
         others = [p for p in providers if p not in offline_prio]
-        # Keep only configured/reachable offline ones at front
         reachable_offline = [p for p in offline_prio if p in providers]
         providers = reachable_offline + others
 
@@ -427,7 +415,6 @@ def cmd_put(args: argparse.Namespace) -> int:
 
     object_size_bytes = path_size_bytes(source)
 
-
     if KILL_SWITCH_FILE.exists():
         raise RuntimeError("kill-switch is active")
 
@@ -454,31 +441,6 @@ def cmd_put(args: argparse.Namespace) -> int:
         }
 
     target_root = Path(policy["providers"][target_provider]["root"])
-
-    if False: # replaced old logic
-        provider_name = args.provider
-        providers = policy.get("providers", {})
-        if provider_name not in providers:
-            raise RuntimeError(f"unknown provider: {provider_name}")
-        if breaker_is_open(provider_name):
-            raise RuntimeError(f"provider breaker open: {provider_name}")
-        if not provider_accepts_size(policy, provider_name, object_size_bytes):
-            raise RuntimeError(f"provider size limit exceeded: provider={provider_name}")
-        target_root = Path(str(providers[provider_name].get("root", "")))
-        if not str(target_root).strip():
-            raise RuntimeError(f"provider not configured: {provider_name}")
-        safe_mkdir(target_root)
-        decision = {
-            "provider": provider_name,
-            "reason": "manual_override",
-            "degraded": False,
-            "required_free_gb": 0,
-            "available_free_gb": free_gb(target_root),
-            "object_size_bytes": object_size_bytes,
-        }
-    else:
-        pass # target_root already set by new logic
-
     safe_mkdir(target_root)
     target_root = target_root.resolve()
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
@@ -532,7 +494,6 @@ def cmd_get(args: argparse.Namespace) -> int:
         parts = Path(args.path).parts
         if not parts:
             raise RuntimeError("empty path for github provider")
-        # Map relative or direct paths to repo/subpath
         if parts[0] == "..":
             if len(parts) < 2:
                 raise RuntimeError(f"invalid sibling path: {args.path}")
@@ -558,7 +519,6 @@ def cmd_get(args: argparse.Namespace) -> int:
     root = root.resolve()
     source = (root / args.path).resolve()
     
-    # Fallback logic for sibling organs from local provider
     if not source.exists() and args.provider == "local" and "github" in providers:
         parts = Path(args.path).parts
         if parts:
@@ -803,6 +763,7 @@ def reorder_classes_by_health(policy: dict[str, Any]) -> dict[str, Any]:
     if changed:
         write_json(POLICY_FILE, policy)
     return {"changed": changed, "classes": classes}
+
 
 def cmd_circulation_kill_switch(args: argparse.Namespace) -> int:
     ensure_state()
