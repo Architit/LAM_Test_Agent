@@ -14,6 +14,11 @@ try:
 except ImportError:
     ship_telemetry = None
 
+try:
+    from drift_watchdog import run_watchdog
+except ImportError:
+    run_watchdog = None
+
 DOCUMENT_ID = "1as43exoncCdD4n6MttSLTm2mAszeAxrpeuuSYZ3selA"
 
 def get_systemd_status(unit, user=False):
@@ -38,7 +43,14 @@ def get_mcp_status(name):
         return "ERROR"
 
 def update_telemetry():
-    # Ship buffered events first
+    # 1. Run autonomous healing watchdog
+    if run_watchdog:
+        try:
+            run_watchdog()
+        except Exception as e:
+            print(f"[WATCHDOG] Failed: {e}")
+
+    # 2. Ship buffered events (including any healing events)
     if ship_telemetry:
         try:
             ship_telemetry()
