@@ -1,3 +1,4 @@
+# Copyright (c) 2026-06-07 RADRILONIUMA / TRIANIUMA Kingdom. All rights reserved.
 # -*- coding: utf-8 -*-
 """
 codex_agent/core.py (HEALED - Phase 8.0)

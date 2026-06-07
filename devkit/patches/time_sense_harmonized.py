@@ -1,3 +1,4 @@
+# Copyright (c) 2026-06-07 RADRILONIUMA / TRIANIUMA Kingdom. All rights reserved.
 # -*- coding: utf-8 -*-
 """Utility class for parsing and comparing fuzzy timestamps (Harmonized - Phase 8.0)."""
 

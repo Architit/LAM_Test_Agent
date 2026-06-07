@@ -1,3 +1,4 @@
+# Copyright (c) 2026-06-07 RADRILONIUMA / TRIANIUMA Kingdom. All rights reserved.
 # -*- coding: utf-8 -*-
 """
 SACRED INTEGRITY TEST SUITE (Phase 8.0)

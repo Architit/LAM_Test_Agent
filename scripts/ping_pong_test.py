@@ -1,3 +1,4 @@
+# Copyright (c) 2026-06-07 RADRILONIUMA / TRIANIUMA Kingdom. All rights reserved.
 from pathlib import Path
 
 from lam_test_agent_bootstrap import (

@@ -1,3 +1,4 @@
+# Copyright (c) 2026-06-07 RADRILONIUMA / TRIANIUMA Kingdom. All rights reserved.
 # -*- coding: utf-8 -*-
 """Unified Logging System for LAM (HEALED - Phase 8.0)."""
 

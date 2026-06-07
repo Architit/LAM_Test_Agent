@@ -1,3 +1,4 @@
+# Copyright (c) 2026-06-07 RADRILONIUMA / TRIANIUMA Kingdom. All rights reserved.
 class CircuitBreakerFlowControl:
     def __init__(self, failure_threshold: int = 3):
         self.failure_threshold = failure_threshold

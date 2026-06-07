@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# Copyright (c) 2026-06-07 RADRILONIUMA / TRIANIUMA Kingdom. All rights reserved.
 """
 segmenter_blocks.py (The Chronicler Edition - Phase 8.0)
 

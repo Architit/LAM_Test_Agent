@@ -1,3 +1,4 @@
+# Copyright (c) 2026-06-07 RADRILONIUMA / TRIANIUMA Kingdom. All rights reserved.
 import pytest
 np = pytest.importorskip("numpy")
 from memory.core.vector_db import VectorDB
