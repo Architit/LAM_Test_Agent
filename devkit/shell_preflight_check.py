@@ -30,6 +30,34 @@ class Finding:
     command: str
 
 
+REMEDIATION_BY_RULE = {
+    "PF_QUOTE_UNBALANCED": {
+        "reason": "Command has unbalanced quotes and cannot be parsed safely.",
+        "next": "Balance single/double quotes and rerun preflight.",
+    },
+    "PF_BACKTICK_SUBSTITUTION_RISK": {
+        "reason": "Backtick substitution detected outside safe quoting.",
+        "next": "Replace backticks with single-quoted literals or explicit arguments.",
+    },
+    "PF_COMMAND_SUBSTITUTION_PRESENT": {
+        "reason": "Command substitution '$(' is present and may hide side effects.",
+        "next": "Use direct literal/path arguments where possible; keep substitution only if required.",
+    },
+    "PF_DANGLING_BACKTICK": {
+        "reason": "Dangling PowerShell backtick can change parser behavior.",
+        "next": "Remove trailing backtick or complete the escaped expression explicitly.",
+    },
+    "PF_PWSH_VAR_COLON_BRACES_REQUIRED": {
+        "reason": "PowerShell variable followed by ':' may be parsed incorrectly.",
+        "next": "Rewrite as '${var}:...' unless a scope-qualified variable is intended.",
+    },
+    "PF_CMD_META_UNQUOTED": {
+        "reason": "Potentially unsafe cmd meta characters detected outside quotes.",
+        "next": "Quote or escape meta characters (&, |, <, >) and rerun preflight.",
+    },
+}
+
+
 def has_unbalanced_quotes(line: str) -> bool:
     single = False
     double = False
@@ -211,6 +239,51 @@ def run_checks(shell: str, commands: List[str]) -> List[Finding]:
     return findings
 
 
+def build_gate_guidance(findings: List[Finding]) -> dict:
+    errors = [f for f in findings if f.severity == "ERROR"]
+    warns = [f for f in findings if f.severity == "WARN"]
+
+    if errors:
+        decision = "BLOCK"
+        reason_code = errors[0].rule_id
+        blocked_rules = sorted({f.rule_id for f in errors})
+    elif warns:
+        decision = "HOLD"
+        reason_code = warns[0].rule_id
+        blocked_rules = []
+    else:
+        decision = "OPEN"
+        reason_code = "NONE"
+        blocked_rules = []
+
+    next_actions: List[str] = []
+    for f in (errors if errors else warns):
+        rule = REMEDIATION_BY_RULE.get(f.rule_id)
+        if rule:
+            next_actions.append(f"[{f.rule_id}] {rule['next']}")
+        else:
+            next_actions.append(f"[{f.rule_id}] Review command composition and rerun preflight.")
+
+    # Keep list deterministic and concise.
+    next_actions = list(dict.fromkeys(next_actions))
+
+    explanation_parts: List[str] = []
+    for rule_id in sorted({f.rule_id for f in (errors if errors else warns)}):
+        rule = REMEDIATION_BY_RULE.get(rule_id)
+        if rule:
+            explanation_parts.append(f"{rule_id}: {rule['reason']}")
+        else:
+            explanation_parts.append(f"{rule_id}: rule triggered; inspect findings for details.")
+
+    return {
+        "decision": decision,
+        "reason_code": reason_code,
+        "blocked_by_rules": blocked_rules,
+        "explanation": " ".join(explanation_parts) if explanation_parts else "No blocking conditions detected.",
+        "next_actions": next_actions,
+    }
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Shell command preflight checker.")
     parser.add_argument(
@@ -237,6 +310,7 @@ def main() -> int:
     findings = run_checks(args.shell, commands)
     errors = [f for f in findings if f.severity == "ERROR"]
     warns = [f for f in findings if f.severity == "WARN"]
+    guidance = build_gate_guidance(findings)
 
     result = {
         "shell": args.shell,
@@ -245,6 +319,11 @@ def main() -> int:
         "warn_count": len(warns),
         "findings": [asdict(f) for f in findings],
         "safe_for_execution": len(errors) == 0,
+        "decision": guidance["decision"],
+        "reason_code": guidance["reason_code"],
+        "blocked_by_rules": guidance["blocked_by_rules"],
+        "explanation": guidance["explanation"],
+        "next_actions": guidance["next_actions"],
     }
 
     if args.format == "json":
@@ -254,6 +333,10 @@ def main() -> int:
             f"shell={args.shell} checked={len(commands)} errors={len(errors)} warns={len(warns)} "
             f"safe={str(len(errors) == 0).lower()}"
         )
+        print(f"decision={guidance['decision']} reason_code={guidance['reason_code']}")
+        print(f"explanation={guidance['explanation']}")
+        for action in guidance["next_actions"]:
+            print(f"next_action={action}")
         for f in findings:
             print(f"[{f.severity}] {f.rule_id} line={f.line}: {f.message}")
 
