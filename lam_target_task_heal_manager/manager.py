@@ -120,18 +120,20 @@ COMPLIANCE_ORDER = [
     "ALGS-01",
 ]
 
-def write_and_validate_vavima_spec(sys_id, task_desc):
+def write_and_validate_vavima_spec(sys_id, task_desc, suffix=""):
     """Generates a VAVIMA-compliant task spec YAML file and validates it."""
     spec_dir = BASE_DIR / "lam_target_task_heal_manager" / "specs"
     spec_dir.mkdir(parents=True, exist_ok=True)
-    spec_file = spec_dir / f"task_spec_{sys_id.lower()}.yaml"
     
-    patch_name = f"devkit/patches/{sys_id.lower()}_compliance.patch"
+    file_id = f"{sys_id.lower()}{suffix}"
+    spec_file = spec_dir / f"task_spec_{file_id}.yaml"
+    
+    patch_name = f"devkit/patches/{file_id}_compliance.patch"
     patch_sha = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     
     # Write VAVIMA compliance spec
     yaml_content = f"""spec_version: "1.1"
-task_id: "apc_{sys_id.lower().replace('-', '_')}_compliance"
+task_id: "apc_{file_id.replace('-', '_')}_compliance"
 goal: "Execute VAVIMA compliance task for {sys_id}: {task_desc}"
 constraints:
   derivation_only: true
@@ -161,8 +163,8 @@ expected_result:
         return spec_file, True
     return spec_file, False
 
-def get_dynamic_organ_task(sys_id, queue_items):
-    """Determines the task description based on previous runs to prevent repetition."""
+def get_dynamic_organ_tasks(sys_id, queue_items):
+    """Generates the list of past completed tasks and the next new task at the horizon."""
     base_id = sys_id.split("-")[0]
     past_runs = []
     for t in queue_items:
@@ -174,37 +176,52 @@ def get_dynamic_organ_task(sys_id, queue_items):
     failed_runs = [t for t in past_runs if t.get("status") == "error"]
     pending_runs = [t for t in past_runs if t.get("status") == "pending"]
 
-    # Base task
+    tasks = []
     base_task = BASELINE_TASKS.get(sys_id, "Perform standard system validation.")
     
-    # 1. Double Attention Check: If it failed recently or is duplicated pending
+    # 1. Reconstruct past completed steps in the horizon
+    for idx, run in enumerate(completed_runs):
+        step_num = idx + 1
+        if step_num == 1:
+            desc = base_task
+        elif step_num == 2:
+            desc = f"Step 2: Verify post-execution telemetry and check for stability after initial baseline for {sys_id}."
+        elif step_num == 3:
+            desc = f"Step 3: Run comprehensive resource and memory performance audit for {sys_id}."
+        else:
+            desc = f"Step {step_num}: Perform advanced deep-dive safety and boundary verification for {sys_id}."
+        
+        spec_file, ok = write_and_validate_vavima_spec(sys_id, desc, suffix=f"_step{step_num}")
+        tasks.append((desc, spec_file, True, "completed"))
+
+    # 2. Add the next active task at the horizon edge
+    num_completed = len(completed_runs)
+    next_step_num = num_completed + 1
+    
     if failed_runs:
         latest_fail = failed_runs[-1]
         err_msg = latest_fail.get("error_msg", "unknown error").replace("\n", " ")
         desc = f"🚨 [DOUBLE ATTENTION Required] Fix execution bug. Previous error: `{err_msg}`. Task: {base_task}"
-        spec_file, ok = write_and_validate_vavima_spec(sys_id, desc)
-        return desc, spec_file, "double_attention"
-    
-    if len(pending_runs) > 1:
+        spec_file, ok = write_and_validate_vavima_spec(sys_id, desc, suffix=f"_step{next_step_num}")
+        tasks.append((desc, spec_file, False, "double_attention"))
+    elif len(pending_runs) > 1:
         desc = f"🚨 [DOUBLE ATTENTION Required] Repeated pending tasks detected in queue. Clean queue or check runner. Task: {base_task}"
-        spec_file, ok = write_and_validate_vavima_spec(sys_id, desc)
-        return desc, spec_file, "double_attention"
-
-    # 2. Prevent repetition: If baseline is already done, generate a NEW advanced step
-    num_completed = len(completed_runs)
-    if num_completed > 0:
-        if num_completed == 1:
+        spec_file, ok = write_and_validate_vavima_spec(sys_id, desc, suffix=f"_step{next_step_num}")
+        tasks.append((desc, spec_file, False, "double_attention"))
+    else:
+        if next_step_num == 1:
+            desc = base_task
+        elif next_step_num == 2:
             desc = f"Step 2: Verify post-execution telemetry and check for stability after initial baseline for {sys_id}."
-        elif num_completed == 2:
+        elif next_step_num == 3:
             desc = f"Step 3: Run comprehensive resource and memory performance audit for {sys_id}."
         else:
-            desc = f"Step {num_completed + 1}: Perform advanced deep-dive safety and boundary verification for {sys_id}."
-        spec_file, ok = write_and_validate_vavima_spec(sys_id, desc)
-        return desc, spec_file, "new_step"
-
-    # 3. Standard baseline
-    spec_file, ok = write_and_validate_vavima_spec(sys_id, base_task)
-    return base_task, spec_file, "baseline"
+            desc = f"Step {next_step_num}: Perform advanced deep-dive safety and boundary verification for {sys_id}."
+            
+        spec_file, ok = write_and_validate_vavima_spec(sys_id, desc, suffix=f"_step{next_step_num}")
+        tasks.append((desc, spec_file, False, "new_step"))
+        
+    return tasks
 
 def main():
     print("[HEAL_MANAGER] Initiating target task scan...")
@@ -312,9 +329,19 @@ def main():
     
     idx = 1
     for sys_id in COMPLIANCE_ORDER:
-        desc, spec_file, task_type = get_dynamic_organ_task(sys_id, queue_items)
-        spec_link = f"[VAVIMA Spec](file://{spec_file.absolute()})"
-        content.append(f"- [ ] **Task {idx:02d} ({sys_id}):** {spec_link} — {desc}")
+        tasks = get_dynamic_organ_tasks(sys_id, queue_items)
+        if len(tasks) == 1:
+            desc, spec_file, is_completed, task_type = tasks[0]
+            spec_link = f"[VAVIMA Spec](file://{spec_file.absolute()})"
+            check_char = "x" if is_completed else " "
+            content.append(f"- [{check_char}] **Task {idx:02d} ({sys_id}):** {spec_link} — {desc}")
+        else:
+            import string
+            for sub_idx, (desc, spec_file, is_completed, task_type) in enumerate(tasks):
+                letter = string.ascii_lowercase[sub_idx]
+                spec_link = f"[VAVIMA Spec](file://{spec_file.absolute()})"
+                check_char = "x" if is_completed else " "
+                content.append(f"- [{check_char}] **Task {idx:02d}{letter} ({sys_id}):** {spec_link} — {desc}")
         idx += 1
 
     content.append("\n## IV. SOVEREIGN FOREST ORGAN STATES")
