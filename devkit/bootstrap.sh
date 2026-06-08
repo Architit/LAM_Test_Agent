@@ -1,39 +1,47 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-REPO="${1:-$(pwd)}"
-cd "$REPO"
+REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+BASELINE="$REPO/devkit/preflight_baseline_commands_bash.txt"
 
-if [[ ! -d ".venv" ]]; then
-  python3 -m venv .venv
-fi
-
-PY="$REPO/.venv/bin/python"
-PIP="$REPO/.venv/bin/pip"
-
-"$PY" -m pip install -U pip
-
-if [[ -f "requirements-dev.txt" ]]; then
-  "$PIP" install -r requirements-dev.txt
-elif [[ -f "requirements.txt" ]]; then
-  "$PIP" install -r requirements.txt
-elif [[ -f "pyproject.toml" ]]; then
-  "$PIP" install -e .
-else
-  echo "[devkit] WARN: no requirements*.txt or pyproject.toml found"
-fi
-
-echo "[devkit] OK: $PY"
-
-AUTOHEAL_SCRIPT="$REPO/devkit/healing_tools/gemini_gateway_autoheal.sh"
-if [[ "${LARPAT_GATEWAY_AUTOHEAL:-1}" == "1" && -x "$AUTOHEAL_SCRIPT" ]]; then
-  if "$AUTOHEAL_SCRIPT"; then
-    echo "[devkit] Gateway auto-heal: OK"
+if [[ -x "$REPO/devkit/shell_preflight.sh" && -f "$BASELINE" ]]; then
+  if "$REPO/devkit/shell_preflight.sh" --shell bash --file "$BASELINE" >/dev/null; then
+    echo "[devkit] shell preflight: OK"
   else
+    echo "[devkit] shell preflight: FAIL" >&2
     if [[ "${LARPAT_GATEWAY_STRICT:-0}" == "1" ]]; then
-      echo "[devkit] Gateway auto-heal: FAIL (strict mode)" >&2
       exit 1
     fi
-    echo "[devkit] Gateway auto-heal: WARN (continuing; set LARPAT_GATEWAY_STRICT=1 to fail)" >&2
   fi
 fi
+
+if [[ "${LARPAT_LOCAL_GATEWAY_PREFLIGHT:-1}" == "1" ]]; then
+  if "$REPO/scripts/lam_gateway.sh" init >/dev/null; then
+    echo "[devkit] local gateway init: OK"
+  else
+    echo "[devkit] local gateway init: FAIL" >&2
+    if [[ "${LARPAT_GATEWAY_STRICT:-0}" == "1" ]]; then
+      exit 1
+    fi
+  fi
+
+  if "$REPO/scripts/lam_gateway.sh" health >/dev/null; then
+    echo "[devkit] local gateway health: OK"
+  else
+    echo "[devkit] local gateway health: FAIL" >&2
+    if [[ "${LARPAT_GATEWAY_STRICT:-0}" == "1" ]]; then
+      exit 1
+    fi
+  fi
+
+  if "$REPO/scripts/lam_gateway.sh" monitor --once --auto-switch >/dev/null; then
+    echo "[devkit] local gateway monitor: OK"
+  else
+    echo "[devkit] local gateway monitor: FAIL" >&2
+    if [[ "${LARPAT_GATEWAY_STRICT:-0}" == "1" ]]; then
+      exit 1
+    fi
+  fi
+fi
+
+echo "[devkit] bootstrap complete"
